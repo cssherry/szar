@@ -1,0 +1,42 @@
+* {
+  
+  font-family: 'Italianno', cursive;
+}
+
+.invitation-body {
+  align-content: center;
+  background: #edeaea; /* For browsers that do not support gradients */
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#f6f6f6), to(#d1cccc)); /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-radial-gradient(circle, #f6f6f6, #d1cccc); /* Safari 5.1+, Chrome 10+ */
+  background: -moz-radial-gradient(circle, #f6f6f6, #d1cccc); /* Firefox 3.6+ */
+  background: -ms-radial-gradient(circle, #f6f6f6, #d1cccc); /* IE 10 */
+  width: 600px;
+  display: block;
+  margin: auto;
+}
+
+.invitation-text {
+  padding-top: 180px;
+}
+
+.large {
+  margin: 5px 0;
+  font-size: 50px;
+}
+
+.medium {
+  margin: 5px 0;
+  font-size: 40px;
+}
+
+svg {
+  margin-top: -564px;
+  border: 5px groove lightgray;
+}
+
+p {
+  color: #4d4d4d;
+  text-align: center;
+  margin: 0px;
+  font-size: 20px;
+}
