@@ -10,10 +10,10 @@ body {
 .invitation-body {
   align-content: center;
   background: #edeaea; /* For browsers that do not support gradients */
-  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#f6f6f6), to(#d1cccc)); /* Safari 4-5, Chrome 1-9 */
-  background: -webkit-radial-gradient(circle, #f6f6f6, #d1cccc); /* Safari 5.1+, Chrome 10+ */
-  background: -moz-radial-gradient(circle, #f6f6f6, #d1cccc); /* Firefox 3.6+ */
-  background: -ms-radial-gradient(circle, #f6f6f6, #d1cccc); /* IE 10 */
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#e4e4e4)); /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-radial-gradient(circle, #ffffff, #e4e4e4); /* Safari 5.1+, Chrome 10+ */
+  background: -moz-radial-gradient(circle, #ffffff, #e4e4e4); /* Firefox 3.6+ */
+  background: -ms-radial-gradient(circle, #ffffff, #e4e4e4); /* IE 10 */
   width: 620px;
   height: 820px;
   display: block;
@@ -39,8 +39,12 @@ svg {
   border: 5px groove lightgray;
 }
 
+svg path {
+  fill: #860000;
+}
+
 p {
-  color: #4d4d4d;
+  color: #6b6b6b;
   text-align: center;
   margin: 0px;
   font-size: 24px;
