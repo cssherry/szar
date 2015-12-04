@@ -1,8 +1,8 @@
 * {
-  
   font-family: 'Italianno', cursive;
 }
 
+/*Go to http://dopiaza.org/tools/datauri/index.php to convert svg to data text*/
 body {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+CjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0iZ3JleSI+PC9yZWN0Pgo8cmVjdCB4PSIyNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjUwIiBmaWxsPSIjY2NjIj48L3JlY3Q+Cjwvc3ZnPg==");
 }
@@ -14,8 +14,8 @@ body {
   background: -webkit-radial-gradient(circle, #ffffff, #e4e4e4); /* Safari 5.1+, Chrome 10+ */
   background: -moz-radial-gradient(circle, #ffffff, #e4e4e4); /* Firefox 3.6+ */
   background: -ms-radial-gradient(circle, #ffffff, #e4e4e4); /* IE 10 */
-  width: 620px;
-  height: 820px;
+  width: 670px;
+  height: 885px;
   display: block;
   margin: auto;
 }
