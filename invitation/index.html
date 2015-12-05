@@ -98,12 +98,11 @@
       </svg>
     </div> <!-- envelop -->
     <script type="text/javascript">
-      $doc = $(document)
+      $envelope = $(".envelope")
 
-      $doc.one('.envelope', function (e) {
-        $(e.target).attr("class", "");
-        $envelope = $(e.currentTarget);
-        $doc.find("#morphoneleft")[0].beginElement();
+      $envelope.one('click', function (e) {
+        $envelope.removeClass("button");
+        $envelope.find("#morphoneleft")[0].beginElement();
         setTimeout(function() {
           $envelope.addClass('open');
           window.scrollTo(0,0);
@@ -113,7 +112,7 @@
         }, 1800);
       });
 
-      $doc.on("#rsvp", function () {
+      $envelope.find('#rsvp').on("click ", function () {
         
       });
     </script>
