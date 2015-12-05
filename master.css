@@ -288,51 +288,64 @@ html {
   text-shadow: 1px 1px 5px #bbb;
   color: #e4e4e4;
   font-family: fantasy;
+  -webkit-box-shadow: 5px 5px 10px #888;
+  -moz-box-shadow: 5px 5px 10px #888;
+  box-shadow: 5px 5px 10px #888;
   top: 30px;
 }
 
 .left-ribbon {
   padding: 6px 10px 6px 30px;
-  -webkit-box-shadow: 5px 5px 10px #888;
-  -moz-box-shadow: 5px 5px 10px #888;
-  box-shadow: 5px 5px 10px #888;
   left: -23px;
 }
 
 .right-ribbon {
   padding: 6px 30px 6px 10px;
-  -webkit-box-shadow: -5px -5px 10px #888;
-  -moz-box-shadow: -5px -5px 10px #888;
-  box-shadow: -5px -5px 10px #888;
   left: 76%;
 }
 
-.left-ribbon:after {
+.left-ribbon:after, .right-ribbon:after {
   content: ' ';
 	position: absolute;
 	width: 0;
 	height: 0;
-	left: 0px;
 	top: 100%;
 	border-width: 5px 10px;
 	border-style: solid;
+}
+
+.left-ribbon:after {
 	border-color: #860000 #860000 transparent transparent;
+	left: 0px;
+}
+
+.right-ribbon:after {
+	border-color: transparent #860000 #860000 transparent;
+  left: 90%;
 }
 
 .show-ribbon {
   overflow: visible !important;
 }
 
-.left-ribbon:before {
+.left-ribbon:before, .right-ribbon:before {
   content: ' ';
 	position: absolute;
 	width: 30px;
 	height: 0;
-	left: -30px;
 	top: 12px;
 	border-width: 20px 10px;
 	border-style: solid;
+}
+
+.left-ribbon:before {
 	border-color: #860000 #860000 #860000 transparent;
+	left: -30px;
+}
+
+.right-ribbon:before {
+  left: 100%;
+  border-color: #860000 transparent #860000 #860000;
 }
 
 .front, .back {
