@@ -1,14 +1,40 @@
-* {
+html {
+  height:150%;
   font-family: 'Italianno', cursive;
+}
+
+.button {
+  cursor:pointer;
 }
 
 /*Go to http://dopiaza.org/tools/datauri/index.php to convert svg to data text*/
 body {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+CjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0iZ3JleSI+PC9yZWN0Pgo8cmVjdCB4PSIyNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjUwIiBmaWxsPSIjY2NjIj48L3JlY3Q+Cjwvc3ZnPg==");
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
 }
 
 .invitation-body {
   align-content: center;
+  text-align: center;
   background: #edeaea; /* For browsers that do not support gradients */
   background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#e4e4e4)); /* Safari 4-5, Chrome 1-9 */
   background: -webkit-radial-gradient(circle, #ffffff, #e4e4e4); /* Safari 5.1+, Chrome 10+ */
@@ -19,6 +45,8 @@ body {
   display: block;
   margin: auto;
   border: 5px groove lightgray;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .border {
@@ -44,7 +72,208 @@ body {
 
 p {
   color: #6b6b6b;
-  text-align: center;
   margin: 0px;
   font-size: 24px;
+}
+
+html {
+  height: 100%;
+}
+
+.envelope {
+  background: #e4e4e4;
+  border-radius: 0 0 4px 4px;
+  width: 700px;
+  height:420px;
+  min-height: 420px;
+  margin: 10px 10px;
+  position: relative;
+  -webkit-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+          transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+  -webkit-transform-origin: 50 50%;
+      -ms-transform-origin: 50 50%;
+          transform-origin: 50 50%;
+}
+.envelope:before, .envelope:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
+.envelope:before {
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 380px 0 0 650px;
+  border-color: transparent transparent transparent #860000;
+}
+.envelope:after {
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 380px 650px;
+  border-color: transparent transparent #860000 transparent;
+}
+.envelope.open {
+  -webkit-transform: rotateZ(15deg) translateY(400px);
+          transform: rotateZ(15deg) translateY(400px);
+}
+.envelope.open .flap-outside {
+  top: -1px;
+  -webkit-animation: open-flap 0.6s ease-in-out forwards;
+          animation: open-flap 0.6s ease-in-out forwards;
+}
+.envelope.open .flap-outside .flap {
+  background: #e4e4e4;
+}
+.envelope.open .card {
+  -webkit-transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
+      -ms-transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
+          transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+  width: 670px;
+  height: 885px;
+  z-index: 5000;
+}
+.envelope .card {
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  bottom: 0;
+  width: 70%;
+  height: 85%;
+  -webkit-transform: translateX(14%);
+      -ms-transform: translateX(14%);
+          transform: translateX(14%);
+  -webkit-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
+          transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
+  z-index: 1;
+}
+.envelope .flap-container {
+  border-radius: 4px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all 0.4s cubic-bezier(0.18, 0.81, 0.76, 0.93) 0s;
+          transition: all 0.4s cubic-bezier(0.18, 0.81, 0.76, 0.93) 0s;
+  z-index: 3;
+}
+.envelope .flap-outside {
+  overflow-y: auto;
+  -webkit-transform-origin: 50% 0;
+      -ms-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+  z-index: 4;
+}
+.envelope .flap-outside .flap {
+  background: #860000;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.envelope .flap-outside .flap:after {
+  background: #e4e4e4;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  content: '';
+  display: block;
+  position: absolute;
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.envelope .flap-inside {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+.envelope .flap-inside .flap {
+  border-radius: 40px 40px 100px 40px;
+  border: 1px solid #e4e4e4;
+  margin-top: -100px;
+}
+.envelope .flap {
+  background: #860000;
+  border: 1px solid #e4e4e4;
+  border-radius: 40px;
+  overflow: hidden;
+  width: 540px;
+  height: 540px;
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  margin: -30px 0 0 -265px;
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: all 0.8s ease 0s;
+          transition: all 0.8s ease 0s;
+  z-index: 2;
+}
+.envelope .flap .lining {
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+DQo8cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiM4NjAwMDAiLz4NCjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjQwIiBmaWxsPSIjZTRlNGU0Ii8+DQo8cGF0aCBkPSJNMCA0MCBBNDAgNDAgNDUgMCAwIDQwIDAgQTQwIDQwIDMxNSAwIDAgODAgNDAgQTQwIDQwIDQ1IDAgMCA0MCA4MCBBNDAgNDAgMjcwIDAgMCAwIDQwWiIgZmlsbD0iIzg2MDAwMCIvPg0KPC9zdmc+");
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-radius: 0 0 40px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 92%;
+  height: 92%;
+}
+.envelope svg.string {
+  position: relative;
+  z-index: 10;
+}
+
+@-webkit-keyframes open-flap {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    z-index: 4;
+  }
+  50% {
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+    z-index: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+    z-index: 0;
+  }
+}
+
+@keyframes open-flap {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    z-index: 4;
+  }
+  50% {
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+    z-index: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+    z-index: 0;
+  }
 }
