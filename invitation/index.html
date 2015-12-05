@@ -100,13 +100,21 @@
     <script type="text/javascript">
       $doc = $(document)
 
-      $doc.one('click', '.envelope', function (e) {
+      $doc.one('.envelope', function (e) {
         $(e.target).attr("class", "");
+        $envelope = $(e.currentTarget);
         $doc.find("#morphoneleft")[0].beginElement();
         setTimeout(function() {
-          $(e.currentTarget).addClass('open');
+          $envelope.addClass('open');
         }, 1000);
-      })
+        setTimeout(function() {
+          $envelope.find(".card").addClass('show-ribbon');
+        }, 1800);
+      });
+
+      $doc.on("#rsvp", function () {
+        
+      });
     </script>
   </body>
 </html>
