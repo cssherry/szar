@@ -113,22 +113,24 @@
       </svg>
     </div> <!-- envelop -->
     <script type="text/javascript">
-      $envelope = $('.envelope');
-      $envelope.one("click", function (e) {
-        $envelope.removeClass("button");
-        $envelope.find("#morphoneleft")[0].beginElement();
-        setTimeout(function() {
-          $envelope.addClass('open');
-          window.scrollTo(0,0);
-        }, 1000);
-        setTimeout(function() {
-          $envelope.find(".card").addClass('show-ribbon');
-        }, 1300);
-      });
+      $(function (argument) {
+        $envelope = $('.envelope');
+        $envelope.one("click", function (e) {
+          $envelope.removeClass("button");
+          $envelope.find("#morphoneleft")[0].beginElement();
+          setTimeout(function() {
+            $envelope.addClass('open');
+            window.scrollTo(0,0);
+          }, 1000);
+          setTimeout(function() {
+            $envelope.find(".card").addClass('show-ribbon');
+          }, 1300);
+        });
 
-      $envelope.find("#rsvp, #invitation").on('click', function () {
-        $envelope.toggleClass("flipped");
-      });
+        $envelope.find("#rsvp, #invitation").on('click', function () {
+          $envelope.toggleClass("flipped");
+        });
+      })
     </script>
   </body>
 </html>
