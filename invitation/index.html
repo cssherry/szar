@@ -10,27 +10,42 @@
   <body>
     <div class="envelope button">
       <div class="invitation-body card">
-        <div class="border">
-          <div class="button" id="rsvp">
-            Click to RSVP
+        <div class="front">
+          <div class="border">
+            <div class="button left-ribbon" id="rsvp">
+              Click to RSVP
+            </div>
+            <div class="invitation-text">
+              <p>Drs. Bin Zhou & Fang Mu</p>
+              <p>invite you to join them for the</p>
+              <p class="large">wedding </p>
+              <p>of their daughter,</p>
+              <p class="medium">Xiao-Qiao Zhou,</p>
+              <p>to</p>
+              <p class="medium">Aneesh Raghunandan,</p>
+              <p>son of Drs. K. Raghunandan & D. Rama</p>
+              <p></p>
+              <p>on the morning of August 28, 2016,</p>
+              <p>with a reception</p>
+              <p>on the evening of August 27,</p>
+              <p>in the San Francisco Bay Area, </p>
+              <p>CA.</p>
+            </div> <!-- invitation-text -->
+          </div> <!-- border -->
+        </div> <!-- front -->
+
+        <div class="back">
+          <div class="button right-ribbon" id="invitation">
+            See invitation
           </div>
-          <div class="invitation-text">
-            <p>Drs. Bin Zhou & Fang Mu</p>
-            <p>invite you to join them for the</p>
-            <p class="large">wedding </p>
-            <p>of their daughter,</p>
-            <p class="medium">Xiao-Qiao Zhou,</p>
-            <p>to</p>
-            <p class="medium">Aneesh Raghunandan,</p>
-            <p>son of Drs. K. Raghunandan & D. Rama</p>
-            <p></p>
-            <p>on the morning of August 28, 2016,</p>
-            <p>with a reception</p>
-            <p>on the evening of August 27,</p>
-            <p>in the San Francisco Bay Area, </p>
-            <p>CA.</p>
-          </div> <!-- invitation-text -->
-        </div> <!-- border -->
+          <form id="submit-rsvp">
+            <label for="name"></label>
+            <input type="text" name="name">
+            <label for="email"></label>
+            <input type="text" name="email" required>
+            <button type="submit" name="button">Submit</button>
+          </form>
+        </div> <!-- back -->
       </div> <!-- invitation-body/card -->
 
       <div class="flap-outside flap-container">
@@ -98,9 +113,8 @@
       </svg>
     </div> <!-- envelop -->
     <script type="text/javascript">
-      $envelope = $(".envelope")
-
-      $envelope.one('click', function (e) {
+      $envelope = $('.envelope');
+      $envelope.one("click", function (e) {
         $envelope.removeClass("button");
         $envelope.find("#morphoneleft")[0].beginElement();
         setTimeout(function() {
@@ -109,11 +123,11 @@
         }, 1000);
         setTimeout(function() {
           $envelope.find(".card").addClass('show-ribbon');
-        }, 1800);
+        }, 1300);
       });
 
-      $envelope.find('#rsvp').on("click ", function () {
-        
+      $envelope.find("#rsvp, #invitation").on('click', function () {
+        $envelope.toggleClass("flipped");
       });
     </script>
   </body>
