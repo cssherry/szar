@@ -1,11 +1,12 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Sherry & Aneesh</title>
     <link href='https://fonts.googleapis.com/css?family=Italianno' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../master.css"></link>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/rsvp.css' %}"></link>
+    <link rel="shortcut icon" href="{% static 'images/favicon.png'%}?v=10">
   </head>
   <body>
     <div class="envelope button">
@@ -38,12 +39,54 @@
           <div class="button right-ribbon" id="invitation">
             See invitation
           </div>
-          <form id="submit-rsvp">
-            <label for="name"></label>
-            <input type="text" name="name">
-            <label for="email"></label>
-            <input type="text" name="email" required>
-            <button type="submit" name="button">Submit</button>
+          <form class="rsvp-form">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" name="name" size="40" placeholder="Name">
+            </div>
+            <div>
+              <label for="attending">Attending</label>
+              <input type="text" name="emailaddress" size="40" placeholder="Email address">
+            </div>
+            <!-- Can you attend? -->
+            <div>
+              <label for="emailaddress">Email adress</label>
+              <input type="text" name="emailaddress" size="40" placeholder="Email address">
+            </div>
+            <div>
+              <label for="emailaddress">Dietary Restrictions or Allergies</label>
+              <input type="text" name="diet" size="40" placeholder="gluten-free, vegetarian, etc">
+            </div>
+            <div>
+              <label for="emailaddress">Planning to attend:</label>
+              <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
+              <input type="text" name="emailaddress" size="40" placeholder="Sunday morning ceremony">
+              <input type="text" name="emailaddress" size="40" placeholder="Sunday brunch">
+            </div>
+            <div>
+              <label for="emailaddress">Would you be interested in receiving information about nearby hotels?</label>
+              <input type="text" name="emailaddress" size="40" placeholder="Yes/No">
+            </div>
+            <div>
+              <label for="emailaddress">Would you be interested in carpooling with others to/from the airport?</label>
+              <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
+            </div>
+            <!-- Optional div for people with plus 1 -->
+            <div>
+              <label for="emailaddress">Are you planning to bring a plus 1?</label>
+              <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
+            </div>
+            <div>
+              <label for="song">Do you have any song requests?</label>
+              <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea name="message" cols="40" rows="5" placeholder="Message"></textarea>
+            </div>
+            <div>
+              <input type="submit" value="Send">
+            </div>
           </form>
         </div> <!-- back -->
       </div> <!-- invitation-body/card -->
@@ -88,19 +131,19 @@
         <path fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M600,201.587l-276.18,0.127c0,0-33.438-0.151-39.313-3.339c-6.144-3.333-38.832-67.707-59.101-70.055
         	c-16.598-1.923-16.888,14.444-13.663,23.347c3.156,8.713,11.264,20.667,31.125,32.889c9.736,5.991,23.593,10.774,34.574,14.636
         	c1.523,0.536,6.154,2.708,9.058,3.568c50.508,14.908,73.965,32.449,87.632,40.116">
-          <animate id="morphoneright" dur="0.8" begin="morphoneleft.begin" repeatCount="infinite"
+          <animate id="morphoneright" dur="0.8" begin="morphoneleft.begin"
                  attributeName="d" from="M600,201.587l-276.18,0.127c0,0-33.438-0.151-39.313-3.339c-6.144-3.333-38.832-67.707-59.101-70.055
                 	c-16.598-1.923-16.888,14.444-13.663,23.347c3.156,8.713,11.264,20.667,31.125,32.889c9.736,5.991,23.593,10.774,34.574,14.636
                 	c1.523,0.536,6.154,2.708,9.058,3.568c50.508,14.908,73.965,32.449,87.632,40.116" to="M600,202.5l-276.18-0.786c0,0-33.438-0.151-39.313-3.339c-6.144-3.333-4.365-15.344-14.007-11.708
                 	c-5.5,4.864,6.298,10.404,19.606,18.069c10.524,5.834,38.771,22.158,50.088,25.439c35.852,14.174,61.009,28.751,71.991,32.613
                 	c1.521,0.536,21.243,8.804,24.147,9.663c8.181,2.457,28,10.381,41.667,18.048" />
-          <animate id="morphtworight" dur="0.2" begin="morphoneright.end" repeatCount="infinite"
+          <animate id="morphtworight" dur="0.2" begin="morphoneright.end"
                  attributeName="d" from="M600,202.5l-276.18-0.786c0,0-33.438-0.151-39.313-3.339c-6.144-3.333-4.365-15.344-14.007-11.708
                 	c-5.5,4.864,6.298,10.404,19.606,18.069c10.524,5.834,38.771,22.158,50.088,25.439c35.852,14.174,61.009,28.751,71.991,32.613
                 	c1.521,0.536,21.243,8.804,24.147,9.663c8.181,2.457,28,10.381,41.667,18.048" to="M678,284.233l-56.833,13.333c0,0-98.644,16.187-79.333,51.138c22.422,16,25.663-6.034,32.721-0.451
                 	c10.73,10.935,56.404,18.938,65.517,26.605c5.383,4.676,20.677-7.281,28.425-4c24.545,14.174,42.116,2.138,49.635,6
                 	c9.242,4.5,10.677,19.141,12.665,20c5.601,2.457,25.901-7.667,35.258,0" />
-           <animate id="morphthreeright" dur="0.05" begin="morphtworight.end" repeatCount="infinite"
+           <animate id="morphthreeright" dur="0.05" begin="morphtworight.end"
                  attributeName="d" from="M678,284.233l-56.833,13.333c0,0-98.644,16.187-79.333,51.138c22.422,16,25.663-6.034,32.721-0.451
                 	c10.73,10.935,56.404,18.938,65.517,26.605c5.383,4.676,20.677-7.281,28.425-4c24.545,14.174,42.116,2.138,49.635,6
                 	c9.242,4.5,10.677,19.141,12.665,20c5.601,2.457,25.901-7.667,35.258,0" to="M688,304.501l-56.833,13.333c0,0-44.644,39.561-25.333,74.512c22.422,16,25.663-6.034,32.721-0.451
@@ -112,6 +155,10 @@
   		  fill="none" stroke="#e9e9e9" stroke-width="0" />
       </svg>
     </div> <!-- envelop -->
+    <div class="notification large">
+      Thank you for your RSVP!
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
       $(function (argument) {
         $envelope = $('.envelope');
@@ -127,10 +174,35 @@
           }, 1300);
         });
 
-        $envelope.find("#rsvp, #invitation").on('click', function () {
+        $envelope.on('click', "#rsvp, #invitation", function () {
           $envelope.toggleClass("flipped");
         });
-      })
+
+        $envelope.find('.rsvp-form input, .rsvp-form textarea').on('keyup', function() {
+          if (this.value !== '') {
+            $(this).prev('label').addClass("show");
+          } else {
+            $(this).prev('label').removeClass("show");
+          }
+        }).on("focus", function() {
+          $(this).prev("label").addClass('focus');
+        }).on("blur", function() {
+          $(this).prev("label").removeClass('focus');
+        });
+
+        $envelope.find('.rsvp-form').on('submit', function (e) {
+          e.preventDefault();
+          $envelope.removeClass('open');
+          $envelope.find('.show-ribbon').removeClass('show-ribbon');
+          setTimeout(function () {
+            $envelope.addClass('send');
+          }, 600)
+          setTimeout(function () {
+            $envelope.hide();
+            $(".notification").addClass('send');
+          }, 1200)
+        });
+      });
     </script>
   </body>
 </html>
