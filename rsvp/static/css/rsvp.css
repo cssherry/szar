@@ -384,6 +384,10 @@ html {
   display: inline;
 }
 
+.envelope.send {
+  animation: send 2s forwards;
+}
+
 @keyframes send {
   0% {
     left: 0%;
@@ -406,7 +410,7 @@ label {
   display: block;
 }
 
-label.show {
+label.show, label.always-show{
   opacity: 1;
 }
 
@@ -414,6 +418,6 @@ label.focus {
   color: inherit;
 }
 
-.envelope.send {
-  animation: send 2s forwards;
+form {
+  font-family: fantasy;
 }

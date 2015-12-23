@@ -34,51 +34,63 @@
       </div>
       <form class="rsvp-form">
         <div>
-          <label for="name">Name</label>
-          <input type="text" name="name" size="40" placeholder="Name">
+          <label for="first_name">First Name</label>
+          <input type="text" name="first_name" size="40" placeholder="First Name" required>
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" size="40" placeholder="Last Name" required>
         </div>
         <div>
-          <label for="attending">Attending</label>
-          <input type="text" name="emailaddress" size="40" placeholder="Email address">
-        </div>
-        <!-- Can you attend? -->
+          <label for="attending" class="always-show">Will you be attending?</label>
+          <input type="radio" name="attending" value="True">Yes
+          <input type="radio" name="attending" value="False">No
+        </div><!-- Can you attend? -->
+
+        <div class="szar-attending-questions hidden">
+          <div>
+            <label for="emailaddress">Email adress</label>
+            <input type="text" name="emailaddress" size="40" placeholder="Email address">
+          </div>
+          <div>
+            <label for="attending_dates" class="always-show">Which days are you planning to attend? (Check all that apply)</label>
+            <input type="checkbox" name="attending_dates" value="1">Saturday (reception)
+            <input type="checkbox" name="attending_dates" value="2">Sunday (wedding ceremony)
+          </div>
+          <div>
+            <label for="vegetarian" class="always-show">Are you vegetarian?</label>
+            <input type="radio" name="vegetarian" value="True">Yes
+            <input type="radio" name="vegetarian" value="False">No
+          </div>
+          <div>
+            <label for="other_dietary_restrictions">Do you have any other dietary restrictions or allergies</label>
+            <input type="text" name="other_dietary_restrictions" size="40" placeholder="Other dietary restrictions: gluten-free, dairy, etc">
+          </div>
+          <div>
+            <label for="need_hotel_info" class="always-show">Would you be interested in receiving information about nearby hotels?</label>
+            <input type="radio" name="need_hotel_info" value="True">Yes
+            <input type="radio" name="need_hotel_info" value="False">No
+          </div>
+          <div>
+            <label for="need_carpool_info" class="always-show">Would you like information on carpooling/transportation?</label>
+            <input type="radio" name="need_carpool_info" value="True">Yes
+            <input type="radio" name="need_carpool_info" value="False">No
+          </div>
+          <!-- Optional div for people with plus 1 -->
+          <div id="plus-one">
+            <label for="plus_one" class="always-show">Are you planning on bringing a guest?</label>
+            <input type="radio" name="plus_one" value="True">Yes
+            <input type="radio" name="plus_one" value="False">No
+            <div id="plus-one-name" class="hidden">
+              <label for="plus_one_name">What is your guest's name?</label>
+              <input type="text" name="plus_one_name" size="40" placeholder="Guest's full name">
+            </div>
+          </div>
+          <div>
+            <label for="song_requests">Do you have any song requests for the reception?</label>
+            <input type="text" name="song_requests" size="40" placeholder="Song requests">
+          </div>
+        </div><!-- szar-attending-questions -->
         <div>
-          <label for="emailaddress">Email adress</label>
-          <input type="text" name="emailaddress" size="40" placeholder="Email address">
-        </div>
-        <div>
-          <label for="emailaddress">Dietary Restrictions or Allergies</label>
-          <input type="text" name="diet" size="40" placeholder="gluten-free, vegetarian, etc">
-        </div>
-        <div>
-          <label for="emailaddress">Planning to attend:</label>
-          <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
-          <input type="text" name="emailaddress" size="40" placeholder="Sunday morning ceremony">
-          <input type="text" name="emailaddress" size="40" placeholder="Sunday brunch">
-        </div>
-        <div>
-          <label for="emailaddress">Would you be interested in receiving information about nearby hotels?</label>
-          <input type="text" name="emailaddress" size="40" placeholder="Yes/No">
-        </div>
-        <div>
-          <label for="emailaddress">Would you be interested in carpooling with others to/from the airport?</label>
-          <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
-        </div>
-        <!-- Optional div for people with plus 1 -->
-        <div>
-          <label for="emailaddress">Are you planning to bring a plus 1?</label>
-          <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
-        </div>
-        <div>
-          <label for="song">Do you have any song requests?</label>
-          <input type="text" name="emailaddress" size="40" placeholder="Saturday evening reception">
-        </div>
-        <div>
-          <label for="message">Message</label>
-          <textarea name="message" cols="40" rows="5" placeholder="Message"></textarea>
-        </div>
-        <div>
-          <input type="submit" value="Send">
+          <button type="submit">Send</button>
         </div>
       </form>
     </div> <!-- back -->
@@ -154,5 +166,11 @@
 {% endblock %}
 
 {% block code %}
+<script type="text/javascript">
+  // Set global variables
+  var rsvp = rsvp || {};
+  rsvp.csrf_token = "{{ csrf_token }}";
+  rsvp.save_rsvp_url = "{% url 'save_rsvp' %}";
+</script>
 <script src="{% static 'js/rsvp.js'%}"></script>
 {% endblock %}

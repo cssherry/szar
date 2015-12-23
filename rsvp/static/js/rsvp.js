@@ -5,7 +5,14 @@ $(function (argument) {
   var container = document.getElementsByClassName('container'),
       $envelope = $(container).find('.envelope'),
       $front = $envelope.find(".front"),
-      $back = $envelope.find(".back");
+      $back = $envelope.find(".back"),
+      $otherQuestions = $back.find(".szar-attending-questions"),
+      $plusOne = $back.find('#plus-one'),
+      $plusOneName = $back.find('#plus-one-name'),
+      questionDependencies = {
+        attending: $otherQuestions,
+        plus_one: $plusOneName,
+      };
   // Add top-margin to container if the user's window is tiny
   $(window).resize(function () {
     height = window.innerHeight ||
@@ -35,19 +42,64 @@ $(function (argument) {
   });
 
   $envelope.find('.rsvp-form input, .rsvp-form textarea').on('keyup', function() {
-    if (this.value !== '') {
-      $(this).prev('label').addClass("show");
-    } else {
-      $(this).prev('label').removeClass("show");
+    var $input = $(this);
+    if (!$input.hasClass(".always-show")) {
+      if (this.value !== '') {
+        $input.prev('label').addClass("show");
+      } else {
+        $input.prev('label').removeClass("show");
+      }
     }
   }).on("focus", function() {
-    $(this).prev("label").addClass('focus');
+    adjustLabel(this, 'add');
   }).on("blur", function() {
-    $(this).prev("label").removeClass('focus');
+    adjustLabel(this, 'remove');
+  }).on("change", function () {
+    var $dependentQuestions = questionDependencies[this.name];
+    if ($dependentQuestions) {
+      if (this.value === "True") {
+        $dependentQuestions.removeClass("hidden");
+      } else {
+        $dependentQuestions.addClass("hidden");
+      }
+    }
   });
+
+  function adjustLabel (item, type) {
+    var $item = $(item),
+        itemName = item.name,
+        $label = $item.siblings("label[for=" + itemName + "]");
+    if (type === "add") {
+      $label.addClass('focus');
+    } else {
+      $label.removeClass('focus');
+    }
+  }
 
   $envelope.find('.rsvp-form').on('submit', function (e) {
     e.preventDefault();
+    var formEntries = {};
+    $(this).serializeArray().forEach(function (val) {
+      formEntries[val.name] = val.value;
+    });
+    var post_data = {
+      "csrfmiddlewaretoken": rsvp.csrf_token,
+      formEntries: JSON.stringify(formEntries),
+    };
+    var url = rsvp.save_rsvp_url;
+
+    $.ajax({
+      url: url,
+      data: post_data,
+      type: 'POST',
+    })
+    .done(function(data) {
+      styleid = data[0];
+    })
+    .fail(function(req) {
+      console.log("Form submission failed: ", req);
+    });
+
     $envelope.removeClass('open');
     $envelope.find('.show-ribbon').removeClass('show-ribbon');
     setTimeout(function () {
