@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 html {
   height:150%;
   color: #6b6b6b;
@@ -349,8 +353,6 @@ html {
 }
 
 .front, .back {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   background: #edeaea; /* For browsers that do not support gradients */
   background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#e6e6e6)); /* Safari 4-5, Chrome 1-9 */
   background: -webkit-radial-gradient(circle, #ffffff, #e6e6e6); /* Safari 5.1+, Chrome 10+ */
@@ -364,13 +366,6 @@ html {
 
 .back {
   position: absolute;
-  -webkit-transform: rotateY( 180deg );
-          transform: rotateY( 180deg );
-}
-
-.flipped.open .card {
-  -webkit-transform: rotateY( 180deg ) translateX(-14%) translateY(-100px) rotateZ(15deg);
-          transform: rotateY( 180deg ) translateX(-14%) translateY(-100px) rotateZ(15deg);
 }
 
 .notification {

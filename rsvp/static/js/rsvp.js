@@ -3,7 +3,9 @@ $(function (argument) {
                document.documentElement.clientHeight ||
                document.body.clientHeight;
   var container = document.getElementsByClassName('container'),
-      $envelope = $(container).find('.envelope');
+      $envelope = $(container).find('.envelope'),
+      $front = $envelope.find(".front"),
+      $back = $envelope.find(".back");
   // Add top-margin to container if the user's window is tiny
   $(window).resize(function () {
     height = window.innerHeight ||
@@ -28,7 +30,8 @@ $(function (argument) {
   });
 
   $envelope.on('click', "#rsvp, #invitation", function () {
-    $envelope.toggleClass("flipped");
+    $front.toggleClass("hidden");
+    $back.toggleClass("hidden");
   });
 
   $envelope.find('.rsvp-form input, .rsvp-form textarea').on('keyup', function() {
