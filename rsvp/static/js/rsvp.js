@@ -9,6 +9,11 @@ $(function (argument) {
       $otherQuestions = $back.find(".szar-attending-questions"),
       $plusOne = $back.find('#plus-one'),
       $plusOneName = $back.find('#plus-one-name'),
+      $flags = $(".szar-flags img"),
+      textDivs = {
+        english: $(".english"),
+        chinese: $(".chinese"),
+      },
       questionDependencies = {
         attending: $otherQuestions,
         plus_one: $plusOneName,
@@ -24,6 +29,20 @@ $(function (argument) {
   function addMargin () {
     container[0].style["padding-top"] = 750 - height + "px";
   }
+  // Change languages
+  $(".szar-flags").on("click", "img", function (e) {
+    var language = this.alt.toLowerCase();
+    $flags.removeClass("active");
+    this.className += "active";
+    for (var lang in textDivs) {
+      if (lang === language) {
+        textDivs[lang].removeClass("hidden");
+      } else {
+        textDivs[lang].addClass("hidden");
+      }
+    }
+  });
+  $flags.filter("[alt=English]").trigger("click");
   $envelope.one("click", function (e) {
     $envelope.removeClass("button");
     $envelope.find("#morphoneleft")[0].beginElement();

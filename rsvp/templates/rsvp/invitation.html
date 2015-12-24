@@ -2,14 +2,19 @@
 {% load staticfiles %}
 
 {% block content %}
+<div class="szar-flags pull-right">
+  <img src="{% static 'images/US_flag.svg'%}?v=1" alt="English"  height="20px" class="active"/>
+  <img src="{% static 'images/China_flag.svg'%}?v=1" alt="Chinese" height="20px"/>
+</div>
 <div class="envelope button">
   <div class="invitation-body card">
     <div class="front">
       <div class="border">
         <div class="button left-ribbon" id="rsvp">
-          Click to RSVP
+          <span class="english">Click to RSVP</span>
+          <span class="chinese">请回复</span>
         </div>
-        <div class="invitation-text">
+        <div class="invitation-text english">
           <p>Drs. Bin Zhou & Fang Mu</p>
           <p>invite you to join them for the</p>
           <p class="large">wedding </p>
@@ -25,68 +30,130 @@
           <p>in the San Francisco Bay Area, </p>
           <p>CA.</p>
         </div> <!-- invitation-text -->
+        <div class="invitation-text chinese">
+          <p>周斌、穆芳</p>
+          <p>邀请您参加他们女儿</p>
+          <p class="medium">周小乔</p>
+          <p>和</p>
+          <p>Drs. K. Raghunandan、 D. Rama</p>
+          <p>儿子</p>
+          <p class="medium">Aneesh Raghunandan、</p>
+          <p class="large">的婚礼</p>
+          <p>2016年8月27-28日、</p>
+          <p>美国加利福尼亚州</p>
+          <p>旧金山湾区.</p>
+        </div> <!-- invitation-text -->
       </div> <!-- border -->
     </div> <!-- front -->
 
     <div class="back hidden">
       <div class="button left-ribbon" id="invitation">
-        See invitation
+        <span class="english">See invitation</span>
+        <span class="chinese">邀请函</span>
       </div>
       <form class="rsvp-form">
         <div>
-          <label for="first_name">First Name</label>
-          <input type="text" name="first_name" size="40" placeholder="First Name" required>
-          <label for="last_name">Last Name</label>
-          <input type="text" name="last_name" size="40" placeholder="Last Name" required>
+          <label for="first_name">
+            <span class="english">First Name</span>
+            <span class="chinese">名</span>
+          </label>
+          <input type="text" name="first_name" size="40" required>
+          <label for="last_name">
+            <span class="english">Last Name</span>
+            <span class="chinese">姓</span>
+          </label>
+          <input type="text" name="last_name" size="40" required>
         </div>
         <div>
-          <label for="attending" class="always-show">Will you be attending?</label>
-          <input type="radio" name="attending" value="True">Yes
-          <input type="radio" name="attending" value="False">No
+          <label for="attending" class="always-show">
+            <span class="english">Will you be attending?</span>
+            <span class="chinese">您会参加吗</span>
+          </label>
+          <input type="radio" name="attending" value="True">
+          <span class="english">Yes</span><span class="chinese">会</span>
+          <input type="radio" name="attending" value="False">
+          <span class="english">No</span><span class="chinese">不会</span>
         </div><!-- Can you attend? -->
 
         <div class="szar-attending-questions hidden">
           <div>
-            <label for="email">Email address</label>
-            <input type="text" name="email" size="40" placeholder="Email address">
+            <label for="email">
+              <span class="english">Email address</span>
+              <span class="chinese">电子邮箱</span>
+            </label>
+            <input type="text" name="email" size="40">
           </div>
           <div>
-            <label for="attending_dates" class="always-show">Which days are you planning to attend? (Check all that apply)</label>
-            <input type="checkbox" name="attending_dates" value="1">Saturday (reception)
-            <input type="checkbox" name="attending_dates" value="2">Sunday (wedding ceremony)
+            <label for="attending_dates" class="always-show">
+              <span class="english">Which days are you planning to attend? (Check all that apply)</span>
+              <span class="chinese">这天您打算参加</span>
+            </label>
+            <input type="checkbox" name="attending_dates" value="1">
+            <span class="english">Saturday (reception)</span><span class="chinese">周六（晚宴）</span>
+            <input type="checkbox" name="attending_dates" value="2">
+            <span class="english">Sunday (wedding ceremony)</span><span class="chinese">星期日（婚礼）</span>
           </div>
           <div>
-            <label for="vegetarian" class="always-show">Are you vegetarian?</label>
-            <input type="radio" name="vegetarian" value="True">Yes
-            <input type="radio" name="vegetarian" value="False">No
+            <label for="vegetarian" class="always-show">
+              <span class="english">Are you vegetarian?</span>
+              <span class="chinese">您吃肉吗？</span>
+            </label>
+            <input type="radio" name="vegetarian" value="True">
+            <span class="english">Yes</span><span class="chinese">吃</span>
+            <input type="radio" name="vegetarian" value="False">
+            <span class="english">No</span><span class="chinese">不吃</span>
           </div>
           <div>
-            <label for="other_dietary_restrictions">Do you have any other dietary restrictions or allergies</label>
-            <input type="text" name="other_dietary_restrictions" size="40" placeholder="Other dietary restrictions: gluten-free, dairy, etc">
+            <label for="other_dietary_restrictions">
+              <span class="english">Do you have any other dietary restrictions or allergies?</span>
+              <span class="chinese">您有什么其他的饮食限制或过敏？</span>
+            </label>
+            <input type="text" name="other_dietary_restrictions" size="40">
           </div>
           <div>
-            <label for="need_hotel" class="always-show">Would you be interested in receiving information about nearby hotels?</label>
-            <input type="radio" name="need_hotel" value="True">Yes
-            <input type="radio" name="need_hotel" value="False">No
+            <label for="need_hotel" class="always-show">
+              <span class="english">Would you be interested in receiving information about nearby hotels?</span>
+              <span class="chinese">您是否有兴趣收到有关附近酒店的信息？</span>
+            </label>
+            <input type="radio" name="need_hotel" value="True">
+            <span class="english">Yes</span><span class="chinese">要</span>
+            <input type="radio" name="need_hotel" value="False">
+            <span class="english">No</span><span class="chinese">不要</span>
           </div>
           <div>
-            <label for="need_carpool" class="always-show">Would you like information on carpooling/transportation?</label>
-            <input type="radio" name="need_carpool" value="True">Yes
-            <input type="radio" name="need_carpool" value="False">No
+            <label for="need_carpool" class="always-show">
+              <span class="english">Would you like information on carpooling/transportation?</span>
+              <span class="chinese">您希望拼车/交通信息？</span>
+            </label>
+            <input type="radio" name="need_carpool" value="True">
+            <span class="english">Yes</span><span class="chinese">要</span>
+            <input type="radio" name="need_carpool" value="False">
+            <span class="english">No</span><span class="chinese">不要</span>
           </div>
           <!-- Optional div for people with plus 1 -->
           <div id="plus-one">
-            <label for="plus_one" class="always-show">Are you planning on bringing a guest?</label>
-            <input type="radio" name="plus_one" value="True">Yes
-            <input type="radio" name="plus_one" value="False">No
+            <label for="plus_one" class="always-show">
+              <span class="english">Are you planning on bringing a guest?</span>
+              <span class="chinese">您打算把另外一个人？</span>
+            </label>
+            <input type="radio" name="plus_one" value="True">
+            <span class="english">Yes</span><span class="chinese">要</span>
+            <input type="radio" name="plus_one" value="False">
+            <span class="english">No</span><span class="chinese">不要</span>
             <div id="plus-one-name" class="hidden">
-              <label for="plus_one_name">What is your guest's name?</label>
-              <input type="text" name="plus_one_name" size="40" placeholder="Guest's full name">
+              <label for="plus_one_name">
+                <span class="english">What is your guest's full name?</span>
+                <span class="chinese">您的客人的名字？</span>
+              </label>
+              <input type="text" name="plus_one_name" size="40">
             </div>
           </div>
           <div>
-            <label for="song_requests">Do you have any song requests for the reception?</label>
-            <input type="text" name="song_requests" size="40" placeholder="Song requests">
+            <label for="song_requests">
+              <span class="english">Do you have any song requests for the reception?</span>
+              <span class="chinese">您有什么歌曲要求的接待</span>
+            </label>
+            <input type="text" name="song_requests" size="40">
           </div>
         </div><!-- szar-attending-questions -->
         <div>
@@ -161,7 +228,8 @@
   </svg>
 </div> <!-- envelop -->
 <div class="notification large">
-  Thank you for your RSVP!
+  <span class="english">Thank you for your RSVP!</span>
+  <span class="chinese">谢谢您的回复!</span>
 </div>
 {% endblock %}
 
