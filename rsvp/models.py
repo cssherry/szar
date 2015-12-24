@@ -6,7 +6,7 @@ class RSVP(models.Model):
     """Model stores RSVP form inputs"""
     guest = models.OneToOneField('auth.User')
     attending = models.BooleanField()
-    vegetarian = models.BooleanField()
+    vegetarian = models.NullBooleanField()
     other_dietary_restrictions = models.TextField(blank=True)
     SATURDAY = 1
     SUNDAY = 2
@@ -17,10 +17,10 @@ class RSVP(models.Model):
     attending_dates = models.CommaSeparatedIntegerField(max_length=4,
                                                         choices=DATE_OPTIONS,
                                                         blank=True)
-    need_carpool_info = models.BooleanField(blank=True)
-    need_hotel_info = models.BooleanField(blank=True)
-    plus_one = models.BooleanField(blank=True)
-    plus_one_name = models.CharField(max_length=200, unique=True, default=None)
+    need_carpool = models.NullBooleanField()
+    need_hotel = models.NullBooleanField()
+    plus_one = models.NullBooleanField()
+    plus_one_name = models.CharField(max_length=200, null=True, unique=True, default=None)
     song_requests = models.CharField(max_length=200, blank=True)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     edited_date = models.DateTimeField(default=timezone.now, blank=True)

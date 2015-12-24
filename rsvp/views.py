@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from rsvp.models import RSVP
 
 from rsvp.utils import create_random_string
+from django.core import serializers
 
 from django.conf import settings
 from django.shortcuts import redirect, render
@@ -19,45 +20,32 @@ def invitation(request):
     return render(request, 'rsvp/invitation.html', {})
 
 def _rsvps_get_raw(rsvp_id):
-  if rsvp_id:
-      rsvps = RSVP.objects.filter(id=rsvp_id)
-  else:
-      rsvps = RSVP.objects.all()
-  outl = []
-  for r in rsvps:
-      rsvps = {
-        'guest': r.guest,
-        'attending': r.attending,
-        'vegetarian': r.vegetarian,
-        'other_dietary_restrictions': r.other_dietary_restrictions,
-        'attending_dates': r.attending_dates,
-        'need_carpool_info': r.need_carpool_info,
-        'need_hotel_info': r.need_hotel_info,
-        'plus_one': r.plus_one,
-        'plus_one_name': r.plus_one_name,
-        'song_requests': r.song_requests,
-        'created_date': r.created_date,
-        'edited_date': r.edited_date,
-      }
-      outl.append(user)
+    rsvps_array = RSVP.objects.all()
+    if rsvp_id:
+        rsvps_array = RSVP.objects.filter(id=rsvp_id)
 
-  return outl
+    return serializers.serialize('json', rsvps_array)
 
 def _rsvps_create(request, new_user):
     form_entries = json.loads(request.POST.get("formEntries"))
+    rsvp_values = {}
+    user_values = {"first_name": True, "last_name": True, "email": "", "password": "szar"}
+    for k, v in form_entries.items():
+        if v == "False":
+            v = False
+        if not v == "":
+            try:
+                user_values[k]
+                user_values[k] = v
+            except:
+                rsvp_values[k] = v
     if new_user:
-        username = create_random_string()
-        first_name = form_entries["first_name"]
-        last_name = form_entries["last_name"]
-        emailaddress = form_entries["emailaddress"]
-        if not emailaddress:
-            emailaddress = "none"
-        user = User.objects.create_user(username, emailaddress, "szar")
-        user.last_name = last_name
-        user.first_name = first_name
-        user.save()
+        user_values["username"] = create_random_string()
+        user = User.objects.create_user(**user_values)
     else:
         user = request.user
+    user.rsvp = RSVP(**rsvp_values)
+    user.rsvp.save()
     return HttpResponse("Success", status=200)
 
 def rsvps(request, rsvp_id=''):

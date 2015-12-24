@@ -80,8 +80,12 @@ $(function (argument) {
     e.preventDefault();
     var formEntries = {};
     $(this).serializeArray().forEach(function (val) {
-      formEntries[val.name] = val.value;
+      formEntries[val.name] = formEntries[val.name] || [];
+      formEntries[val.name].push(val.value);
     });
+    for (var property in formEntries) {
+      formEntries[property] = formEntries[property].join(",");
+    }
     var post_data = {
       "csrfmiddlewaretoken": rsvp.csrf_token,
       formEntries: JSON.stringify(formEntries),
