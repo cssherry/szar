@@ -19,12 +19,27 @@ from django.shortcuts import redirect, render
 def invitation(request):
     return render(request, 'rsvp/invitation.html', {})
 
+def _get_full_rsvp(rsvps_objects):
+    serialized_rsvps = json.loads(serializers.serialize('json', rsvps_objects))
+    for r in serialized_rsvps:
+        print("R VALUE", r)
+        user = User.objects.filter(id=r['fields']["guest"])
+        if len(user) > 0:
+            user = user[0]
+            r['fields']["guest"] = {
+                "id": r['fields']["guest"],
+                "name": user.get_full_name(),
+                "username": user.username,
+                "email": user.email,
+            }
+    return json.dumps(serialized_rsvps)
+
 def _rsvps_get_raw(rsvp_id):
     rsvps_array = RSVP.objects.all()
     if rsvp_id:
         rsvps_array = RSVP.objects.filter(id=rsvp_id)
 
-    return serializers.serialize('json', rsvps_array)
+    return _get_full_rsvp(rsvps_array)
 
 def _rsvps_create(request, new_user):
     form_entries = json.loads(request.POST.get("formEntries"))
@@ -51,13 +66,20 @@ def _rsvps_create(request, new_user):
 def rsvps(request, rsvp_id=''):
     if request.method == 'GET':
         if request.user.is_superuser:
-            rsvps_formatted = json.dumps(_rsvps_get_raw(rsvp_id))
+            rsvps_formatted = _rsvps_get_raw(rsvp_id)
             return HttpResponse(rsvps_formatted, content_type="application/json")
         else:
             return HttpResponse("Only admin can see rsvps", status=500)
 
     if request.method == 'POST':
         return _rsvps_create(request, True)
+
+def attending(request):
+    if request.user.is_superuser:
+        attending_rsvps = _get_full_rsvp(RSVP.objects.filter(attending=True))
+        return HttpResponse(attending_rsvps, content_type="application/json")
+    else:
+        return HttpResponse("Only admin can see attendees", status=500)
 
     # if request.method == 'PUT':
     #     return _rsvps_update(request, rsvp_id)
