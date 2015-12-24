@@ -404,13 +404,12 @@ label {
   position: relative;
   font-size: 16px;
   line-height: 20px;
-  opacity: 0;
   transition: all 0.1s linear;
   color: #ADADAD;
   display: block;
 }
 
-label.show, label.always-show{
+label.show, label.always-show {
   opacity: 1;
 }
 
@@ -419,5 +418,5 @@ label.focus {
 }
 
 form {
-  font-family: fantasy;
+  font-family: cursive;
 }
