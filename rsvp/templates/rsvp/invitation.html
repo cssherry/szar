@@ -3,8 +3,8 @@
 
 {% block content %}
 <div class="szar-flags pull-right">
-  <img src="{% static 'images/US_flag.svg'%}?v=1" alt="English"  height="20px" class="active"/>
-  <img src="{% static 'images/China_flag.svg'%}?v=1" alt="Chinese" height="20px"/>
+  <img src="{% static 'images/US_flag.svg'%}?v=1" data-language="english" alt="English"  height="20px" class="active"/>
+  <img src="{% static 'images/China_flag.svg'%}?v=1" data-language="chinese"  alt="中文" height="20px"/>
 </div>
 <div class="envelope button">
   <div class="invitation-body card">
@@ -157,7 +157,10 @@
           </div>
         </div><!-- szar-attending-questions -->
         <div>
-          <button type="submit">Send</button>
+          <button type="submit">
+            <span class="english">Send</span>
+            <span class="chinese">发送</span>
+          </button>
         </div>
       </form>
     </div> <!-- back -->

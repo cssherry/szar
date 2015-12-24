@@ -31,7 +31,7 @@ $(function (argument) {
   }
   // Change languages
   $(".szar-flags").on("click", "img", function (e) {
-    var language = this.alt.toLowerCase();
+    var language = this.dataset.language;
     $flags.removeClass("active");
     this.className += "active";
     for (var lang in textDivs) {
