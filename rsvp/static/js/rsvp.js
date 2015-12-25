@@ -60,16 +60,7 @@ $(function (argument) {
     $back.toggleClass("hidden");
   });
 
-  $envelope.find('.rsvp-form input, .rsvp-form textarea').on('keyup', function() {
-    var $input = $(this);
-    if (!$input.hasClass(".always-show")) {
-      if (this.value !== '') {
-        $input.prev('label').addClass("show");
-      } else {
-        $input.prev('label').removeClass("show");
-      }
-    }
-  }).on("focus", function() {
+  $envelope.find('.rsvp-form input, .rsvp-form textarea').on("focus", function() {
     adjustLabel(this, 'add');
   }).on("blur", function() {
     adjustLabel(this, 'remove');
@@ -87,7 +78,7 @@ $(function (argument) {
   function adjustLabel (item, type) {
     var $item = $(item),
         itemName = item.name,
-        $label = $item.siblings("label[for=" + itemName + "]");
+        $label = $("label[for=" + itemName + "]");
     if (type === "add") {
       $label.addClass('focus');
     } else {

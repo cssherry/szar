@@ -406,18 +406,21 @@ html {
 label {
   position: relative;
   font-size: 16px;
-  line-height: 20px;
-  transition: all 0.1s linear;
-  color: #ADADAD;
   display: block;
 }
 
-label.show, label.always-show {
-  opacity: 1;
+.szar-inline {
+  display: inline-block;
+  color: #ADADAD;
+}
+
+label:not(.szar-inline) {
+  padding-top: 15px;
 }
 
 label.focus {
   color: inherit;
+  font-weight: bold;
 }
 
 form {
