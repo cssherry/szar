@@ -16,7 +16,33 @@ from django.core import serializers
 from django.conf import settings
 from django.shortcuts import redirect, render
 
+import keen
+
+KEEN_OBJECT = {
+    "ip_address" : "${keen.ip}",
+    "user_agent" : "${keen.user_agent}",
+    "keen" : {
+    "addons" : [
+      {
+        "name" : "keen:ip_to_geo",
+        "input" : {
+          "ip" : "ip_address"
+        },
+        "output" : "ip_geo_info"
+      },
+      {
+        "name" : "keen:ua_parser",
+        "input" : {
+          "ua_string" : "user_agent"
+        },
+        "output" : "parsed_user_agent"
+      }
+    ]
+  }
+}
+
 def invitation(request):
+    keen.add_event("visit_rsvp_page", KEEN_OBJECT)
     return render(request, 'rsvp/invitation.html', {})
 
 def _get_full_rsvp(rsvps_objects):
@@ -66,19 +92,24 @@ def _rsvps_create(request, new_user):
 def rsvps(request, rsvp_id=''):
     if request.method == 'GET':
         if request.user.is_superuser:
+            keen.add_event("admin_check_rsvps" + rsvp_id, KEEN_OBJECT)
             rsvps_formatted = _rsvps_get_raw(rsvp_id)
             return HttpResponse(rsvps_formatted, content_type="application/json")
         else:
+            keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
             return HttpResponse("Only admin can see rsvps", status=500)
 
     if request.method == 'POST':
+        keen.add_event("submit_rsvp", KEEN_OBJECT)
         return _rsvps_create(request, True)
 
 def attending(request):
     if request.user.is_superuser:
+        keen.add_event("admin_check_attending_guests_illegal", KEEN_OBJECT)
         attending_rsvps = _get_full_rsvp(RSVP.objects.filter(attending=True))
         return HttpResponse(attending_rsvps, content_type="application/json")
     else:
+        keen.add_event("admin_check_attending_guests", KEEN_OBJECT)
         return HttpResponse("Only admin can see attendees", status=500)
 
     # if request.method == 'PUT':

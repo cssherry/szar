@@ -10,13 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-import os
+import os, keen
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 with open('szar_site/__pycache__/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
+with open('szar_site/__pycache__/keen_project.txt') as g:
+    keen.project_id = g.read().strip()
+with open('szar_site/__pycache__/keen_read.txt') as h:
+    KEEN_READ_KEY = h.read().strip()
+with open('szar_site/__pycache__/keen_url.txt') as i:
+    KEEN_API_URL = i.read().strip()
+with open('szar_site/__pycache__/keen_write.txt') as j:
+    keen.write_key = j.read().strip()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/

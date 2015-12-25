@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 SECRET_KEY = os.environ['SECRET_KEY']
+KEEN_API_URL = os.environ['KEEN_API_URL']
+KEEN_PROJECT_ID = os.environ['KEEN_PROJECT_ID']
+KEEN_READ_KEY = os.environ['KEEN_READ_KEY']
+KEEN_WRITE_KEY = os.environ['KEEN_WRITE_KEY']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
