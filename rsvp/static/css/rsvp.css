@@ -431,6 +431,7 @@ form {
   position: absolute;
   top: 0px;
   right: 0px;
+  z-index: 10000;
 }
 
 .szar-flags img {
