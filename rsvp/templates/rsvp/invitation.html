@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block style %}
+{% endblock %}
+
 {% block content %}
 <div class="szar-flags pull-right">
   <img src="{% static 'images/US_flag.svg'%}?v=1" data-language="english" alt="English"  height="20px" class="active"/>
@@ -53,24 +56,24 @@
       </div>
       <form class="rsvp-form">
         <div>
-          <label for="first_name">
+          <label for="first_name" class="required">
             <span class="english">First Name</span>
             <span class="chinese">名</span>
           </label>
           <input type="text" name="first_name" size="40" required>
-          <label for="last_name">
+          <label for="last_name" class="required">
             <span class="english">Last Name</span>
             <span class="chinese">姓</span>
           </label>
           <input type="text" name="last_name" size="40" required>
         </div>
         <div>
-          <label for="attending">
+          <label for="attending" class="required">
             <span class="english">Will you be attending?</span>
             <span class="chinese">您会参加吗</span>
           </label>
           <label class="szar-inline">
-            <input type="radio" name="attending" value="True">
+            <input type="radio" name="attending" value="True" required>
             <span class="english">Yes</span><span class="chinese">会</span>
           </label>
           <label class="szar-inline">
@@ -81,14 +84,14 @@
 
         <div class="szar-attending-questions hidden">
           <div>
-            <label for="email">
+            <label for="email" class="required">
               <span class="english">Email address</span>
               <span class="chinese">电子邮箱</span>
             </label>
-            <input type="text" name="email" size="40">
+            <input type="text" name="email" id="rsvp-email" size="40" required>
           </div>
           <div>
-            <label for="attending_dates">
+            <label for="attending_dates" class="required">
               <span class="english">Which days are you planning to attend? (Check all that apply)</span>
               <span class="chinese">哪天您打算参加</span>
             </label>
@@ -165,11 +168,11 @@
               <span class="english">No</span><span class="chinese">两个</span>
             </label>
             <div id="plus-one-name" class="hidden">
-              <label for="plus_one_name">
+              <label for="plus_one_name" class="required">
                 <span class="english">What is your guest's full name?</span>
                 <span class="chinese">您的客人的名字？</span>
               </label>
-              <input type="text" name="plus_one_name" size="40">
+              <input type="text" name="plus_one_name" size="40" required>
             </div>
           </div>
           <div>
@@ -261,6 +264,7 @@
 {% endblock %}
 
 {% block code %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
 <script type="text/javascript">
   // Set global variables
   var rsvp = rsvp || {};

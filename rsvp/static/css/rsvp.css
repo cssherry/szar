@@ -459,3 +459,21 @@ form {
   border: solid 1.5px #860000;
   cursor: auto;
 }
+
+.required:after {
+  content:" *";
+  color: red;
+}
+
+.error {
+  border: 1px solid red;
+  outline: none;
+}
+
+.error[type=radio] {
+  outline: 1px solid red
+}
+
+label.error {
+  display: none !important;
+}

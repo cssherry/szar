@@ -86,42 +86,46 @@ $(function (argument) {
     }
   }
 
-  $envelope.find('.rsvp-form').on('submit', function (e) {
-    e.preventDefault();
-    var formEntries = {};
-    $(this).serializeArray().forEach(function (val) {
-      formEntries[val.name] = formEntries[val.name] || [];
-      formEntries[val.name].push(val.value);
-    });
-    for (var property in formEntries) {
-      formEntries[property] = formEntries[property].join(",");
+  $envelope.find('.rsvp-form').validate({
+    submitHandler: function (el, e) {
+      e.preventDefault();
+      var formEntries = {};
+      $(el).serializeArray().forEach(function (val) {
+        if (val.value !== "") {
+          formEntries[val.name] = formEntries[val.name] || [];
+          formEntries[val.name].push(val.value);
+        }
+      });
+      for (var property in formEntries) {
+        formEntries[property] = formEntries[property].join(",");
+      }
+      var post_data = {
+        "csrfmiddlewaretoken": rsvp.csrf_token,
+        formEntries: JSON.stringify(formEntries),
+      };
+      var url = rsvp.save_rsvp_url;
+
+      $.ajax({
+        url: url,
+        data: post_data,
+        type: 'POST',
+      })
+      .done(function(data) {
+        styleid = data[0];
+      })
+      .fail(function(req) {
+        console.log("Form submission failed: ", req);
+      });
+
+      $envelope.removeClass('open');
+      $envelope.find('.show-ribbon').removeClass('show-ribbon');
+      setTimeout(function () {
+        $envelope.addClass('send');
+      }, 600);
+      setTimeout(function () {
+        $envelope.hide();
+        $(".notification").addClass('send');
+      }, 1200);
     }
-    var post_data = {
-      "csrfmiddlewaretoken": rsvp.csrf_token,
-      formEntries: JSON.stringify(formEntries),
-    };
-    var url = rsvp.save_rsvp_url;
-
-    $.ajax({
-      url: url,
-      data: post_data,
-      type: 'POST',
-    })
-    .done(function(data) {
-      styleid = data[0];
-    })
-    .fail(function(req) {
-      console.log("Form submission failed: ", req);
-    });
-
-    $envelope.removeClass('open');
-    $envelope.find('.show-ribbon').removeClass('show-ribbon');
-    setTimeout(function () {
-      $envelope.addClass('send');
-    }, 600);
-    setTimeout(function () {
-      $envelope.hide();
-      $(".notification").addClass('send');
-    }, 1200);
   });
 });

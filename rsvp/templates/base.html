@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <title>Sherry & Aneesh</title>
     <link href='{% static "css/ext/Italianno/css/fonts.css" %}' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'css/rsvp.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'css/rsvp.css' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon.png'%}?v=10">
+    {% block style %}
+    {% endblock %}
   </head>
   <body>
     <div class="container">
