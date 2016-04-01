@@ -424,7 +424,7 @@ label.focus {
 }
 
 form {
-  font-family: cursive, "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+  font-family: 'Monotype Corsiva', serif, "KaiTi", "楷体", STKaiti, "华文楷体";
 }
 
 .szar-flags {
