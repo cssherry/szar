@@ -6,7 +6,7 @@ html {
   height:150%;
   color: #6b6b6b;
   /*Chinese fonts syntax from: http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/*/
-  font-family: 'Italianno', cursive, "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+  font-family: 'Italianno', 'Monotype Corsiva', cursive, "KaiTi", "楷体", STKaiti, "华文楷体", serif;
 }
 
 .button {
