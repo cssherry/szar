@@ -89,20 +89,26 @@ def _rsvps_create(request, new_user):
     user.rsvp.save()
     return HttpResponse("Success", status=200)
 
+@login_required
+def get_rsvps(request, rsvp_id):
+    if request.user.is_superuser:
+        keen.add_event("admin_check_rsvps" + rsvp_id, KEEN_OBJECT)
+        rsvps_formatted = _rsvps_get_raw(rsvp_id)
+        return HttpResponse(rsvps_formatted, content_type="application/json")
+    else:
+        keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
+        return HttpResponse("Only admin can see rsvps", status=500)
+
 def rsvps(request, rsvp_id=''):
     if request.method == 'GET':
-        if request.user.is_superuser:
-            keen.add_event("admin_check_rsvps" + rsvp_id, KEEN_OBJECT)
-            rsvps_formatted = _rsvps_get_raw(rsvp_id)
-            return HttpResponse(rsvps_formatted, content_type="application/json")
-        else:
-            keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
-            return HttpResponse("Only admin can see rsvps", status=500)
+        return get_rsvps(request, rsvp_id)
+
 
     if request.method == 'POST':
         keen.add_event("submit_rsvp", KEEN_OBJECT)
         return _rsvps_create(request, True)
 
+@login_required
 def attending(request):
     if request.user.is_superuser:
         keen.add_event("admin_check_attending_guests_illegal", KEEN_OBJECT)

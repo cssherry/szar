@@ -19,6 +19,9 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
+    # Set default accounts/login page -- just going to use django admin login for now
+    # http://stackoverflow.com/questions/20480177/what-more-do-i-need-to-do-to-have-djangos-login-required-decorator-work#comment37075291_20480226
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'admin/login.html'},name="my_login"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.home, name='root-url'),
     url(r'^rsvp/', include('rsvp.urls')),
