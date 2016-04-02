@@ -9,7 +9,7 @@ $(function (argument) {
       $otherQuestions = $back.find(".szar-attending-questions"),
       $plusOne = $back.find('#plus-one'),
       $plusOneName = $back.find('#plus-one-name'),
-      $flags = $(".szar-flags img"),
+      $flags = $(".menu-buttons img"),
       textDivs = {
         english: $(".english"),
         chinese: $(".chinese"),
@@ -30,7 +30,7 @@ $(function (argument) {
     container[0].style["padding-top"] = 750 - height + "px";
   }
   // Change languages
-  $(".szar-flags").on("click", "img", function (e) {
+  $(".menu-buttons").on("click", "img", function (e) {
     var language = this.dataset.language;
     $flags.removeClass("active");
     this.className += "active";

@@ -6,7 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="szar-flags pull-right">
+<div class="menu-buttons pull-left">
+  <a href="{% url 'root-url' %}" class="nice-button">Main Page</a>
+</div>
+<div class="menu-buttons pull-right">
   <img src="{% static 'images/US_flag.svg'%}?v=1" data-language="english" alt="English"  height="20px" class="active"/>
   <img src="{% static 'images/China_flag.svg'%}?v=1" data-language="chinese"  alt="中文" height="20px"/>
 </div>
@@ -185,7 +188,7 @@
           </div>
         </div><!-- szar-attending-questions -->
         <div>
-          <button type="submit">
+          <button type="submit" class="nice-button">
             <span class="english">Send</span>
             <span class="chinese">发送</span>
           </button>
