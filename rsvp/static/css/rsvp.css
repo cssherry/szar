@@ -1,18 +1,3 @@
-.hidden {
-  display: none;
-}
-
-html {
-  height:150%;
-  color: #6b6b6b;
-  /*Chinese fonts syntax from: http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/*/
-  font-family: 'Italianno', 'Monotype Corsiva', cursive, "KaiTi", "楷体", STKaiti, "华文楷体", serif;
-}
-
-.button {
-  cursor:pointer;
-}
-
 /*Go to http://dopiaza.org/tools/datauri/index.php to convert svg to data text*/
 body {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+CjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0iZ3JleSI+PC9yZWN0Pgo8cmVjdCB4PSIyNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjUwIiBmaWxsPSIjY2NjIj48L3JlY3Q+Cjwvc3ZnPg==");
