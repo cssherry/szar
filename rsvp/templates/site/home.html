@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
+<div id="honeyfund" class="queryResultContainer"></div>
+{% endblock %}
 
+{% block code %}
+<script src="{% static 'js/homepage.js'%}"></script>
 {% endblock %}
