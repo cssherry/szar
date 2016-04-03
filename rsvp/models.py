@@ -19,7 +19,7 @@ class RSVP(models.Model):
                                                         blank=True)
     need_carpool = models.NullBooleanField()
     need_hotel = models.NullBooleanField()
-    plus_one = models.NullBooleanField()
+    plus_one = models.BooleanField(default=False)
     plus_one_name = models.CharField(max_length=200, null=True, unique=True, default=None)
     song_requests = models.CharField(max_length=200, blank=True)
     gift = models.CharField(max_length=200, blank=True)

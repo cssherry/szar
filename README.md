@@ -1,8 +1,8 @@
 # To do
   - [ ] Implement https://modernizr.com/ (IE/mobile dreariness)
   - [x] Fix font issue
-  - [ ] Enable excel/csv file upload of wedding guests
-    - [ ] Ideally, allow drag/drop, but low priority
+  - [x] Enable excel/csv file upload of wedding guests
+    - [x] Ideally, allow drag/drop, but low priority
   - [x] Enable emailing of invitations
     - [ ] Allow confirmation of rsvp and updateable forms
   - [ ] Debug stupid font (damn you Italianno, stop being comic sans!)
@@ -45,9 +45,11 @@
     * Custom Bootstrap for main page (http://getbootstrap.com/customize/?id=7825818c7b9d02fd87627bd92b48cbcf), invitation page too fragile to accomodate bootstrap formatting
 
   * Excel/CSV upload:
-    * Django-excel: https://github.com/pyexcel/django-excel
+    * Django-excel: https://github.com/pyexcel/django-excel, docs at http://django-excel.readthedocs.org/en/latest/
       * Benefits: recently updated, accepts multiple formats
+      * Downsides -- the nice function save_to_database() doesn't work if you're not using every single column. Very difficult problem to debug....
       * Alternatives: Django Data Importer (http://django-data-importer.readthedocs.org/en/latest/readme.html), js-xlsx (https://github.com/SheetJS/js-xlsx)
+    * Dropzone.js for nice file upload interface: http://www.dropzonejs.com/
 
   * Django email: https://docs.djangoproject.com/en/1.9/topics/email/
     * Quick-start info: http://www.mangooranges.com/2008/09/15/sending-email-via-gmail-in-django/

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/ext/dropzone.min.css' %}">
+{% endblock %}
+
+{% block content %}
+    <table>
+      <thead>
+        <th>
+          Name
+        </th>
+        <th>
+          Number Expected
+        </th>
+        <th>
+          RSVP?
+        </th>
+      </th>
+      {% for rsvp in current_guests %}
+          <tr>
+            <td>
+              {{ rsvp.fields.guest.name }}
+            </td>
+            <td>
+              {{ rsvp.fields.expected_attendees }}
+            </td>
+            <td>
+              {{ rsvp.fields.attending }}
+            </td>
+          </tr>
+      {% endfor %}
+    </table>
+
+    <form action="{% url 'add_guests' %}" method="POST" enctype="multipart/form-data" class="dropzone dz-clickable">
+        {% csrf_token %}
+        <div class="dz-default dz-message">
+            <span>Drop files here to upload</span>
+        </div>
+    </form>
+{% endblock %}
+
+{% block code %}
+    <script src="{% static 'js/ext/dropzone.min.js'%}"></script>
+{% endblock %}
