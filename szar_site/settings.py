@@ -15,6 +15,22 @@ import os, keen
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Set settings for email, all within the gmail.txt
+email = open('szar_site/__pycache__/gmail.txt')
+for i, line in enumerate(email.readlines()):
+    line = line.strip()
+    if i == 0:
+        EMAIL_HOST_PASSWORD = line
+    elif i == 1:
+        EMAIL_HOST_USER = line
+    elif i == 2:
+        EMAIL_HOST = line
+    elif i == 3:
+        EMAIL_PORT = line
+email.close()
+EMAIL_USE_TLS = True
+
+# Set settings for keen, all within individual files
 with open('szar_site/__pycache__/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 with open('szar_site/__pycache__/keen_project.txt') as g:

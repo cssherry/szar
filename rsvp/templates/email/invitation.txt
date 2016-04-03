@@ -1,0 +1,10 @@
+{{ first_name }},
+
+Aneesh and I would like to invite you to our wedding on August 27 - 28 in Gilroy, CA. Please rsvp at {{ rsvp_link }}.
+
+Can't make it? Quickly RSVP your regrets {{ no_link }}.
+
+We hope to see you there!
+
+Aneesh & Sherry
+{{ request.get_host }}{% url 'root-url' %}

@@ -3,7 +3,7 @@
   - [x] Fix font issue
   - [ ] Enable excel/csv file upload of wedding guests
     - [ ] Ideally, allow drag/drop, but low priority
-  - [ ] Enable emailing of invitations
+  - [x] Enable emailing of invitations
     - [ ] Allow confirmation of rsvp and updateable forms
   - [ ] Debug stupid font (damn you Italianno, stop being comic sans!)
   - [ ] Create typical wedding pages:
@@ -50,6 +50,9 @@
       * Alternatives: Django Data Importer (http://django-data-importer.readthedocs.org/en/latest/readme.html), js-xlsx (https://github.com/SheetJS/js-xlsx)
 
   * Django email: https://docs.djangoproject.com/en/1.9/topics/email/
+    * Quick-start info: http://www.mangooranges.com/2008/09/15/sending-email-via-gmail-in-django/
+    * Text and HTML template support: http://stackoverflow.com/questions/2809547/creating-email-templates-with-django
+    * Responsive email template: https://github.com/leemunroe/responsive-html-email-template
 
   * Prevent Heroku spindown
     * Use https://www.statuscake.com (alternative to pingdom) to test homepage and rsvp page every hour
