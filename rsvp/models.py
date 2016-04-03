@@ -22,6 +22,7 @@ class RSVP(models.Model):
     plus_one = models.NullBooleanField()
     plus_one_name = models.CharField(max_length=200, null=True, unique=True, default=None)
     song_requests = models.CharField(max_length=200, blank=True)
+    number_attendees = models.IntegerField(default=None, null=True, blank=True)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     edited_date = models.DateTimeField(default=timezone.now, blank=True)
 
