@@ -5,7 +5,7 @@ from django.utils import timezone
 class RSVP(models.Model):
     """Model stores RSVP form inputs"""
     guest = models.OneToOneField('auth.User')
-    attending = models.BooleanField()
+    attending = models.NullBooleanField()
     vegetarian = models.NullBooleanField()
     other_dietary_restrictions = models.TextField(blank=True)
     SATURDAY = 1
@@ -22,8 +22,11 @@ class RSVP(models.Model):
     plus_one = models.NullBooleanField()
     plus_one_name = models.CharField(max_length=200, null=True, unique=True, default=None)
     song_requests = models.CharField(max_length=200, blank=True)
+    gift = models.CharField(max_length=200, blank=True)
     formal_prefix = models.CharField(max_length=200, blank=True)
+    affiliation = models.CharField(default="", max_length=200)
     number_attendees = models.IntegerField(default=None, null=True, blank=True)
+    expected_attendees = models.DecimalField(default=1, max_digits=4, decimal_places=1)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     edited_date = models.DateTimeField(default=timezone.now, blank=True)
 
