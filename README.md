@@ -1,12 +1,17 @@
 # To do
   - [ ] Implement https://modernizr.com/ (IE/mobile dreariness)
-  - [x] Fix font issue
+  - [x] Debug stupid font (damn you Italianno, stop being comic sans!)
   - [x] Enable excel/csv file upload of wedding guests
     - [x] Ideally, allow drag/drop, but low priority
+    - [ ] Update list whenever users/rsvps updated
+    - [ ] Have backup in case dropzonejs fails (use input)
   - [x] Enable emailing of invitations
     - [ ] Allow confirmation of rsvp and updateable forms
-  - [ ] Debug stupid font (damn you Italianno, stop being comic sans!)
+    - [ ] Analytics graphs
+    - [ ] RSVP graphs
+    - [ ] Admin management of emails
   - [ ] Create typical wedding pages:
+    - [ ] Improve styling
     - [ ] Logistics:
       - [ ] Venue
       - [ ] schedule/ceremony primer
@@ -16,8 +21,6 @@
       - [ ] countdown?
     - [X] Honeyfund/donate options
     - [ ] Bio/Meeting/Engagement/Pictures
-  - [ ] Analytics graphs
-  - [ ] RSVP graphs
   - [ ] Photos page:
     - [ ] Engagement photos
     - [ ] Facebook
@@ -49,6 +52,14 @@
       * Benefits: recently updated, accepts multiple formats
       * Downsides -- the nice function save_to_database() doesn't work if you're not using every single column. Very difficult problem to debug....
       * Alternatives: Django Data Importer (http://django-data-importer.readthedocs.org/en/latest/readme.html), js-xlsx (https://github.com/SheetJS/js-xlsx)
+      * Note -- need to save as Windows csv for csv upload to work, otherwise, get error:
+
+        ```
+        new-line character seen in unquoted field - do you need to open the file in universal-newline mode?
+        [03/Apr/2016 05:10:56] "POST /rsvp/guests HTTP/1.1" 500 16451
+
+        ```
+
     * Dropzone.js for nice file upload interface: http://www.dropzonejs.com/
 
   * Django email: https://docs.djangoproject.com/en/1.9/topics/email/

@@ -30,9 +30,11 @@ class RSVP(models.Model):
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     edited_date = models.DateTimeField(default=timezone.now, blank=True)
 
-    def edit(self):
+    def edit(self, new_values):
         """Publishes RSVP"""
         self.edited_date = timezone.now()
+        for attr, value in new_values.items():
+            setattr(self, attr, value)
         self.save()
 
     def __str__(self):

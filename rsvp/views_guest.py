@@ -80,7 +80,7 @@ def add_rsvps(request):
                 user = User.objects.create_user(**user_values)
 
             try:
-                user.rsvp.update(**rsvp_values)
+                user.rsvp.edit(rsvp_values)
             except:
                 user.rsvp = RSVP(**rsvp_values)
                 user.rsvp.save()
