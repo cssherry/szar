@@ -78,6 +78,8 @@ html {
   margin: 10px 10px;
   position: relative;
   -webkit-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+     -moz-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+       -o-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
           transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
   -webkit-transform-origin: 50 50%;
       -ms-transform-origin: 50 50%;
@@ -108,6 +110,7 @@ html {
 }
 .envelope.open {
   -webkit-transform: rotateZ(15deg) translateY(400px);
+      -ms-transform: rotateZ(15deg) translateY(400px);
           transform: rotateZ(15deg) translateY(400px);
 }
 .envelope.open .flap-outside {
@@ -123,9 +126,14 @@ html {
       -ms-transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
           transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
   -webkit-transition-delay: 0.6s;
+     -moz-transition-delay: 0.6s;
+       -o-transition-delay: 0.6s;
           transition-delay: 0.6s;
   transform-style: preserve-3d;
-  transition: transform 1s;
+  -webkit-transition: transform 1s;
+     -moz-transition: transform 1s;
+       -o-transition: transform 1s;
+          transition: transform 1s;
   width: 670px;
   height: 885px;
   z-index: 5000;
@@ -141,6 +149,8 @@ html {
       -ms-transform: translateX(14%);
           transform: translateX(14%);
   -webkit-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
+     -moz-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
+       -o-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
           transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
   z-index: 1;
 }
@@ -153,6 +163,8 @@ html {
   width: 100%;
   height: 100%;
   -webkit-transition: all 0.4s cubic-bezier(0.18, 0.81, 0.76, 0.93) 0s;
+     -moz-transition: all 0.4s cubic-bezier(0.18, 0.81, 0.76, 0.93) 0s;
+       -o-transition: all 0.4s cubic-bezier(0.18, 0.81, 0.76, 0.93) 0s;
           transition: all 0.4s cubic-bezier(0.18, 0.81, 0.76, 0.93) 0s;
   z-index: 3;
 }
@@ -180,6 +192,7 @@ html {
   display: block;
   position: absolute;
   -webkit-transform: rotateX(180deg);
+      -ms-transform: rotateX(180deg);
           transform: rotateX(180deg);
   height: 100%;
   width: 100%;
@@ -189,6 +202,7 @@ html {
 }
 .envelope .flap-inside {
   -webkit-transform: rotateX(180deg);
+      -ms-transform: rotateX(180deg);
           transform: rotateX(180deg);
   border-radius: 0 0 4px 4px;
   overflow: hidden;
@@ -210,10 +224,13 @@ html {
   left: 50%;
   margin: -30px 0 0 -265px;
   -webkit-transform: rotateZ(45deg);
+      -ms-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-transition: all 0.8s ease 0s;
+     -moz-transition: all 0.8s ease 0s;
+       -o-transition: all 0.8s ease 0s;
           transition: all 0.8s ease 0s;
   z-index: 2;
 }
@@ -362,7 +379,10 @@ html {
 }
 
 .send.notification {
-  transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+     -moz-transition: all 0.5s linear;
+       -o-transition: all 0.5s linear;
+          transition: all 0.5s linear;
   position: relative;
   top: -150px;
   z-index: 500;
@@ -373,7 +393,8 @@ html {
 }
 
 .envelope.send {
-  animation: send 2s forwards;
+  -webkit-animation: send 2s forwards;
+          animation: send 2s forwards;
 }
 
 @keyframes send {

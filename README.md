@@ -46,6 +46,21 @@
     * SVG Frame, can't remember where it was originally from, but available here: https://openclipart.org/detail/176385/decorative-frame-1
     * Font: self hosted with https://google-webfonts-helper.herokuapp.com/fonts/italianno template css. Alternative is https://github.com/neverpanic/google-font-download.
     * Custom Bootstrap for main page (http://getbootstrap.com/customize/?id=7825818c7b9d02fd87627bd92b48cbcf), invitation page too fragile to accomodate bootstrap formatting
+    * Browser compatibility:
+      * Common issues can be fixed here: https://developer.microsoft.com/en-us/microsoft-edge/tools/staticscan. *
+        * Lots of forgotten prefixes (https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix):
+          ```
+          Order:
+          -webkit- (Chrome, newer versions of Opera.)
+          -moz- (Firefox)
+          -o- (Old versions of Opera)
+          -ms- (Internet Explorer)
+          ```
+        * Switch to viewport size in invitation: https://css-tricks.com/viewport-sized-typography/
+        * Prerender pages (~1 link): https://msdn.microsoft.com/library/dn265039(v=vs.85).aspx
+        * Prefetch images and other large files (~10 links)
+        * Make slightly more accessible (https://dev.opera.com/articles/introduction-to-wai-aria/)
+      * modernizr for testing when nothing compatible (e.g. webkit features)
 
   * Excel/CSV upload:
     * Django-excel: https://github.com/pyexcel/django-excel, docs at http://django-excel.readthedocs.org/en/latest/
