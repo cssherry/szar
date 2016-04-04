@@ -63,6 +63,7 @@
         * Prefetch images and other large files (~10 links)
         * Make slightly more accessible (https://dev.opera.com/articles/introduction-to-wai-aria/)
       * modernizr for testing when nothing compatible (e.g. webkit features)
+      * Stupid IE has issues for csrf tokens -- they need to be in the cookie and Django doesn't necessarily automatically set csrf cookies. Force with @ensure_csrf_cookie (See warning of https://docs.djangoproject.com/en/1.9/ref/csrf/)
 
   * Excel/CSV upload:
     * Django-excel: https://github.com/pyexcel/django-excel, docs at http://django-excel.readthedocs.org/en/latest/
