@@ -1,5 +1,7 @@
 # To do
-  - [ ] Implement https://modernizr.com/ (IE/mobile dreariness)
+  - [x] Implement https://modernizr.com/ (IE/mobile dreariness)
+    - [ ] mobile site
+    - [ ] Low priority: Swip action
   - [x] Debug stupid font (damn you Italianno, stop being comic sans!)
   - [x] Enable excel/csv file upload of wedding guests
     - [x] Ideally, allow drag/drop, but low priority
@@ -21,7 +23,6 @@
       - [ ] countdown?
     - [X] Honeyfund/donate options
     - [ ] Bio/Meeting/Engagement/Pictures
-    - [ ] Low priority: Swip action
   - [ ] Photos page:
     - [ ] Engagement photos
     - [ ] Facebook

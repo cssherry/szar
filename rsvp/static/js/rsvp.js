@@ -31,6 +31,21 @@ $(function (argument) {
       addMargin();
     });
     addMargin();
+
+    $envelope.one("click", function (e) {
+      $envelope.removeClass("button");
+      var firstAnimation = $envelope.find("#morphoneleft")[0];
+      if (firstAnimation.beginElement) {
+        firstAnimation.beginElement();
+      }
+      setTimeout(function() {
+        $envelope.addClass('open');
+        window.scrollTo(0,0);
+      }, 1000);
+      setTimeout(function() {
+        $envelope.find(".card").addClass('show-ribbon');
+      }, 1300);
+    });
   }
   $envelope.removeClass("hidden");
 
@@ -48,17 +63,6 @@ $(function (argument) {
     }
   });
   $flags.filter("[alt=English]").trigger("click");
-  $envelope.one("click", function (e) {
-    $envelope.removeClass("button");
-    $envelope.find("#morphoneleft")[0].beginElement();
-    setTimeout(function() {
-      $envelope.addClass('open');
-      window.scrollTo(0,0);
-    }, 1000);
-    setTimeout(function() {
-      $envelope.find(".card").addClass('show-ribbon');
-    }, 1300);
-  });
 
   $envelope.on('click', "#rsvp, #invitation", function () {
     $front.toggleClass("hidden");
