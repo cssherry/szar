@@ -119,10 +119,12 @@ $(function (argument) {
         type: 'POST',
       })
       .done(function(data) {
-        styleid = data[0];
+        console.log("Form submission worked!", data);
+        $(".notification").append("<p>Visit our main page at <a href='https://szar.us' target='_blank'>szar.us<a></p>");
       })
       .fail(function(req) {
         console.log("Form submission failed: ", req);
+        $(".notification").text("Oops, seems like there's an error. Please try again later.");
       });
 
       $envelope.removeClass('open');
