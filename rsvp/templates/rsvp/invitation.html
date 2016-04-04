@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block title %}Sherry & Aneesh Wedding Invitation{% endblock %}
+
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/rsvp.css' %}">
 <meta name="robots" content="noindex">
@@ -11,7 +13,7 @@
 <div class="menu-buttons pull-left" role="navigation">
   <a href="{% url 'root-url' %}" class="nice-button">Main Page</a>
 </div>
-<div class="menu-buttons pull-right" role="contentinfo">
+<div class="menu-buttons pull-right js-only" role="contentinfo">
   <img src="{% static 'images/US_flag.svg'%}?v=1" data-language="english" alt="English"  height="20px" class="active"/>
   <img src="{% static 'images/China_flag.svg'%}?v=1" data-language="chinese"  alt="中文" height="20px"/>
 </div>

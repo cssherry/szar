@@ -18,3 +18,25 @@ iframe {
   height: 100%;
   min-height: 100vh;
 }
+
+/*
+  Handle no-js
+*/
+.supports-no-js .js-only {
+  display: none;
+}
+.supports-js .js-only {
+  display: block;
+}
+noscript {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  text-align: center;
+  color: darkred;
+  background: gray;
+  font-family: 'Lora', 'Georgia', serif;
+}
+noscript > div {
+  z-index: 100000;
+}

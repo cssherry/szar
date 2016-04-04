@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Sherry & Aneesh</title>
+    <title>{% block title %}Sherry & Aneesh{% endblock %}</title>
     <link href='{% static "css/ext/fonts.css" %}' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -16,8 +16,14 @@
       {% block content %}
       {% endblock %}
     </div>
+    <script src="{% static 'js/ext/modernizr/modernizr-custom.js'%}"></script>
     <script src="{% static 'js/ext/jquery-1.11.3/jquery-1.11.3.min.js'%}"></script>
     {% block code %}
     {% endblock %}
+    <noscript>
+          <div>
+            JavaScript isn't enabled, you might experience weirdness.
+          </div>
+    </noscript>
   </body>
 </html>
