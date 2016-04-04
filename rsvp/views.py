@@ -16,6 +16,8 @@ from django.core import serializers
 from django.conf import settings
 from django.shortcuts import redirect, render
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 import keen
 
 KEEN_OBJECT = {
@@ -99,6 +101,8 @@ def get_rsvps(request, rsvp_id):
         keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can see rsvps", status=500)
 
+# Need to set cookie for IE people or they won't be able to submit forms
+@ensure_csrf_cookie
 def rsvps(request, rsvp_id=''):
     if request.method == 'GET':
         return get_rsvps(request, rsvp_id)
