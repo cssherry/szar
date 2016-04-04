@@ -116,11 +116,19 @@ $(function (argument) {
         formEntries: JSON.stringify(formEntries),
       };
       var url = rsvp.save_rsvp_url;
-
+      function csrfSafeMethod(method) {
+          // these HTTP methods do not require CSRF protection
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
       $.ajax({
         url: url,
         data: post_data,
         type: 'POST',
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", rsvp.csrf_token);
+            }
+        }
       })
       .done(function(data) {
         console.log("Form submission worked!", data);
