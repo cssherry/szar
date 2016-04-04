@@ -18,17 +18,22 @@ $(function (argument) {
         attending: $otherQuestions,
         plus_one: $plusOneName,
       };
-  // Add top-margin to container if the user's window is tiny
-  $(window).resize(function () {
-    height = window.innerHeight ||
-                 document.documentElement.clientHeight ||
-                 document.body.clientHeight;
+
+  if (!hasAnimationSupport(["csspseudoanimations", "csspseudotransitions", "csstransitions", "cssanimations", "csstransforms", "csstransforms3d", "preserve3d", "smil"])) {
+    // Envelope is going to look strange, hide it and make invitation appear by itself
+    $("body").toggleClass("envelope-supported envelope-not-supported");
+  } else {
+    // Add top-margin to container if the user's window is tiny
+    $(window).resize(function () {
+      height = window.innerHeight ||
+                   document.documentElement.clientHeight ||
+                   document.body.clientHeight;
+      addMargin();
+    });
     addMargin();
-  });
-  addMargin();
-  function addMargin () {
-    container[0].style["padding-top"] = 750 - height + "px";
   }
+  $envelope.removeClass("hidden");
+
   // Change languages
   $(".menu-buttons").on("click", "img", function (e) {
     var language = this.dataset.language;
@@ -58,6 +63,9 @@ $(function (argument) {
   $envelope.on('click', "#rsvp, #invitation", function () {
     $front.toggleClass("hidden");
     $back.toggleClass("hidden");
+    if (!$back.hasClass("hidden")) {
+      $back.find("input:not([value]):first").focus();
+    }
   });
 
   $envelope.find('.rsvp-form input, .rsvp-form textarea').on("focus", function() {
@@ -128,4 +136,18 @@ $(function (argument) {
       }, 1200);
     }
   });
+
+  function addMargin () {
+    container[0].style["padding-top"] = 750 - height + "px";
+  }
+
+  function hasAnimationSupport(featuresToTest) {
+    var hasFeatures = true;
+    featuresToTest.forEach(function (f) {
+      if (!Modernizr[f]) {
+        hasFeatures = false;
+      }
+    });
+    return hasFeatures;
+  }
 });

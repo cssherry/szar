@@ -1,5 +1,8 @@
 /*Go to http://dopiaza.org/tools/datauri/index.php to convert svg to data text*/
 body {
+  height: 100%;
+}
+body.envelope-supported {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -17,7 +20,6 @@ body {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
   -webkit-perspective: 1000px;
           perspective: 1000px;
 }
@@ -70,7 +72,7 @@ html {
   height: 100%;
 }
 
-.envelope {
+.envelope-supported .envelope {
   background: #e6e6e6;
   border-radius: 0 0 4px 4px;
   width: 700px;
@@ -78,6 +80,8 @@ html {
   min-height: 420px;
   margin: 10px 10px;
   position: relative;
+}
+.envelope-supported .envelope {
   -webkit-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
      -moz-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
        -o-transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
@@ -86,14 +90,14 @@ html {
       -ms-transform-origin: 50 50%;
           transform-origin: 50 50%;
 }
-.envelope:before, .envelope:after {
+.envelope-supported .envelope:before, .envelope-supported .envelope:after {
   content: '';
   display: block;
   position: absolute;
   bottom: 0;
   z-index: 2;
 }
-.envelope:before {
+.envelope-supported .envelope:before {
   left: 0;
   width: 0;
   height: 0;
@@ -101,7 +105,7 @@ html {
   border-width: 380px 0 0 650px;
   border-color: transparent transparent transparent #860000;
 }
-.envelope:after {
+.envelope-supported .envelope:after {
   right: 0;
   width: 0;
   height: 0;
@@ -109,20 +113,25 @@ html {
   border-width: 0 0 380px 650px;
   border-color: transparent transparent #860000 transparent;
 }
-.envelope.open {
+.envelope-supported .envelope.open {
   -webkit-transform: rotateZ(15deg) translateY(400px);
       -ms-transform: rotateZ(15deg) translateY(400px);
           transform: rotateZ(15deg) translateY(400px);
 }
-.envelope.open .flap-outside {
+.envelope-supported .envelope.open .flap-outside {
   top: -1px;
   -webkit-animation: open-flap 0.1s ease-in-out forwards;
           animation: open-flap 0.6s ease-in-out forwards;
 }
-.envelope.open .flap-outside .flap {
+.envelope-supported .envelope.open .flap-outside .flap {
   background: #e6e6e6;
 }
 .envelope.open .card {
+  width: 670px !important;
+  height: 885px !important;
+  z-index: 5000 !important;
+}
+.envelope-supported .envelope.open .card {
   -webkit-transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
       -ms-transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
           transform: translateX(14%) translateY(-100px) rotateZ(-15deg);
@@ -135,11 +144,8 @@ html {
      -moz-transition: transform 1s;
        -o-transition: transform 1s;
           transition: transform 1s;
-  width: 670px;
-  height: 885px;
-  z-index: 5000;
 }
-.envelope .card {
+.envelope-supported .envelope .card {
   position: absolute;
   overflow: hidden;
   left: 0;
@@ -155,7 +161,7 @@ html {
           transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
   z-index: 1;
 }
-.envelope .flap-container {
+.envelope-supported .envelope .flap-container {
   border-radius: 4px;
   overflow: hidden;
   position: absolute;
@@ -169,7 +175,7 @@ html {
           transition: all 0.4s cubic-bezier(0.18, 0.81, 0.76, 0.93) 0s;
   z-index: 3;
 }
-.envelope .flap-outside {
+.envelope-supported .envelope .flap-outside {
   overflow-y: auto;
   -webkit-transform-origin: 50% 0;
       -ms-transform-origin: 50% 0;
@@ -180,12 +186,12 @@ html {
           animation-fill-mode: backwards;
   z-index: 4;
 }
-.envelope .flap-outside .flap {
+.envelope-supported .envelope .flap-outside .flap {
   background: #860000;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
-.envelope .flap-outside .flap:after {
+.envelope-supported .envelope .flap-outside .flap:after {
   background: #e6e6e6;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -201,19 +207,19 @@ html {
   top: 0;
   z-index: 1;
 }
-.envelope .flap-inside {
+.envelope-supported .envelope .flap-inside {
   -webkit-transform: rotateX(180deg);
       -ms-transform: rotateX(180deg);
           transform: rotateX(180deg);
   border-radius: 0 0 4px 4px;
   overflow: hidden;
 }
-.envelope .flap-inside .flap {
+.envelope-supported .envelope .flap-inside .flap {
   border-radius: 40px 40px 100px 40px;
   border: 1px solid #e6e6e6;
   margin-top: -100px;
 }
-.envelope .flap {
+.envelope-supported .envelope .flap {
   background: #860000;
   border: 1px solid #e6e6e6;
   border-radius: 40px;
@@ -235,7 +241,7 @@ html {
           transition: all 0.8s ease 0s;
   z-index: 2;
 }
-.envelope .flap .lining {
+.envelope-supported .envelope .flap .lining {
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+DQo8cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiM4NjAwMDAiLz4NCjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjQwIiBmaWxsPSIjZTRlNGU0Ii8+DQo8cGF0aCBkPSJNMCA0MCBBNDAgNDAgNDUgMCAwIDQwIDAgQTQwIDQwIDMxNSAwIDAgODAgNDAgQTQwIDQwIDQ1IDAgMCA0MCA4MCBBNDAgNDAgMjcwIDAgMCAwIDQwWiIgZmlsbD0iIzg2MDAwMCIvPg0KPC9zdmc+");
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -246,11 +252,14 @@ html {
   width: 92%;
   height: 92%;
 }
-.envelope svg.string {
+.envelope-supported .envelope svg.string {
   position: relative;
   height: 100%;
   width: 100%;
   z-index: 10;
+}
+.envelope-not-supported .envelope svg.string {
+  display: none;
 }
 
 @-webkit-keyframes open-flap {
@@ -371,7 +380,7 @@ html {
   width: 100%;
 }
 
-.back {
+.envelope-supported .back {
   position: absolute;
 }
 
@@ -384,8 +393,9 @@ html {
      -moz-transition: all 0.5s linear;
        -o-transition: all 0.5s linear;
           transition: all 0.5s linear;
-  position: relative;
-  top: -150px;
+  position: absolute;
+  top: 50vh;
+  left: 30vw;
   z-index: 500;
   background-color: #d9d9d9;
   padding: 15px;
@@ -436,6 +446,7 @@ form {
 
 .menu-buttons {
   position: absolute;
+  margin-top: 10px;
   top: 0px;
   z-index: 10000;
   font-family: 'Monotype Corsiva', serif, "KaiTi", "楷体", STKaiti, "华文楷体";
