@@ -105,7 +105,7 @@ def rsvps(request, rsvp_id=''):
 
 
     if request.method == 'POST':
-        keen.add_event("submit_rsvp", KEEN_OBJECT)
+        # keen.add_event("submit_rsvp", KEEN_OBJECT)
         return _rsvps_create(request, True)
 
 @login_required
