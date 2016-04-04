@@ -507,3 +507,13 @@ form {
 label.error {
   display: none !important;
 }
+
+
+/*
+*
+* NO JAVASCRIPT
+*
+*/
+.support-no-js .envelope {
+  top: 50px;
+}

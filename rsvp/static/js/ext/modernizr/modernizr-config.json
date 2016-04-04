@@ -1,5 +1,6 @@
 {
   "minify": true,
+  "classPrefix": "support-",
   "options": [
     "setClasses"
   ],

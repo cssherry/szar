@@ -22,10 +22,10 @@ iframe {
 /*
   Handle no-js
 */
-.supports-no-js .js-only {
+.support-no-js .js-only {
   display: none;
 }
-.supports-js .js-only {
+.support-js .js-only {
   display: block;
 }
 noscript {
