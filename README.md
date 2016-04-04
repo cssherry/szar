@@ -21,6 +21,7 @@
       - [ ] countdown?
     - [X] Honeyfund/donate options
     - [ ] Bio/Meeting/Engagement/Pictures
+    - [ ] Low priority: Swip action
   - [ ] Photos page:
     - [ ] Engagement photos
     - [ ] Facebook
@@ -44,7 +45,7 @@
     * Tons of SVG graphics, background converted by http://dopiaza.org/tools/datauri/index.php
     * Chinese font explanation: http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/
     * SVG Frame, can't remember where it was originally from, but available here: https://openclipart.org/detail/176385/decorative-frame-1
-    * Font: self hosted with https://google-webfonts-helper.herokuapp.com/fonts/italianno template css. Alternative is https://github.com/neverpanic/google-font-download.
+    * Font: self hosted with https://google-webfonts-helper.herokuapp.com/fonts/italianno template css. Alternative is https://github.com/neverpanic/google-font-download. Stack fonts so there's always something you like (http://webdesign.about.com/od/fonts/qt/web-safe-fonts.htm)
     * Custom Bootstrap for main page (http://getbootstrap.com/customize/?id=7825818c7b9d02fd87627bd92b48cbcf), invitation page too fragile to accomodate bootstrap formatting
     * Browser compatibility:
       * Common issues can be fixed here: https://developer.microsoft.com/en-us/microsoft-edge/tools/staticscan. *
