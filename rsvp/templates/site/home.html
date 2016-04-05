@@ -9,53 +9,191 @@
 
 <div id="about" class="wedding-section">
   <div class="one-vh">
-    <h1>About Us</h1>
+    <img src="{% static 'images/thumbnails/aCA3A5140-min.jpg' %}" alt="Sherry & Aneesh">
+    <img class="hidden" src="{% static 'images/engagement/aCA3A5140-min.jpg' %}">
+    <h1 class="has-img">About Us</h1>
+    <h3>Our Story </h3>
+    <p class="text-center">
+      We started dating during Aneesh's senior year/Sherry's junior year. Aneesh then graduated and a year of long-distance commenced (too bad Megabus doesn't have an elite status program!). We then had a year together in Washington, D.C. and then did another year of long-distance; on opposite coasts this time, forcing us to ditch Megabus in favor of US Airways to keep our relationship going strong. Thankfully, we're now both in the sunny Bay Area and our future involves no more long-distance!
+    </p>
   </div>
-  <p>
-    We started dating during Aneesh's senior year/Sherry's junior year. Aneesh then graduated and a year of long-distance commenced (too bad Megabus doesn't have an elite status program!). We then had a year together in Washington, D.C. and then did another year of long-distance; on opposite coasts this time, forcing us to ditch Megabus in favor of US Airways to keep our relationship going strong. Thankfully, we're now both in the sunny Bay Area and our future involves no more long-distance!
-  </p>
 </div>
 
 
 <div id="photos" class="wedding-section">
   <div class="one-vh">
     <h1>Photos</h1>
+
+    <div id="wedding-photos" class="carousel slide" data-interval="false" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#wedding-photos" data-slide-to="0" class="active">
+          <img src="{% static 'images/thumbnails/areCA3A5092.5-min.jpg' %}" alt="Sherry & Aneesh">
+        </li>
+        <li data-target="#wedding-photos" data-slide-to="1">
+          <img src="{% static 'images/thumbnails/CA3A4781-Edit-min.jpg' %}" alt="Sherry & Aneesh">
+        </li>
+        <li data-target="#wedding-photos" data-slide-to="2">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-36-Recovered-2-min.jpg' %}" alt="Sherry & Aneesh">
+        </li>
+        <li data-target="#wedding-photos" data-slide-to="3">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-181-Edit-min.jpg' %}" alt="Sherry & Aneesh">
+        </li>
+        <li data-target="#wedding-photos" data-slide-to="4">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-349.5-Edit-Edit-min.jpg' %}" alt="Sherry & Aneesh">
+        </li>
+        <li data-target="#wedding-photos" data-slide-to="5">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-412-Recovered-2-min.jpg' %}" alt="Sherry & Aneesh">
+        </li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="{% static 'images/thumbnails/areCA3A5092.5-min.jpg' %}" alt="Sherry & Aneesh">
+          <img class="hidden" src="{% static 'images/engagement/areCA3A5092.5-min.jpg' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'images/thumbnails/CA3A4781-Edit-min.jpg' %}" alt="Sherry & Aneesh">
+          <img class="hidden" src="{% static 'images/engagement/CA3A4781-Edit-min.jpg' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-36-Recovered-2-min.jpg' %}" alt="Sherry & Aneesh">
+          <img class="hidden" src="{% static 'images/engagement/sherry&aneesh-36-Recovered-2-min.jpg' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-181-Edit-min.jpg' %}" alt="Sherry & Aneesh">
+          <img class="hidden" src="{% static 'images/engagement/sherry&aneesh-181-Edit-min.jpg' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-349.5-Edit-Edit-min.jpg' %}" alt="Sherry & Aneesh">
+          <img class="hidden" src="{% static 'images/engagement/sherry&aneesh-349.5-Edit-Edit-min.jpg' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'images/thumbnails/sherry&aneesh-412-Recovered-2-min.jpg' %}" alt="Sherry & Aneesh">
+          <img class="hidden" src="{% static 'images/engagement/sherry&aneesh-412-Recovered-2-min.jpg' %}">
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#wedding-photos" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#wedding-photos" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      <div class="acknowledgement">
+        <p>
+          Photography by <a href="http://www.davidnsachs.com/">David N. Sachs</a>
+        </p>
+      </div>
+    </div><!-- #wedding-photos -->
   </div>
+</div>
+<div class="jumbotron">
+  <p>It's just engagement photos for now.</p>
+  <p>Check back later for more!</p>
 </div>
 
 <div id="wedding-info" class="wedding-section">
-  <div class="one-vh">
-    <h1>The Wedding</h1>
-  </div>
+  <h1>The Wedding</h1>
 </div>
 
 <div id="venue" class="wedding-section">
   <div class="one-vh">
-    <h2>Venue</h2>
+    <h2 class="has-img">Venue</h2>
+    <img src="http://www.fortinowinery.com/data/fortinowinery.com/modules/wsdgallery/images/thumbs/small_771abe325a31943912ee83ac89b4a94a" alt="Fortino Winery">
+    <img class="hidden" src="http://www.fortinowinery.com/data/fortinowinery.com/modules/wsdgallery/images/thumbs/full_771abe325a31943912ee83ac89b4a94a" alt="Fortino Winery">
+
+    <h3>Fortino Winery</h3>
+    <address class="text-center">
+      <strong>Fortino Winery</strong><br>
+      <a href="https://goo.gl/maps/Hpi5iKskCu52">
+        4525 Hecker Pass Hwy<br>
+        Gilroy, CA 95020<br>
+      </a>
+      <abbr title="Website">W:</abbr> <a href="https://www.fortinowinery.com/">https://www.fortinowinery.com/</a>
+    </address>
   </div>
 </div>
 
 <div id="schedule" class="wedding-section">
   <div class="one-vh">
     <h2>Schedule</h2>
+
+    <div class="schedule row">
+      <div class="panel panel-default saturday-schedule col-sm-12 col-md-6">
+        <h4>Saturday <small><sup>1</sup></small></h4>
+        <p>1:00 - 5:00 PM <mark>Optional</mark><span class="pull-right">Wine tour of local Gilroy wineries</span></p>
+        <p>6:00 - 10:00 PM <span class="pull-right">Reception and Dinner</span></p>
+        <p><span class="pull-right">(and dancing)</span></p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <small><sup>1</sup> Aneesh and Sherry will be in Chinese garb</small>
+      </div>
+      <div class="panel panel-default saturday-schedule col-sm-12 col-md-6">
+        <h4>Sunday <small><sup>2</sup></small></h4>
+        <p>7:00 - 8:00 AM <mark>Optional</mark><span class="pull-right">Hindu Ceremony</span></p>
+        <p>8:00 - 9:30 AM <span class="pull-right">Hindu Ceremony</span></p>
+        <p>9:30 - 10:00 AM <span class="pull-right">Christian Ceremony</span></p>
+        <p>10:00 AM <span class="pull-right">Brunch</span></p>
+        <small><sup>2</sup> Aneesh and Sherry will be in Indian attire</small>
+      </div>
   </div>
 </div>
 
 <div id="hotels" class="wedding-section">
   <div class="one-vh">
     <h2>Hotels</h2>
+    <div class="jumbotron">
+      <p>We're still negotiating room blocks.</p>
+      <p>You'll get an email with room block information if you indicated interest in your RSVP.</p>
+    </div>
   </div>
 </div>
 
 <div id="travel" class="wedding-section">
   <div class="one-vh">
-    <h2>Travel</h2>
-  </div>
-</div>
+    <img src="{% static 'images/thumbnails/travel.jpg' %}" alt="Sherry & Aneesh">
+    <img class="hidden" src="{% static 'images/travel.jpg' %}">
 
-<div id="dress" class="wedding-section">
-  <div class="one-vh">
-    <h2>Dress</h2>
+    <h2 class="has-img">Travel</h2>
+
+    <h3>Airports</h3>
+    <dl class="dl-horizontal">
+      <dt>San Jose International Airport (SJC)</dt>
+      <dd>This is the closest option to venue (by half hour or more car ride)</dd>
+    </dl>
+    <p>
+    <dl class="dl-horizontal">
+      <dt>San Francisco International Airport (SFO)</dt>
+      <dd>Alternative airport</dd>
+    </dl>
+
+    <h3>Getting Around</h3>
+    <dl class="dl-horizontal">
+      <dt>Uber/Lyft</dt>
+        <dd>Fairly cheap in the Bay Area. There's numerous fare comparison sites, <a href="http://www.whatsthefare.com/">What's the Fare</a> is one.</dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Car Rental</dt>
+        <dd>There are airport rentals and we might be able to share some discount codes</dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Carpool</dt>
+        <dd>We'll try to arrange a way for people to share information for carpooling</dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Public Transit</dt>
+        <dd>Unfortunately, the venue is not in an easy area for using the public transit network</dd>
+      </dl>
+  </div>
+
+  <div class="jumbotron">
+    <p>Other transit information coming.</p>
+    <p>Check back later!</p>
   </div>
 </div>
 
@@ -63,12 +201,13 @@
 <div id="registry" class="wedding-section queryResultContainer">
   <div class="one-vh">
     <h1>Registry</h1>
+
+    <h3>Charity of Your Choice</h3>
+    <p>If you have a charity you feel passionate about, feel free to donate to it under our name.</p>
+    <p>Let us know and we'd love to list it on this website!</p>
   </div>
-  <h3>Charity of Your Choice</h3>
-  <p>If you have a charity you feel passionate about, feel free to donate to it under our name.</p>
-  <p>Let us know and we'd love to list it on this website!</p>
+  <p class="text-center"><small>Wedding registry hosted by <a href="https://wanderable.com/hm/szar" target="_blank">Wanderable</a></small></p>
 </div>
-<p class="text-center"><small>Wedding registry hosted by <a href="https://wanderable.com/hm/szar" target="_blank">Wanderable</a></small></p>
 {% endblock %}
 
 {% block code %}

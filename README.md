@@ -12,19 +12,19 @@
     - [ ] Analytics graphs
     - [ ] RSVP graphs
     - [ ] Admin management of emails
-  - [ ] Create typical wedding pages:
+  - [x] Create typical wedding pages:
     - [x] Improve styling
-    - [ ] Logistics:
-      - [ ] Venue
-      - [ ] schedule/ceremony primer
+    - [x] Logistics:
+      - [x] Venue
+      - [x] schedule
+      - [ ] ceremony primer
       - [ ] hotels
       - [ ] travel
-      - [ ] dress
       - [ ] countdown?
     - [X] Honeyfund/donate options
-    - [ ] Bio/Meeting/Engagement/Pictures
+    - [x] Bio/Meeting/Engagement/Pictures
   - [ ] Photos page:
-    - [ ] Engagement photos
+    - [x] Engagement photos
     - [ ] Facebook
     - [ ] Instagram
     - [ ] text
@@ -49,6 +49,11 @@
     * Font: self hosted with https://google-webfonts-helper.herokuapp.com/fonts/italianno template css. Alternative is https://github.com/neverpanic/google-font-download. Stack fonts so there's always something you like (http://webdesign.about.com/od/fonts/qt/web-safe-fonts.htm)
     * Custom Bootstrap for main page (http://getbootstrap.com/customize/?id=7825818c7b9d02fd87627bd92b48cbcf, see config.json), invitation page too fragile to accomodate bootstrap formatting
       * http://bootstrap-live-customizer.com/ to try out variables (see variables.less), http://bootswatch.com/ (too uncustomizable), or http://bootswatchr.com/gallery (too hard to update). Less CSS is amazing!
+    * Picture optimization (https://varvy.com/pagespeed/defer-images.html and http://stackoverflow.com/questions/27934548/load-a-low-res-background-image-first-then-a-high-res-one):
+      * -Lazy load by first loading base64 images (https://www.base64-image.de/)-
+      * Actually, data uri isn't great on webpage (https://css-tricks.com/data-uris/), instead, create thumbnails using http://birme.net/
+      * Compress high res pictures (http://optimizilla.com/)
+    * Display carousel (I know, I know): http://www.w3schools.com/bootstrap/bootstrap_carousel.asp
     * Browser compatibility:
       * Common issues can be fixed here: https://developer.microsoft.com/en-us/microsoft-edge/tools/staticscan.
         * Lots of forgotten prefixes (https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix):
