@@ -10,6 +10,11 @@
 <link rel="prerender" href="{% url 'root-url' %}" />
 {% endblock %}
 
+{% block bootstrap-css %}
+{% endblock %}
+{% block bootstrap-js %}
+{% endblock %}
+
 {% block content %}
 <div class="menu-buttons pull-left" role="navigation">
   <a href="{% url 'root-url' %}" class="nice-button">Main Page</a>

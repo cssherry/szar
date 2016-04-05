@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{% static 'images/favicon.png'%}?v=10">
+    {% block bootstrap-css %}
+      <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap-theme.min.css' %}">
+    {% endblock %}
     {% block style %}
     {% endblock %}
   </head>
@@ -18,6 +22,9 @@
     </div>
     <script src="{% static 'js/ext/modernizr/modernizr-custom.js'%}"></script>
     <script src="{% static 'js/ext/jquery-1.11.3/jquery-1.11.3.min.js'%}"></script>
+    {% block bootstrap-js %}
+      <script src="{% static 'css/ext/bootstrap/js/bootstrap.min.js'%}"></script>
+    {% endblock %}
     {% block code %}
     {% endblock %}
     <noscript>
