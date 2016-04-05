@@ -33,7 +33,7 @@ $(function (argument) {
 
       function loadData (data) {
         var $result = $(data).filter("div"),
-            $container = $('.queryResultContainer');
+            $container = $('.queryResultContainer .one-vh');
         if (data.length > 0) {
            $container.append($result.find("#hm-adonia .rl-location"));
            $container.append($result.find(".hm-item-layout"));

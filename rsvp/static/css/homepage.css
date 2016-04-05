@@ -10,6 +10,19 @@
   padding-top: 60px; /* To make hyperlinks scroll properly */
 }
 .one-vh {
-  height: 100vh;
-  min-height: 200px;
+  position: relative;
+  min-height: 100vh;
+}
+.one-vh h1, .one-vh h2 {
+  background-color: rgb(230, 230, 230);
+  background-color: rgba(230, 230, 230, 0.5);
+}
+.one-vh h1.has-img, .one-vh h2.has-img {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+}
+.one-vh img {
+  width: 100%;
+  top: 0px;
 }
