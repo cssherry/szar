@@ -1,4 +1,4 @@
-$(function (argument) {
+$(function () {
   var height = window.innerHeight ||
                document.documentElement.clientHeight ||
                document.body.clientHeight;

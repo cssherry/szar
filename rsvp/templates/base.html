@@ -16,6 +16,9 @@
     {% endblock %}
   </head>
   <body class="{% block body-class %}{% endblock %}">
+    {% block bootstrap-header %}
+      {% include "navbar.html" %}
+    {% endblock %}
     <div class="container">
       {% block content %}
       {% endblock %}
@@ -27,6 +30,23 @@
     {% endblock %}
     {% block code %}
     {% endblock %}
+    <script type="text/javascript">
+      // Shrink heart to 60px and hide text when menu is shown
+      // Otherwise, expanded navbar will cut off logo ugily
+      $(function () {
+        var $nav = $("nav #navbar"),
+            $heart = $("#navbar-logo"),
+            $letters = $heart.find(".container");
+        $nav.on("show.bs.collapse", function () {
+          $heart.css("height", 60);
+          $letters.addClass("hidden");
+        })
+        $nav.on("hidden.bs.collapse", function () {
+          $heart.css("height", 110);
+          $letters.removeClass("hidden");
+        })
+      });
+    </script>
     <noscript>
       <div>
         JavaScript isn't enabled, you might experience weirdness.

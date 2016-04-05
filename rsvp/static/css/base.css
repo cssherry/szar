@@ -44,3 +44,35 @@ noscript {
 noscript > div {
   z-index: 100000;
 }
+
+/*
+LOGO
+*/
+
+.logo {
+  /*From http://clipartist.net/svg/heart-scalable-vector-graphics-svg/*/
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NzUuNyIgaGVpZ2h0PSI0NzIuOCIgdmVyc2lvbj0iMS4xIiBob2xhX2V4dF9pbmplY3Q9ImRpc2FibGVkIj48dGl0bGU+bGF5ZXJlZCBoZWFydDwvdGl0bGU+PGRlZnM+PGZpbHRlciB4PSItMC44IiB3aWR0aD0iMi43IiB5PSItMC4zIiBoZWlnaHQ9IjEuNiIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIzNC41Ii8+PC9maWx0ZXI+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xNTYuNDM0MjksLTMwMS43ODI4MSkiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQzNS4zNDAxOSwtODIuNzc1Mzg1KSI+PHBhdGggZD0iTS02Ni45IDUyOS43QzgyLjYgMTk1LjggMzAxLjcgNTIyLjggMTM4LjUgNjg0IDgxLjcgNzQwLjEtNjAuNCA4MDYuNS0xMTQuNiA4NDUuNC00MjAuNyA0OTAuMi0xNTkuNyAyMzItNjYuOSA1MjkuN3oiIGZpbGw9IiNlOWFmYWYiLz48cGF0aCBkPSJNLTgwLjcgNTMyLjVDNjYuOSAxOTguNyAyODMuMiA1MjUuNyAxMjIuMSA2ODYuOGMtNTYuMSA1Ni4xLTE5Ni40IDEyMi41LTI1MCAxNjEuNC0zMDIuMi0zNTUuMS00NC41LTYxMy40IDQ3LjEtMzE1Ljd6IiBmaWxsPSIjZDM1ZjVmIi8+PHBhdGggZD0iTS04OC42IDU0MC45QzU5LjEgMjA3LjEgMjc1LjQgNTM0LjEgMTE0LjMgNjk1LjJjLTU2LjEgNTYuMS0xOTYuNCAxMjIuNS0yNTAgMTYxLjQtMzAyLjItMzU1LjEtNDQuNS02MTMuNCA0Ny4xLTMxNS43eiIgZmlsbD0iI2M4MzczNyIvPjwvZz48L2c+PC9zdmc+");
+  height: 100%;
+  width: 100%;
+  min-height: 50px;
+  min-width: 50px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.logo .initials-a, .logo .initials-s {
+  display: inline-block;
+}
+.logo .initials-s {
+  margin-left: -15px;
+}
+.logo .initials-a {
+  margin-left: -30px;
+}
+
+#navbar-logo {
+  width: 100%;
+  height: 110px;
+  padding-top: 10px;
+  position: absolute;
+  top: 0;
+}

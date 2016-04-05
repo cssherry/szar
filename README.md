@@ -13,7 +13,7 @@
     - [ ] RSVP graphs
     - [ ] Admin management of emails
   - [ ] Create typical wedding pages:
-    - [ ] Improve styling
+    - [x] Improve styling
     - [ ] Logistics:
       - [ ] Venue
       - [ ] schedule/ceremony primer
@@ -43,7 +43,7 @@
 # Technologies
   * Visuals:
     * Fancy css/svg animations inspired by http://codepen.io/jamestowers/pen/dhDbn
-    * Tons of SVG graphics, background converted by http://dopiaza.org/tools/datauri/index.php
+    * Tons of SVG graphics, background converted by http://dopiaza.org/tools/datauri/index.php after optimizing here https://petercollingridge.appspot.com/svg-editor
     * Chinese font explanation: http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/
     * SVG Frame, can't remember where it was originally from, but available here: https://openclipart.org/detail/176385/decorative-frame-1
     * Font: self hosted with https://google-webfonts-helper.herokuapp.com/fonts/italianno template css. Alternative is https://github.com/neverpanic/google-font-download. Stack fonts so there's always something you like (http://webdesign.about.com/od/fonts/qt/web-safe-fonts.htm)
