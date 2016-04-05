@@ -104,8 +104,8 @@
 <div id="venue" class="wedding-section">
   <div class="one-vh">
     <h2 class="has-img">Venue</h2>
-    <img src="http://www.fortinowinery.com/data/fortinowinery.com/modules/wsdgallery/images/thumbs/small_771abe325a31943912ee83ac89b4a94a" alt="Fortino Winery">
-    <img class="hidden" src="http://www.fortinowinery.com/data/fortinowinery.com/modules/wsdgallery/images/thumbs/full_771abe325a31943912ee83ac89b4a94a" alt="Fortino Winery">
+    <img src="https://www.fortinowinery.com/data/fortinowinery.com/modules/wsdgallery/images/thumbs/small_771abe325a31943912ee83ac89b4a94a" alt="Fortino Winery">
+    <img class="hidden" src="https://www.fortinowinery.com/data/fortinowinery.com/modules/wsdgallery/images/thumbs/full_771abe325a31943912ee83ac89b4a94a" alt="Fortino Winery">
 
     <h3>Fortino Winery</h3>
     <address class="text-center">
@@ -211,5 +211,9 @@
 {% endblock %}
 
 {% block code %}
+<script type="text/javascript">
+  var rsvp = rsvp || {};
+  rsvp.wanderable = "{{ wanderable }}"
+</script>
 <script src="{% static 'js/homepage.js'%}"></script>
 {% endblock %}

@@ -56,5 +56,5 @@
   right: 0px;
   position: absolute;
   padding: 5px 20px;
-  z-index: 100;
+  z-index: 1000;
 }

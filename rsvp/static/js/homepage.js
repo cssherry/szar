@@ -15,21 +15,7 @@ $(function (argument) {
 
     $(document).ready(loadWanderable);
 
-     function loadWanderable() {
-       var QueryURL = "http://anyorigin.com/get?url=" + externalUrl + "&callback=?";
-        $.getJSON(QueryURL, function(data) {
-          if (data && data !== null && typeof data === "object" &&
-              data.contents && data.contents !== null &&
-              typeof data.contents === "string") {
-               data = data.contents.replace(/<script[^>]*>.*?<\/script>/g, "");
-               localStorage[myKey] = JSON.stringify({
-                 data: data,
-                 date: new Date(),
-               });
-               loadData(data);
-          }
-         });
-      }
+     loadData(rsvp.wanderable);
 
       function loadData (data) {
         var $result = $(data).filter("div"),
