@@ -56,8 +56,9 @@ LOGO
   width: 100%;
   min-height: 50px;
   min-width: 50px;
-  background-size: 100% 100%;
+  background-size: auto 100%;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 .logo .initials-a, .logo .initials-s {
   display: inline-block;
