@@ -211,9 +211,9 @@
 {% endblock %}
 
 {% block code %}
-<script type="text/javascript">
-  var rsvp = rsvp || {};
-  rsvp.wanderable = "{{ wanderable }}"
+<script id="wanderable-text" type="rsvp-template">
+  {% include "ext_wanderable.html" %}
 </script>
+
 <script src="{% static 'js/homepage.js'%}"></script>
 {% endblock %}
