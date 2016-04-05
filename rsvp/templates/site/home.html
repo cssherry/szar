@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% endblock %}
+
 {% block content %}
-<div id="honeyfund" class="queryResultContainer"></div>
+<div id="registry" class="wedding-section queryResultContainer">
+  <h1>Registry</h1>
+  <h3>Charity of Your Choice</h3>
+  <p>If you have a charity you feel passionate about, feel free to donate to it under our name.</p>
+  <p>Let us know and we'd love to list it on this website!</p>
+</div>
+<p class="text-center"><small>Wedding registry hosted by <a href="https://wanderable.com/hm/szar">Wanderable</a></small></p>
 {% endblock %}
 
 {% block code %}
-<!-- <script src="{% static 'js/homepage.js'%}"></script> -->
+<script src="{% static 'js/homepage.js'%}"></script>
 {% endblock %}

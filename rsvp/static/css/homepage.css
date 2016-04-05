@@ -1,0 +1,11 @@
+#registry {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#registry hr {
+  width: 100%;
+  margin-left: -40px;
+}
+.wedding-section {
+  padding-top: 60px; /* To make hyperlinks scroll properly */
+}

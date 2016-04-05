@@ -35,7 +35,7 @@ $(function (argument) {
         var $result = $(data).filter("div"),
             $container = $('.queryResultContainer');
         if (data.length > 0) {
-           $container.append($result.find("#hm-adonia"));
+           $container.append($result.find("#hm-adonia .rl-location"));
            $container.append($result.find(".hm-item-layout"));
            $container.find("a").each(function (i, el) {
              el.href = "https://wanderable.com" + el.getAttribute("href");

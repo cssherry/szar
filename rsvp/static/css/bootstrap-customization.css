@@ -1,0 +1,9 @@
+#main.container {
+  padding: 10px;
+  background: #fff; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #e6e6e6, #ffffff, #e6e6e6); /* Safari 5.1+, Chrome 10+ */
+  background:    -moz-linear-gradient(left, #e6e6e6, #ffffff, #e6e6e6); /* Firefox 3.6+ */
+  background:      -o-linear-gradient(left, #e6e6e6, #ffffff, #e6e6e6); /* Firefox 3.6+ */
+  background:     -ms-linear-gradient(left, #e6e6e6, #ffffff, #e6e6e6); /* IE 10 */
+  background:         linear-gradient(to right, #e6e6e6, #ffffff, #e6e6e6); /* IE 10 */
+}

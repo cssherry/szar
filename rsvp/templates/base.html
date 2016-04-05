@@ -11,6 +11,7 @@
     {% block bootstrap-css %}
       <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap.min.css' %}">
       <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap-theme.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-customization.css' %}">
     {% endblock %}
     {% block style %}
     {% endblock %}
@@ -19,7 +20,7 @@
     {% block bootstrap-header %}
       {% include "navbar.html" %}
     {% endblock %}
-    <div class="container">
+    <div id="main" class="container">
       {% block content %}
       {% endblock %}
     </div>
