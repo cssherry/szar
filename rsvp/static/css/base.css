@@ -39,7 +39,7 @@ noscript {
   text-align: center;
   color: darkred;
   background: gray;
-  font-family: 'Lora', 'Georgia', serif;
+  font-family: 'Lora', Georgia, serif, "KaiTi", "楷体", STKaiti, "华文楷体";
 }
 noscript > div {
   z-index: 100000;
