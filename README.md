@@ -51,7 +51,7 @@
       * http://bootstrap-live-customizer.com/ to try out variables (see variables.less), http://bootswatch.com/ (too uncustomizable), or http://bootswatchr.com/gallery (too hard to update). Less CSS is amazing!
     * Picture optimization (https://varvy.com/pagespeed/defer-images.html and http://stackoverflow.com/questions/27934548/load-a-low-res-background-image-first-then-a-high-res-one):
       * -Lazy load by first loading base64 images (https://www.base64-image.de/)-
-      * Actually, data uri isn't great on webpage (https://css-tricks.com/data-uris/), instead, create thumbnails using http://birme.net/
+      * Actually, data uri isn't great on webpage (https://css-tricks.com/data-uris/), instead, create thumbnails using http://birme.net/. Lazyload has to use imagesLoaded (https://github.com/desandro/imagesloaded) to detect load event because loading from cache doesn't trigger it (http://stackoverflow.com/a/3877079/4607533)
       * Compress high res pictures (http://optimizilla.com/)
     * Display carousel (I know, I know): http://www.w3schools.com/bootstrap/bootstrap_carousel.asp
     * Browser compatibility:

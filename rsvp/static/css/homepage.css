@@ -21,6 +21,7 @@
   position: absolute;
   top: 30px;
   width: 100%;
+  text-shadow: 1px 1px 4px white;
 }
 .one-vh img {
   width: 100%;

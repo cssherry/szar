@@ -13,9 +13,11 @@ $(function () {
     $letters.removeClass("hidden");
   });
   // Upgrade images, from http://stackoverflow.com/a/31370466/4607533
-  $("img.hidden").on("load.upgrade", upgradeImage);
-  function upgradeImage(el) {
-    var $el = $(el.target);
-    $el.siblings("img").attr("src", el.target.src);
+  imagesLoaded($("img.hidden")).on("progress", upgradeImage);
+  function upgradeImage(_imgloaded, image, el) {
+    if (image.isLoaded) {
+      var $el = $(el);
+      $el.siblings("img").attr("src", el.src);
+    }
   }
 });
