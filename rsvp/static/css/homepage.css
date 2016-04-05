@@ -1,11 +1,15 @@
-#registry {
-  padding-left: 30px;
-  padding-right: 30px;
+#registry div, #registry section {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 #registry hr {
   width: 100%;
-  margin-left: -40px;
+  margin-left: -10px;
 }
 .wedding-section {
   padding-top: 60px; /* To make hyperlinks scroll properly */
+}
+.one-vh {
+  height: 100vh;
+  min-height: 200px;
 }
