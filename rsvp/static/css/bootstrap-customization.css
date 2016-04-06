@@ -55,7 +55,8 @@
 }
 /* Indicators active image style */
 .slide .carousel-indicators .item.active {
-    bottom: 0;
+    position: absolute;
+    bottom: 0px;
 }
 .acknowledgement {
   bottom: 0px;
