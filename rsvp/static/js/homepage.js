@@ -16,13 +16,34 @@ $(function (argument) {
 
   function setCarousel() {
     var $carousel = $("#wedding-photos"),
-        $images = $carousel.find(".item img:not(.hidden)"), shortest,
+        $swipearea = $carousel.parent(".one-vh"),
+        $images = $carousel.find(".item img:not(.hidden)"),
         $carouselInner = $carousel.find(".carousel-inner"),
         $rightArrow = $carousel.find(".right.carousel-control"),
         $leftArrow = $carousel.find(".left.carousel-control");
     // Set the minimum height as height of carousel, prevents moving up and down
     $images.imagesLoaded(function (il) {
-      il.elements.forEach(function (el, i) {
+      resizeCarousel($images);
+    });
+    $(window).resize(function () {
+      resizeCarousel($images);
+    });
+
+    if (Modernizr.touchevents) {
+      $swipearea.on("swiperight.changeCarousel", function (e) {
+        $leftArrow.trigger("click");
+        $leftArrow.trigger("click");
+      });
+      $swipearea.on("swipeleft.changeCarousel", function (e) {
+        $rightArrow.trigger("click");
+        $rightArrow.trigger("click");
+      });
+    }
+
+    function resizeCarousel (els) {
+      var shortest;
+      $carouselInner.css('height', "auto");
+      els.each(function (i, el) {
         var $parent = $(el).parent(),
             oldActive = $parent.hasClass("active");
         $parent.addClass("active");
@@ -36,18 +57,6 @@ $(function (argument) {
         }
       });
       $carouselInner.css("height", shortest);
-    });
-
-    if (Modernizr.touch) {
-      $carousel.on("swiperight.changeCarousel", function (e) {
-        $leftArrow.trigger("click");
-        $leftArrow.trigger("click");
-
-      });
-      $carousel.on("swipeleft.changeCarousel", function (e) {
-        $rightArrow.trigger("click");
-        $rightArrow.trigger("click");
-      });
     }
   }
 });
