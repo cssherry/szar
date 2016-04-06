@@ -24,7 +24,6 @@
 .slide .carousel-indicators li {
     border: medium none;
     border-radius: 0;
-    /*float: left;*/
     height: 5vw;
     min-height: 20px;
     max-height: 60px;
@@ -32,7 +31,12 @@
     margin-left: 0;
     margin-right: 5px !important;
     margin-top: 0;
-    width: auto;
+    /*Seems like firefox width isn't working properly... try fit-contents*/
+    width:    -moz-fit-content;
+    width: -webkit-fit-content;
+    width:     -ms-fit-content;
+    width:      -o-fit-content;
+    width:         fit-content;
 }
 /* Indicators images style */
 .slide .carousel-indicators img {
@@ -62,5 +66,5 @@
   display: inline;
   padding: 5px;
   background-color: black;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
 }
