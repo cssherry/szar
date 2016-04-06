@@ -53,6 +53,11 @@
     border: 2px solid #860000;
     opacity: 0.7;
 }
+/* Indicators active image style */
+.slide .carousel-indicators .item.active {
+    position: absolute;
+    bottom: 0px;
+}
 .acknowledgement {
   bottom: 0px;
   width: 100%;
