@@ -7,8 +7,7 @@ $(function () {
       $front = $envelope.find(".front"),
       $back = $envelope.find(".back"),
       $otherQuestions = $back.find(".szar-attending-questions"),
-      $plusOne = $back.find('#plus-one'),
-      $plusOneName = $back.find('#plus-one-name'),
+      $plusOne = $back.find('.plus-one'), plusOneLength = $plusOne.length,
       $flags = $(".menu-buttons img"),
       textDivs = {
         english: $(".english"),
@@ -16,8 +15,13 @@ $(function () {
       },
       questionDependencies = {
         attending: $otherQuestions,
-        plus_one: $plusOneName,
       };
+
+  // dynamically add plus ones depending on if it is on the page
+  $plusOne.each(function (i, el) {
+    var selector = "#" + el.id.replace("_boolean", "") + "_name";
+    questionDependencies[el.id] = $(selector);
+  });
 
   if (!hasAnimationSupport(["csspseudoanimations", "csspseudotransitions", "csstransitions", "cssanimations", "csstransforms", "csstransforms3d", "preserve3d", "smil"])) {
     // Envelope is going to look strange, hide it and make invitation appear by itself
@@ -107,20 +111,38 @@ $(function () {
     submitHandler: function (el, e) {
       e.preventDefault();
       var formEntries = {};
-      $(el).serializeArray().forEach(function (val) {
+      $(el).find(":input:visible").serializeArray().forEach(function (val) {
         if (val.value !== "") {
-          formEntries[val.name] = formEntries[val.name] || [];
-          formEntries[val.name].push(val.value);
+          if (val.name.indexOf("_boolean") === -1) {
+            formEntries[val.name] = formEntries[val.name] || [];
+            formEntries[val.name].push(val.value);
+          }
         }
       });
+      formEntries.plus_one = formEntries.plus_one_name && !!formEntries.plus_one_name.length;
+      // Calculated Actual attendees
+      if (formEntries.attending[0] !== "False") {
+        if (formEntries.plus_one) {
+          formEntries.number_attendees = (1 + formEntries.plus_one_name.length);
+        } else {
+          formEntries.number_attendees = 1;
+        }
+      } else {
+        formEntries.number_attendees = 0;
+      }
       for (var property in formEntries) {
-        formEntries[property] = formEntries[property].join(",");
+        if ($.isArray(formEntries[property])) {
+          formEntries[property] = formEntries[property].join(",");
+        }
       }
       var post_data = {
         "csrfmiddlewaretoken": rsvp.csrf_token,
         formEntries: JSON.stringify(formEntries),
       };
       var url = rsvp.save_rsvp_url;
+      if (rsvp.username) {
+        url += ("/" + rsvp.username);
+      }
       function csrfSafeMethod(method) {
           // these HTTP methods do not require CSRF protection
           return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));

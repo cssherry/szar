@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<meta name="robots" content="noindex">
+<link rel="prerender" href="{% url 'root-url' %}" />
+{% endblock %}
+
+{% block content %}
+<h1>{{ name|default_if_none:"" }}</h1>
+<div class="jumbotron">
+  <p>{{ status }}</p>
+  <p>Be sure to check back on the website for updates!</p>
+  <p>If you are planning to come to the wedding, you can always re-add your email address through your <a href="{% url 'make_rsvp' username %}">rsvp</a>.</p>
+</div>
+{% endblock %}

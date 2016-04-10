@@ -76,12 +76,12 @@
             <span class="english">First Name</span>
             <span class="chinese">名</span>
           </label>
-          <input type="text" name="first_name" size="40" aria-required="true" required>
+          <input type="text" name="first_name" value="{{ first_name|default_if_none:"" }}" size="40" aria-required="true" required>
           <label for="last_name" class="required">
             <span class="english">Last Name</span>
             <span class="chinese">姓</span>
           </label>
-          <input type="text" name="last_name" size="40" aria-required="true" required>
+          <input type="text" name="last_name" value="{{ last_name|default_if_none:"" }}" size="40" aria-required="true" required>
         </div>
         <div>
           <label for="attending" class="required">
@@ -104,7 +104,7 @@
               <span class="english">Email address</span>
               <span class="chinese">电子邮箱</span>
             </label>
-            <input type="email" name="email" id="rsvp-email" size="40" aria-required="true" required>
+            <input type="email" name="email" value="{{ email|default_if_none:"" }}" id="rsvp-email" size="40" aria-required="true" required>
           </div>
           <div>
             <label for="attending_dates" class="required">
@@ -112,11 +112,11 @@
               <span class="chinese">哪天您打算参加</span>
             </label>
             <label class="szar-inline">
-              <input type="checkbox" name="attending_dates" value="1">
+              <input type="checkbox" name="attending_dates" value="1" checked>
               <span class="english">Saturday (reception)</span><span class="chinese">周六（晚宴）</span>
             </label>
             <label class="szar-inline">
-              <input type="checkbox" name="attending_dates" value="2">
+              <input type="checkbox" name="attending_dates" value="2" checked>
               <span class="english">Sunday (wedding ceremony)</span><span class="chinese">星期日（婚礼）</span>
             </label>
           </div>
@@ -130,7 +130,7 @@
               <span class="english">Yes</span><span class="chinese">吃</span>
             </label>
             <label class="szar-inline">
-              <input type="radio" name="vegetarian" value="False">
+              <input type="radio" name="vegetarian" value="False" checked>
               <span class="english">No</span><span class="chinese">不吃</span>
             </label>
           </div>
@@ -147,7 +147,7 @@
               <span class="chinese">您是否有兴趣收到有关附近酒店的信息？</span>
             </label>
             <label class="szar-inline">
-              <input type="radio" name="need_hotel" value="True">
+              <input type="radio" name="need_hotel" value="True" checked>
               <span class="english">Yes</span><span class="chinese">要</span>
             </label>
             <label class="szar-inline">
@@ -161,7 +161,7 @@
               <span class="chinese">您希望知道有关的交通信息？</span>
             </label>
             <label class="szar-inline">
-              <input type="radio" name="need_carpool" value="True">
+              <input type="radio" name="need_carpool" value="True" checked>
               <span class="english">Yes</span><span class="chinese">要</span>
             </label>
             <label class="szar-inline">
@@ -170,27 +170,32 @@
             </label>
           </div>
           <!-- Optional div for people with plus 1 -->
-          <div id="plus-one">
-            <label for="plus_one" class="required">
-              <span class="english">Are you planning on bringing a guest?</span>
-              <span class="chinese">您是一个人还是两个人？</span>
-            </label>
-            <label class="szar-inline">
-              <input type="radio" name="plus_one" value="True" aria-required="true" required>
-              <span class="english">Yes</span><span class="chinese">一个</span>
-            </label>
-            <label class="szar-inline">
-              <input type="radio" name="plus_one" value="False" aria-required="true" required>
-              <span class="english">No</span><span class="chinese">两个</span>
-            </label>
-            <div id="plus-one-name" class="hidden">
-              <label for="plus_one_name" class="required">
-                <span class="english">What is your guest's full name?</span>
-                <span class="chinese">您的客人的名字？</span>
-              </label>
-              <input type="text" name="plus_one_name" size="40" aria-required="true" required>
-            </div>
-          </div>
+          {% if plus_one %}
+            {% for i in extra_guests%}
+              <div id="plus_one_{{ i }}_boolean" class="plus-one">
+                <label for="plus_one_{{ i }}_boolean" class="required">
+                  <span class="english">Are you planning on bringing {{ i }} guest{{ i|pluralize }}?</span>
+                  <span class="chinese">您是一个人还是两个人？</span>
+                </label>
+                <label class="szar-inline">
+                  <input type="radio" class="plus-one-option" name="plus_one_{{ i }}_boolean" value="True" aria-required="true" required>
+                  <span class="english">Yes</span><span class="chinese">一个</span>
+                </label>
+                <label class="szar-inline">
+                  <input type="radio" class="plus-one-option" name="plus_one_{{ i }}_boolean" value="False" aria-required="true" required>
+                  <span class="english">No</span><span class="chinese">两个</span>
+                </label>
+                <div id="plus_one_{{ i }}_name" class="hidden">
+                  <label for="plus_one_name" class="required">
+                    <span class="english">What is your guest's full name?</span>
+                    <span class="chinese">您的客人的名字？</span>
+                  </label>
+                  <input type="text" name="plus_one_name" size="40" aria-required="true" required>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+
           <div>
             <label for="song_requests">
               <span class="english">Do you have any song requests for the reception?</span>
@@ -286,6 +291,7 @@
   var rsvp = rsvp || {};
   rsvp.csrf_token = "{{ csrf_token }}";
   rsvp.save_rsvp_url = "{% url 'save_rsvp' %}";
+  rsvp.username = "{{ username }}";
 </script>
 <script src="{% static 'js/rsvp.js'%}"></script>
 {% endblock %}

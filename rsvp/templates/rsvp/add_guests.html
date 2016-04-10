@@ -8,37 +8,40 @@
 
 {% block content %}
 <h1>Guest Information</h1>
-<button type="button" name="send-invitation" id="send-invitation-button" disabled>Send Invitations</button>
+<button type="button" name="Delete" id="delete-guests-button" disabled>Delete</button>
+<button type="button" name="invitation" class="email" id="send-invitation-button" disabled>Send Invitations</button>
     <table id="guest-list-table">
       <thead>
-        <th>
-          <input type="checkbox" id="all-guests-checkbox">
-        </th>
-        <th>
-          Name
-        </th>
-        <th>
-          Number Expected
-        </th>
-        <th>
-          RSVP?
-        </th>
+        <th><input type="checkbox" id="all-guests-checkbox"></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Number Expected</th>
+        <th>RSVP?</th>
+        <th>Plus One</th>
+        <th>Dates</th>
+        <th>Number Actual</th>
+        <th>Username</th>
       </th>
       {% for rsvp in current_guests %}
-          {% with status=rsvp.fields.attending %}
-          <tr class="rsvp-{{ status }}">
+          {% with status=rsvp.fields.attending rsvp_id=rsvp.pk expected_attendees=rsvp.fields.expected_attendees %}
+          {% if expected_attendees != "0.0" %}
+          <tr class="rsvp-{{ status }}" id="rsvp-id-{{ rsvp_id }}">
             <td>
-              <input type="checkbox" name="name" value="{{ rsvp.fields.guest.id }}">
+                <input type="checkbox" name="name" value="{{ rsvp_id }}">
             </td>
-            <td class="guest-name">
-              {{ rsvp.fields.guest.name }}
+          {% else %}
+          <tr class="rsvp-maybe" id="rsvp-id-{{ rsvp_id }}">
+            <td>
             </td>
-            <td class="guest-number">
-              {{ rsvp.fields.expected_attendees }}
-            </td>
-            <td class="guest-status">
-              {{ status }}
-            </td>
+          {% endif %}
+            <td class="guest-name">{{ rsvp.fields.guest.name }}</td>
+            <td class="guest-email">{{ rsvp.fields.guest.email }}</td>
+            <td class="guest-number">{{ expected_attendees }}</td>
+            <td class="guest-status">{{ status }}</td>
+            <td class="guest-plus-one">{{ rsvp.fields.plus_one_name }} ({{ rsvp.fields.plus_one }})</td>
+            <td class="guest-attending-date">{{ rsvp.fields.attending_dates }}</td>
+            <td class="guest-attending-number">{{ rsvp.fields.number_attendees }}</td>
+            <td class="guest-username">{{ rsvp.fields.guest.username }}</td>
           </tr>
           {% endwith %}
       {% endfor %}
@@ -56,4 +59,11 @@
     <script src="{% static 'js/ext/dropzone.min.js'%}"></script>
     <script src="{% static 'js/widgets/checkbox.js'%}"></script>
     <script src="{% static 'js/admin/add_guests.js'%}"></script>
+    <script type="text/javascript">
+      // Set global variables
+      var rsvp = rsvp || {};
+      rsvp.csrf_token = "{{ csrf_token }}";
+      rsvp.add_guests_url = "{% url 'add_guests' %}";
+      rsvp.delete_rsvp_url = "{% url 'save_rsvp' %}";
+    </script>
 {% endblock %}

@@ -5,10 +5,13 @@
   - [x] Debug stupid font (damn you Italianno, stop being comic sans!)
   - [x] Enable excel/csv file upload of wedding guests
     - [x] Ideally, allow drag/drop, but low priority
-    - [ ] Update list whenever users/rsvps updated
+    - [x] Update list whenever users/rsvps updated
     - [ ] Have backup in case dropzonejs fails (use input)
   - [x] Enable emailing of invitations
-    - [ ] Allow confirmation of rsvp and updateable forms
+    - [x] Allow confirmation of rsvp and updateable forms
+    - [ ] Allow form updating with memory of previous entries
+    - [x] Add quick unsubscribe and quick rsvp no
+    - [x] sort away maybes
     - [ ] Analytics graphs
     - [ ] RSVP graphs
     - [ ] Admin management of emails

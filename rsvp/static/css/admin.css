@@ -1,10 +1,15 @@
-#main {
+body, #main {
   margin-top: 60px;
+  height: 100%;
 }
 
 th, td {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+table {
+  margin: 20px auto;
 }
 
 .rsvp-False {
@@ -15,4 +20,7 @@ th, td {
 }
 .rsvp-None {
   background-color: pink;
+}
+.rsvp-maybe {
+  background-color: lightgray;
 }

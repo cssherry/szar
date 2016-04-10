@@ -1,6 +1,10 @@
 """RSVP Views"""
 import os, sys, json
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+
+from django.core.urlresolvers import reverse
+
 from django.http import HttpResponse, HttpResponseRedirect, QueryDict
 from django.template import RequestContext, Context, loader
 from django.contrib.auth import authenticate, login, logout
@@ -28,20 +32,60 @@ import django_excel
 import pyexcel.ext.xls
 import pyexcel.ext.xlsx
 
-def send_email(user, email_link, title):
-    ctx = Context({
-        "first_name": "Sherry",
-        "last_name": "Zhou",
-        "rsvp_link": "test",
-        "no_link": "test",
-        "unsubscribe": "unsubscribe"
-    })
-    html_content = loader.get_template("email/invitation.html").render(ctx);
-    text_content = loader.render_to_string('email/invitation.txt', ctx);
-    subject, my_email = 'Wedding Invitation Template', 'Sherry Zhou <xiao.qiao.zhou+wedding@gmail.com>'
-    msg = EmailMultiAlternatives(subject, text_content, my_email, [my_email])
+@login_required
+def email(request, email_type=""):
+     if request.user.is_superuser:
+        if request.method == 'GET':
+            return get_email(request, email_type)
+        elif request.method == 'POST':
+            return send_emails(request, email_type)
+     else:
+        keen.add_event("admin_send_email_illegal", KEEN_OBJECT)
+        return HttpResponse("Only admin can view or send emails", status=500)
+
+def send_emails(request, email_type):
+    rsvp_ids = json.loads(request.POST.get("selection"))
+    response_message = ""
+    for rsvp_id in rsvp_ids:
+        rsvp = RSVP.objects.filter(id=rsvp_id)
+        if len(rsvp) > 0:
+            if rsvp[0].guest and rsvp[0].guest.email.find("@") != -1:
+                rsvp = rsvp[0]
+                send_email(request, email_type, rsvp)
+                response_message += "Successfully sent for " + rsvp_id + "."
+            else:
+                response_message += "No user or email for " + rsvp_id + "."
+        else:
+            response_message += "No rsvp for " + rsvp_id + "."
+
+    return HttpResponse(response_message, status=200)
+
+def send_email(request, email_type, rsvp):
+    name, username, rsvp_email, full_name = rsvp.name(), rsvp.guest.username, rsvp.guest.email, rsvp.full_name()
+
+    ctx = {
+        "name": name,
+        "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=(username,))),
+        "no_link": request.build_absolute_uri(reverse('quick_actions', args=(username, "no", ))),
+        "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(username, "unsubscribe", ))),
+        "homepage": request.build_absolute_uri(reverse('root-url'))
+    }
+    html_content = loader.get_template("email/" + email_type + ".html").render(ctx);
+    text_content = loader.render_to_string('email/' + email_type + '.txt', ctx);
+    subject, my_email = 'Wedding Invitation August 27-28 (RSVP by July 1st)', 'Sherry Zhou <xiao.qiao.zhou+wedding@gmail.com>'
+    msg = EmailMultiAlternatives(subject, text_content, my_email, ['{0} <{1}>'.format(full_name, rsvp_email)])
     msg.attach_alternative(html_content, "text/html")
     msg.send();
+
+def get_email(request, email_type):
+    pretendCtx = {
+        "name": "Sherry",
+        "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=[1])),
+        "no_link": request.build_absolute_uri(reverse('quick_actions', args=(1, "no", ))),
+        "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(1, "unsubscribe", ))),
+        "homepage": request.build_absolute_uri(reverse('root-url'))
+    }
+    return render(request, 'email/' + email_type + '.html', pretendCtx)
 
 def get_rsvps(request):
     ctx = {
@@ -101,6 +145,8 @@ def _special_initialize(row, dictionary):
     return row
 
 @login_required
+# Need to set cookie for IE people or they won't be able to submit forms
+@ensure_csrf_cookie
 def add_guests(request):
     if request.user.is_superuser:
         if request.method == 'GET':
