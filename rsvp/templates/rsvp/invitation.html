@@ -171,16 +171,16 @@
           </div>
           <!-- Optional div for people with plus 1 -->
           <div id="plus-one">
-            <label for="plus_one">
+            <label for="plus_one" class="required">
               <span class="english">Are you planning on bringing a guest?</span>
               <span class="chinese">您是一个人还是两个人？</span>
             </label>
             <label class="szar-inline">
-              <input type="radio" name="plus_one" value="True">
+              <input type="radio" name="plus_one" value="True" aria-required="true" required>
               <span class="english">Yes</span><span class="chinese">一个</span>
             </label>
             <label class="szar-inline">
-              <input type="radio" name="plus_one" value="False">
+              <input type="radio" name="plus_one" value="False" aria-required="true" required>
               <span class="english">No</span><span class="chinese">两个</span>
             </label>
             <div id="plus-one-name" class="hidden">
