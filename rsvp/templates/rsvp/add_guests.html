@@ -3,11 +3,17 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/ext/dropzone.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
 {% endblock %}
 
 {% block content %}
-    <table>
+<h1>Guest Information</h1>
+<button type="button" name="send-invitation" id="send-invitation-button" disabled>Send Invitations</button>
+    <table id="guest-list-table">
       <thead>
+        <th>
+          <input type="checkbox" id="all-guests-checkbox">
+        </th>
         <th>
           Name
         </th>
@@ -19,17 +25,22 @@
         </th>
       </th>
       {% for rsvp in current_guests %}
-          <tr>
+          {% with status=rsvp.fields.attending %}
+          <tr class="rsvp-{{ status }}">
             <td>
+              <input type="checkbox" name="name" value="{{ rsvp.fields.guest.id }}">
+            </td>
+            <td class="guest-name">
               {{ rsvp.fields.guest.name }}
             </td>
-            <td>
+            <td class="guest-number">
               {{ rsvp.fields.expected_attendees }}
             </td>
-            <td>
-              {{ rsvp.fields.attending }}
+            <td class="guest-status">
+              {{ status }}
             </td>
           </tr>
+          {% endwith %}
       {% endfor %}
     </table>
 

@@ -1,0 +1,18 @@
+#main {
+  margin-top: 60px;
+}
+
+th, td {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.rsvp-False {
+  background-color: yellow;
+}
+.rsvp-True {
+  background-color: lightgreen;
+}
+.rsvp-None {
+  background-color: pink;
+}
