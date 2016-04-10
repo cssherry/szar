@@ -52,7 +52,11 @@ var Checkboxes = rsvp.widget.Checkboxes = function ($table, options) {
     checkInstance.checkboxes.prop('checked', false);
   };
   checkInstance.reset = function ($el) {
-    checkInstance.element = $el;
+    if ($el) {
+      checkInstance.element = $el;
+    } else {
+      checkInstance.element = $(_getSelector(checkInstance.element));
+    }
     // Define important children elements
     _defineChildrenElements();
     if (checkInstance.options.$actionButtons) {
