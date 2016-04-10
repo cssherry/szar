@@ -37,5 +37,12 @@ class RSVP(models.Model):
             setattr(self, attr, value)
         self.save()
 
+    def user(self):
+        user = User.objects.filter(id=self.guest_id)
+        if len(user) > 0:
+            return user[0]
+        else:
+            return None
+
     def __str__(self):
         return self.guest.username

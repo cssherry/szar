@@ -90,6 +90,8 @@
     * Quick-start info: http://www.mangooranges.com/2008/09/15/sending-email-via-gmail-in-django/
     * Text and HTML template support: http://stackoverflow.com/questions/2809547/creating-email-templates-with-django
     * Responsive email template: https://github.com/leemunroe/responsive-html-email-template
+    * Needs full urls, to get them, use request.build_absolute_uri(reverse('view_name', args)) as suggested here: https://docs.djangoproject.com/ja/1.9/ref/urlresolvers/
+    * Minify html and make css inline for it to show up properly in email: http://foundation.zurb.com/emails/inliner-v2.html. Afterwards, remember to remove extra "amp;" in body of email wherever an "&" character was used
 
   * Prevent Heroku spindown
     * Use https://www.statuscake.com (alternative to pingdom) to test homepage and rsvp page every hour
