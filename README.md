@@ -12,9 +12,11 @@
     - [ ] Allow form updating with memory of previous entries
     - [x] Add quick unsubscribe and quick rsvp no
     - [x] sort away maybes
+    - [ ] Allow change of "expected attendees" number
+    - [ ] Add keen recording of errors
     - [ ] Analytics graphs
     - [ ] RSVP graphs
-    - [ ] Admin management of emails
+    - [x] Admin management of emails
   - [x] Create typical wedding pages:
     - [x] Improve styling
     - [x] Logistics:
