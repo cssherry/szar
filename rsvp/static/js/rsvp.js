@@ -68,7 +68,12 @@ $(function () {
     $front.toggleClass("hidden");
     $back.toggleClass("hidden");
     if (!$back.hasClass("hidden")) {
-      $back.find("input:not([value]):first").focus();
+      var firstUnfilled = $back.find("input:not([value]):first:visible");
+      if (firstUnfilled.length) {
+        firstUnfilled.focus();
+      } else {
+        $back.find("input:first:visible").focus();
+      }
     }
   });
 
