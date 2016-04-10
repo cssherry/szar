@@ -1,6 +1,7 @@
 """Creates RSVP model"""
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class RSVP(models.Model):
     """Model stores RSVP form inputs"""
@@ -37,12 +38,20 @@ class RSVP(models.Model):
             setattr(self, attr, value)
         self.save()
 
-    def user(self):
+    def name(self):
+        if self.formal_prefix:
+            return self.formal_prefix + " " + self.guest.last_name
+        else:
+            return self.guest.first_name
+
+    def full_name(self):
+        return self.guest.first_name + " " + self.guest.last_name
+
+    def delete(self):
         user = User.objects.filter(id=self.guest_id)
         if len(user) > 0:
-            return user[0]
-        else:
-            return None
+          user[0].delete()
+        super(RSVP, self).delete()
 
     def __str__(self):
         return self.guest.username
