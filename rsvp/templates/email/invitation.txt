@@ -1,4 +1,4 @@
-{{ first_name }},
+{{ name }},
 
 Aneesh and I would like to invite you to our wedding on August 27 - 28 in Gilroy, CA. Please rsvp at {{ rsvp_link }}.
 
