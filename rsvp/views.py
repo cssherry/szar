@@ -36,8 +36,8 @@ def invitation(request, username=""):
             context["last_name"] = user.last_name
             context["email"] = user.email
             context["plus_one"] = user.rsvp.plus_one
-            context["extra_guests"] = range(1, math.floor(user.rsvp.expected_attendees) + 1)
 
+            context["extra_guests"] = range(1, math.ceil(rsvp.expected_attendees))
     keen.add_event("visit_rsvp_page", KEEN_OBJECT)
     return render(request, 'rsvp/invitation.html', context)
 
