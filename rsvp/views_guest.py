@@ -1,30 +1,20 @@
 """RSVP Views"""
-import os, sys, json
+import json
 
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from django.core.urlresolvers import reverse
-
-from django.http import HttpResponse, HttpResponseRedirect, QueryDict
-from django.template import RequestContext, Context, loader
-from django.contrib.auth import authenticate, login, logout
-from django.core.context_processors import csrf
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
-from rsvp.models import RSVP
 
 from rsvp.utils import create_random_string
-from django.core import serializers
 
-from django.conf import settings
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
 import keen
 
-from rsvp.views import KEEN_OBJECT, _rsvps_get_raw, create_random_string
-
-from django.core.mail import EmailMultiAlternatives
+from rsvp.view_helpers import send_emails, get_email, KEEN_OBJECT, rsvps_get_raw
 
 from rsvp.models import RSVP
 
@@ -34,62 +24,19 @@ import pyexcel.ext.xlsx
 
 @login_required
 def email(request, email_type=""):
-     if request.user.is_superuser:
+    subject = 'Wedding Invitation August 27-28 (RSVP by July 1st)'
+    if request.user.is_superuser:
         if request.method == 'GET':
             return get_email(request, email_type)
         elif request.method == 'POST':
-            return send_emails(request, email_type)
-     else:
+            return send_emails(request, email_type, subject)
+    else:
         keen.add_event("admin_send_email_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can view or send emails", status=500)
 
-def send_emails(request, email_type):
-    rsvp_ids = json.loads(request.POST.get("selection"))
-    response_message = ""
-    for rsvp_id in rsvp_ids:
-        rsvp = RSVP.objects.filter(id=rsvp_id)
-        if len(rsvp) > 0:
-            if rsvp[0].guest and rsvp[0].guest.email.find("@") != -1:
-                rsvp = rsvp[0]
-                send_email(request, email_type, rsvp)
-                response_message += "Successfully sent for " + rsvp_id + "."
-            else:
-                response_message += "No user or email for " + rsvp_id + "."
-        else:
-            response_message += "No rsvp for " + rsvp_id + "."
-
-    return HttpResponse(response_message, status=200)
-
-def send_email(request, email_type, rsvp):
-    name, username, rsvp_email, full_name = rsvp.name(), rsvp.guest.username, rsvp.guest.email, rsvp.full_name()
-
-    ctx = {
-        "name": name,
-        "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=(username,))),
-        "no_link": request.build_absolute_uri(reverse('quick_actions', args=(username, "no", ))),
-        "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(username, "unsubscribe", ))),
-        "homepage": request.build_absolute_uri(reverse('root-url'))
-    }
-    html_content = loader.get_template("email/" + email_type + ".html").render(ctx);
-    text_content = loader.render_to_string('email/' + email_type + '.txt', ctx);
-    subject, my_email = 'Wedding Invitation August 27-28 (RSVP by July 1st)', 'Sherry Zhou <xiao.qiao.zhou+wedding@gmail.com>'
-    msg = EmailMultiAlternatives(subject, text_content, my_email, ['{0} <{1}>'.format(full_name, rsvp_email)])
-    msg.attach_alternative(html_content, "text/html")
-    msg.send();
-
-def get_email(request, email_type):
-    pretendCtx = {
-        "name": "Sherry",
-        "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=[1])),
-        "no_link": request.build_absolute_uri(reverse('quick_actions', args=(1, "no", ))),
-        "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(1, "unsubscribe", ))),
-        "homepage": request.build_absolute_uri(reverse('root-url'))
-    }
-    return render(request, 'email/' + email_type + '.html', pretendCtx)
-
 def get_rsvps(request):
     ctx = {
-        "current_guests": json.loads(_rsvps_get_raw(None))
+        "current_guests": json.loads(rsvps_get_raw(None))
     }
     return render(request, 'rsvp/add_guests.html', ctx)
 

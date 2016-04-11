@@ -1,10 +1,7 @@
 """RSVP Views"""
 import os, sys, json, math
 
-from django.http import HttpResponse, HttpResponseRedirect, QueryDict
-from django.template import RequestContext, loader
-from django.contrib.auth import authenticate, login, logout
-from django.core.context_processors import csrf
+from django.http import HttpResponse, QueryDict
 from django.contrib.auth.decorators import login_required
 
 from django.core.urlresolvers import reverse
@@ -13,37 +10,13 @@ from django.contrib.auth.models import User
 from rsvp.models import RSVP
 
 from rsvp.utils import create_random_string
-from django.core import serializers
 
-from django.conf import settings
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 import keen
-
-KEEN_OBJECT = {
-    "ip_address" : "${keen.ip}",
-    "user_agent" : "${keen.user_agent}",
-    "keen" : {
-    "addons" : [
-      {
-        "name" : "keen:ip_to_geo",
-        "input" : {
-          "ip" : "ip_address"
-        },
-        "output" : "ip_geo_info"
-      },
-      {
-        "name" : "keen:ua_parser",
-        "input" : {
-          "ua_string" : "user_agent"
-        },
-        "output" : "parsed_user_agent"
-      }
-    ]
-  }
-}
+from rsvp.view_helpers import KEEN_OBJECT, rsvps_get_raw, get_full_rsvp
 
 def invitation(request, username=""):
     context = {
@@ -67,28 +40,6 @@ def invitation(request, username=""):
 
     keen.add_event("visit_rsvp_page", KEEN_OBJECT)
     return render(request, 'rsvp/invitation.html', context)
-
-def _get_full_rsvp(rsvps_objects):
-    serialized_rsvps = json.loads(serializers.serialize('json', rsvps_objects))
-    for r in serialized_rsvps:
-        print("R VALUE", r)
-        user = User.objects.filter(id=r['fields']["guest"])
-        if len(user) > 0:
-            user = user[0]
-            r['fields']["guest"] = {
-                "id": r['fields']["guest"],
-                "name": user.get_full_name(),
-                "username": user.username,
-                "email": user.email,
-            }
-    return json.dumps(serialized_rsvps)
-
-def _rsvps_get_raw(rsvp_id):
-    rsvps_array = RSVP.objects.all()
-    if rsvp_id:
-        rsvps_array = RSVP.objects.filter(id=rsvp_id)
-
-    return _get_full_rsvp(rsvps_array)
 
 def _rsvps_create(request, username):
     form_entries = json.loads(request.POST.get("formEntries"))
@@ -141,7 +92,7 @@ def _rsvps_delete(request):
 def get_rsvps(request, rsvp_id):
     if request.user.is_superuser:
         keen.add_event("admin_check_rsvps" + rsvp_id, KEEN_OBJECT)
-        rsvps_formatted = _rsvps_get_raw(rsvp_id)
+        rsvps_formatted = rsvps_get_raw(rsvp_id)
         return HttpResponse(rsvps_formatted, content_type="application/json")
     else:
         keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
@@ -165,7 +116,7 @@ def rsvps(request, rsvp_id=''):
 def attending(request):
     if request.user.is_superuser:
         keen.add_event("admin_check_attending_guests_illegal", KEEN_OBJECT)
-        attending_rsvps = _get_full_rsvp(RSVP.objects.filter(attending=True))
+        attending_rsvps = get_full_rsvp(RSVP.objects.filter(attending=True))
         return HttpResponse(attending_rsvps, content_type="application/json")
     else:
         keen.add_event("admin_check_attending_guests", KEEN_OBJECT)
