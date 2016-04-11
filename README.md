@@ -12,6 +12,7 @@
     - [ ] Allow form updating with memory of previous entries
     - [x] Add quick unsubscribe and quick rsvp no
     - [x] sort away maybes
+    - [ ] Record emails sent
     - [ ] Allow change of "expected attendees" number
     - [ ] Add keen recording of errors
     - [ ] Analytics graphs
