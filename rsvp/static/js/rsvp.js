@@ -68,6 +68,9 @@ $(function () {
   });
   $flags.filter("[alt=English]").trigger("click");
 
+  // Focus on first item upon clicking ribbon
+  $back.find("form input[value='']").removeAttr("value");
+
   $envelope.on('click', "#rsvp, #invitation", function () {
     $front.toggleClass("hidden");
     $back.toggleClass("hidden");
