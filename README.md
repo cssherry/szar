@@ -7,9 +7,10 @@
     - [x] Ideally, allow drag/drop, but low priority
     - [x] Update list whenever users/rsvps updated
     - [ ] Have backup in case dropzonejs fails (use input)
+    - [ ] Upload outside rsvps (for relatives with physical invitations)
   - [x] Enable emailing of invitations
     - [x] Allow confirmation of rsvp and updateable forms
-    - [ ] Allow form updating with memory of previous entries
+    - [x] Allow form updating with memory of previous entries
     - [x] Add quick unsubscribe and quick rsvp no
     - [x] sort away maybes
     - [ ] Record emails sent

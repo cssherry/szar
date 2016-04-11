@@ -20,24 +20,76 @@ from rsvp.view_helpers import KEEN_OBJECT, rsvps_get_raw, get_full_rsvp
 
 def invitation(request, username=""):
     context = {
-        "username": None,
-        "first_name": None,
-        "last_name": None,
-        "email": None,
+        "username": "",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "attending": None,
+        "saturday": "checked",
+        "sunday": "checked",
+        "vegetarian": False,
+        "other_dietary_restrictions": "",
+        "need_hotel": True,
+        "need_carpool": True,
         "plus_one": True,
+        "plus_one_name": [{
+            "name": "",
+            "true": ""
+        }],
         "extra_guests": range(1, 2),
+        "song_requests": "",
     }
     if username != "":
         user = User.objects.filter(username=username)
         if len(user) > 0:
             user = user[0]
+            rsvp = user.rsvp
+            # Always needed
             context["username"] = user.username
             context["first_name"] = user.first_name
             context["last_name"] = user.last_name
             context["email"] = user.email
-            context["plus_one"] = user.rsvp.plus_one
-
+            context["plus_one"] = rsvp.plus_one
             context["extra_guests"] = range(1, math.ceil(rsvp.expected_attendees))
+            # Only needed if previously haven't filled out form
+            if rsvp.attending != None:
+                context["attending"] = rsvp.attending
+                if rsvp.attending_dates != "":
+                    context["saturday"] = "checked" if rsvp.attending_dates.find("1") != -1 else ""
+                    context["sunday"] = "checked" if rsvp.attending_dates.find("2") != -1 else ""
+                context["vegetarian"] = rsvp.vegetarian if rsvp.vegetarian != None else False
+                context["other_dietary_restrictions"] = rsvp.other_dietary_restrictions
+                context["need_hotel"] = rsvp.need_hotel if rsvp.need_hotel != None else True
+                context["need_carpool"] = rsvp.need_hotel if rsvp.need_hotel != None else True
+                context["plus_one"] = rsvp.plus_one
+                context["plus_one_name"] = []
+                context["song_requests"] = rsvp.song_requests
+                if rsvp.plus_one_name:
+                    names = rsvp.plus_one_name.split(",")
+                else:
+                    names = []
+                for idx in context["extra_guests"]:
+                    if len(names) < idx:
+                        context["plus_one_name"].append({
+                            "name": "",
+                            "true": ""
+                        })
+                    else:
+                        context["plus_one_name"].append({
+                            "name": names[idx - 1],
+                            "true": "checked"
+                        })
+    update_ctx = {}
+    for key, value in context.items():
+        val_string = key + "_" + str(value).lower()
+        not_val_string = key + "_" + str(not value).lower()
+        if value == True or value == False:
+            update_ctx[val_string] = "checked"
+            update_ctx[not_val_string] = ""
+        elif value == None:
+            update_ctx[val_string] = ""
+            update_ctx[not_val_string] = ""
+    context.update(update_ctx)
     keen.add_event("visit_rsvp_page", KEEN_OBJECT)
     return render(request, 'rsvp/invitation.html', context)
 

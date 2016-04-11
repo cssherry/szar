@@ -98,6 +98,12 @@ $(function () {
       }
     }
   });
+  for (var input_name in questionDependencies) {
+    if (questionDependencies.hasOwnProperty(input_name)) {
+      // Have to trigger one input at a time :/
+      $back.find("[name=" + input_name + "]:checked").trigger("change");
+    }
+  }
 
   function adjustLabel (item, type) {
     var $item = $(item),
