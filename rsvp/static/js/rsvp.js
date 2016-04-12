@@ -127,6 +127,7 @@ $(function () {
     },
     submitHandler: function (el, e) {
       e.preventDefault();
+      e.stopPropagation();
       var formEntries = {};
       $(el).find(":input:visible").serializeArray().forEach(function (val) {
         if (val.value !== "") {
