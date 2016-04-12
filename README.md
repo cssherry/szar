@@ -15,6 +15,7 @@
     - [x] sort away maybes
     - [x] Record emails sent
     - [ ] Send RSVP confirmation
+    - [ ] Change add_guest table based on whether someone has rsvp'ed
     - [ ] Allow change of "expected attendees" number
     - [ ] Add keen recording of errors
     - [ ] Analytics graphs
