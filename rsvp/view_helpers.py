@@ -1,4 +1,4 @@
-import json
+import json, time
 from django.core import serializers
 from rsvp.models import RSVP
 from django.contrib.auth.models import User
@@ -92,6 +92,14 @@ def send_email(request, email_type, rsvp, subject):
     msg = EmailMultiAlternatives(subject, text_content, my_email, ['{0} <{1}>'.format(full_name, rsvp_email)])
     msg.attach_alternative(html_content, "text/html")
     msg.send();
+    previous_emails = json.loads(rsvp.sent_emails)
+    try:
+      previous_emails[email_type].append(time.strftime("%c"))
+    except Exception as e:
+      previous_emails[email_type] = [(time.strftime("%c"))]
+    rsvp.edit({
+      "sent_emails": json.dumps(previous_emails)
+    })
 
 def get_email(request, email_type):
     pretendCtx = {

@@ -13,7 +13,8 @@
     - [x] Allow form updating with memory of previous entries
     - [x] Add quick unsubscribe and quick rsvp no
     - [x] sort away maybes
-    - [ ] Record emails sent
+    - [x] Record emails sent
+    - [ ] Send RSVP confirmation
     - [ ] Allow change of "expected attendees" number
     - [ ] Add keen recording of errors
     - [ ] Analytics graphs

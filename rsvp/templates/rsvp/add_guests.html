@@ -21,6 +21,7 @@
         <th>Dates</th>
         <th>Number Actual</th>
         <th>Username</th>
+        <th>Sent Emails</th>
       </th>
       {% for rsvp in current_guests %}
           {% with status=rsvp.fields.attending rsvp_id=rsvp.pk expected_attendees=rsvp.fields.expected_attendees %}
@@ -42,6 +43,7 @@
             <td class="guest-attending-date">{{ rsvp.fields.attending_dates }}</td>
             <td class="guest-attending-number">{{ rsvp.fields.number_attendees }}</td>
             <td class="guest-username">{{ rsvp.fields.guest.username }}</td>
+            <td class="guest-emails-sent">{{ rsvp.fields.sent_emails }}</td>
           </tr>
           {% endwith %}
       {% endfor %}

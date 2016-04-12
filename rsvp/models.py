@@ -30,6 +30,7 @@ class RSVP(models.Model):
     expected_attendees = models.DecimalField(default=1, max_digits=4, decimal_places=1)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     edited_date = models.DateTimeField(default=timezone.now, blank=True)
+    sent_emails = models.TextField(default="{}", blank=True)
 
     def edit(self, new_values):
         """Publishes RSVP"""
