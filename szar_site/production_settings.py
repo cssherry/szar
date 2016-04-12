@@ -149,3 +149,4 @@ FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
 # Make reverse use https
 # http://stackoverflow.com/a/19637196/4607533
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+os.environ['HTTPS'] = "on"
