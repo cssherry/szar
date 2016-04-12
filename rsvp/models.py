@@ -8,7 +8,7 @@ class RSVP(models.Model):
     guest = models.OneToOneField('auth.User')
     attending = models.NullBooleanField()
     vegetarian = models.NullBooleanField()
-    other_dietary_restrictions = models.TextField(blank=True)
+    other_dietary_restrictions = models.TextField(blank=True, default="")
     SATURDAY = 1
     SUNDAY = 2
     DATE_OPTIONS = (
