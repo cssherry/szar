@@ -23,6 +23,8 @@ import pyexcel.ext.xls
 import pyexcel.ext.xlsx
 
 @login_required
+# Need to set cookie for IE people or they won't be able to submit forms
+@ensure_csrf_cookie
 def email(request, email_type=""):
     subject = 'Wedding Invitation August 27-28 (RSVP by July 1st)'
     if request.user.is_superuser:

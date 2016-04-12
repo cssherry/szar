@@ -16,6 +16,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 import keen
 from rsvp.view_helpers import KEEN_OBJECT, rsvps_get_raw, get_full_rsvp, send_email
 
+@ensure_csrf_cookie
 def invitation(request, username=""):
     context = {
         "username": "",
@@ -151,6 +152,8 @@ def _rsvps_delete(request):
     return HttpResponse(response_message, status=200)
 
 @login_required
+# Need to set cookie for IE people or they won't be able to submit forms
+@ensure_csrf_cookie
 def get_rsvps(request, rsvp_id):
     if request.user.is_superuser:
         keen.add_event("admin_check_rsvps" + rsvp_id, KEEN_OBJECT)
@@ -160,6 +163,7 @@ def get_rsvps(request, rsvp_id):
         keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can see rsvps", status=500)
 
+@login_required
 # Need to set cookie for IE people or they won't be able to submit forms
 @ensure_csrf_cookie
 def rsvps(request, rsvp_id=''):
@@ -175,6 +179,8 @@ def rsvps(request, rsvp_id=''):
         return _rsvps_delete(request)
 
 @login_required
+# Need to set cookie for IE people or they won't be able to submit forms
+@ensure_csrf_cookie
 def attending(request):
     if request.user.is_superuser:
         keen.add_event("admin_check_attending_guests_illegal", KEEN_OBJECT)
@@ -190,6 +196,7 @@ def attending(request):
     # if request.method == 'DELETE':
     #     return _rsvps_delete(request, rsvp_id)
 
+@ensure_csrf_cookie
 def quick_actions(request, username, action=""):
     if action == "":
         return invitation(request, username)
