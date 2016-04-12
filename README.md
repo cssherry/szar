@@ -15,7 +15,7 @@
     - [x] sort away maybes
     - [x] Record emails sent
     - [x] Send RSVP confirmation
-    - [ ] Validate that plus-one names have space in them
+    - [x] Validate that plus-one names have space in them
     - [ ] Change add_guest table based on whether someone has rsvp'ed
     - [ ] Allow change of "expected attendees" number
     - [ ] Add keen recording of errors

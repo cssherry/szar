@@ -116,7 +116,15 @@ $(function () {
     }
   }
 
+  jQuery.validator.addMethod("firstAndLastName", function(value, element) {
+    return value.split(" ").length >= 2;
+  }, "Please enter the full name (at least 2 words)");
+
+
   $envelope.find('.rsvp-form').validate({
+    rules: {
+      plus_one_name: { firstAndLastName : true }
+    },
     submitHandler: function (el, e) {
       e.preventDefault();
       var formEntries = {};
