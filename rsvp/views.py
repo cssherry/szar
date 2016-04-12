@@ -34,7 +34,8 @@ def invitation(request, username=""):
         "plus_one": True,
         "plus_one_name": [{
             "name": "",
-            "true": ""
+            "true": "",
+            "false": ""
         }],
         "extra_guests": range(1, 2),
         "song_requests": "",
@@ -72,12 +73,14 @@ def invitation(request, username=""):
                     if len(names) < idx:
                         context["plus_one_name"].append({
                             "name": "",
-                            "true": ""
+                            "true": "",
+                            "false": "checked"
                         })
                     else:
                         context["plus_one_name"].append({
                             "name": names[idx - 1],
-                            "true": "checked"
+                            "true": "checked",
+                            "false": ""
                         })
     update_ctx = {}
     for key, value in context.items():
