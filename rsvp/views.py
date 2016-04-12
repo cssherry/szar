@@ -50,7 +50,7 @@ def invitation(request, username=""):
             context["last_name"] = user.last_name
             context["email"] = user.email
             context["plus_one"] = rsvp.plus_one
-            context["extra_guests"] = range(1, math.ceil(rsvp.expected_attendees))
+            context["extra_guests"] = range(1, int(math.ceil(rsvp.expected_attendees)))
             # Only needed if previously haven't filled out form
             if rsvp.attending != None:
                 context["attending"] = rsvp.attending
