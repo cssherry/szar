@@ -1,4 +1,5 @@
 import json, time
+from datetime import datetime
 from django.core import serializers
 from rsvp.models import RSVP
 from django.contrib.auth.models import User
@@ -77,6 +78,17 @@ def send_emails(request, email_type, subject):
     return HttpResponse(response_message, status=200)
 
 def send_email(request, email_type, rsvp, subject):
+    previous_emails = json.loads(rsvp.sent_emails)
+    current_date = time.strftime("%c")
+    try:
+      last_date = previous_emails[email_type][-1]
+      if days_between(last_date, current_date) < 1:
+          return # Don't sent email if another one was sent less than 24 hours ago
+      previous_emails[email_type].append(current_date)
+    except Exception as e:
+      previous_emails[email_type] = [(time.strftime("%c"))]
+
+
     name, username, rsvp_email, full_name = rsvp.name(), rsvp.guest.username, rsvp.guest.email, rsvp.full_name()
 
     ctx = {
@@ -93,11 +105,7 @@ def send_email(request, email_type, rsvp, subject):
     msg = EmailMultiAlternatives(subject, text_content, my_email, ['{0} <{1}>'.format(full_name, rsvp_email)])
     msg.attach_alternative(html_content, "text/html")
     msg.send();
-    previous_emails = json.loads(rsvp.sent_emails)
-    try:
-      previous_emails[email_type].append(time.strftime("%c"))
-    except Exception as e:
-      previous_emails[email_type] = [(time.strftime("%c"))]
+
     rsvp.edit({
       "sent_emails": json.dumps(previous_emails)
     })
@@ -112,3 +120,8 @@ def get_email(request, email_type):
         "homepage": request.build_absolute_uri(reverse('root-url'))
     }
     return render(request, 'email/' + email_type + '.html', pretendCtx)
+
+def days_between(d1, d2):
+    d1 = datetime.strptime(d1, "%c")
+    d2 = datetime.strptime(d2, "%c")
+    return abs((d2 - d1).days)
