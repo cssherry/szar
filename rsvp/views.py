@@ -100,12 +100,13 @@ def _rsvps_create(request, username):
     for k, v in form_entries.items():
         if v == "False":
             v = False
-        if not v == "":
-            try:
-                user_values[k]
-                user_values[k] = v
-            except:
-                rsvp_values[k] = v
+        elif v == "None":
+            v = None
+        try:
+            user_values[k]
+            user_values[k] = v
+        except:
+            rsvp_values[k] = v
     if username == "" or len(User.objects.filter(username=username)) == 0:
         user_values["username"] = create_random_string()
         while len(User.objects.filter(username=user_values["username"])) != 0:
@@ -122,6 +123,12 @@ def _rsvps_create(request, username):
     try:
         user.rsvp.edit(rsvp_values)
     except:
+        try:
+            if rsvp_values["plus_one_name"] != None:
+                rsvp_values["plus_one"] = True
+                rsvp_values["expected_attendees"] = 1.5
+        except:
+            pass
         user.rsvp = RSVP(**rsvp_values)
         user.rsvp.save()
     if user.email != "":

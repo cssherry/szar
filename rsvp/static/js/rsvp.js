@@ -143,6 +143,7 @@ $(function () {
           formEntries.number_attendees = (1 + formEntries.plus_one_name.length);
         } else {
           formEntries.number_attendees = 1;
+          formEntries.plus_one_name = "None";
         }
       } else {
         formEntries.number_attendees = 0;
