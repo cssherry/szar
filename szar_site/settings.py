@@ -148,3 +148,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://github.com/pyexcel/django-excel
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
                         "django_excel.TemporaryExcelFileUploadHandler")
+
+SSL_DOMAIN = 'http://127.0.0.1:8800/'
+
+SSL_SECTIONS = (
+    '/',
+    '/rsvp',
+)

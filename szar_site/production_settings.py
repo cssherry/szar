@@ -141,6 +141,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = "DENY"
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True #http://stackoverflow.com/questions/8015685/how-to-enable-https-in-django-auth-generated-pages
 
 # https://github.com/pyexcel/django-excel
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
@@ -150,3 +151,10 @@ FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
 # http://stackoverflow.com/a/19637196/4607533
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 os.environ['HTTPS'] = "on"
+
+SSL_DOMAIN = 'https://www.szar.us'
+
+SSL_SECTIONS = (
+    '/',
+    '/rsvp',
+)
