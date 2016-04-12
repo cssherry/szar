@@ -64,23 +64,24 @@ def invitation(request, username=""):
                 context["plus_one"] = rsvp.plus_one
                 context["plus_one_name"] = []
                 context["song_requests"] = rsvp.song_requests
-                if rsvp.plus_one_name:
-                    names = rsvp.plus_one_name.split(",")
+            if rsvp.plus_one_name:
+                names = rsvp.plus_one_name.split(",")
+            else:
+                names = []
+            context["plus_one_name"] = []
+            for idx in context["extra_guests"]:
+                if len(names) < idx:
+                    context["plus_one_name"].append({
+                        "name": "",
+                        "true": "",
+                        "false": "checked" if rsvp.attending != None else ""
+                    })
                 else:
-                    names = []
-                for idx in context["extra_guests"]:
-                    if len(names) < idx:
-                        context["plus_one_name"].append({
-                            "name": "",
-                            "true": "",
-                            "false": "checked"
-                        })
-                    else:
-                        context["plus_one_name"].append({
-                            "name": names[idx - 1],
-                            "true": "checked",
-                            "false": ""
-                        })
+                    context["plus_one_name"].append({
+                        "name": names[idx - 1],
+                        "true": "checked",
+                        "false": ""
+                })
     update_ctx = {}
     for key, value in context.items():
         val_string = key + "_" + str(value).lower()
