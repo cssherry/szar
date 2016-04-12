@@ -1,10 +1,8 @@
 """RSVP Views"""
-import os, sys, json, math
+import json, math
 
 from django.http import HttpResponse, QueryDict
 from django.contrib.auth.decorators import login_required
-
-from django.core.urlresolvers import reverse
 
 from django.contrib.auth.models import User
 from rsvp.models import RSVP
