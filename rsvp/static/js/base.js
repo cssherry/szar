@@ -16,8 +16,7 @@ $(function () {
   imagesLoaded($("img.hidden")).on("progress", upgradeImage);
   function upgradeImage(_imgloaded, image, el) {
     if (image.isLoaded) {
-      var $el = $(el);
-      $el.siblings("img").attr("src", el.src);
+      $(el).siblings("img").attr("src", el.src);
     }
   }
 });
