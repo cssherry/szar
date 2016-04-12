@@ -20,9 +20,13 @@
         <th>Plus One</th>
         <th>Dates</th>
         <th>Number Actual</th>
+        <th>Vegetarian/Other Allergies</th>
+        <th>Hotel</th>
+        <th>Carpool</th>
+        <th>Song Requests</th>
         <th>Username</th>
         <th>Sent Emails</th>
-      </th>
+      </thead>
       {% for rsvp in current_guests %}
           {% with status=rsvp.fields.attending rsvp_id=rsvp.pk expected_attendees=rsvp.fields.expected_attendees %}
           {% if expected_attendees != "0.0" %}
@@ -35,18 +39,49 @@
             <td>
             </td>
           {% endif %}
-            <td class="guest-name">{{ rsvp.fields.guest.name }}</td>
+            <td class="guest-name">{{ rsvp.fields.formal_prefix|default:"" }} {{ rsvp.fields.guest.name }}</td>
             <td class="guest-email">{{ rsvp.fields.guest.email }}</td>
             <td class="guest-number">{{ expected_attendees }}</td>
             <td class="guest-status">{{ status }}</td>
-            <td class="guest-plus-one">{{ rsvp.fields.plus_one_name }} ({{ rsvp.fields.plus_one }})</td>
-            <td class="guest-attending-date">{{ rsvp.fields.attending_dates }}</td>
-            <td class="guest-attending-number">{{ rsvp.fields.number_attendees }}</td>
+            {% if status %}
+              <td class="guest-plus-one">{{ rsvp.fields.plus_one_name }} ({{ rsvp.fields.plus_one }})</td>
+              <td class="guest-attending-date">{{ rsvp.fields.attending_dates }}</td>
+              <td class="guest-attending-number">{{ rsvp.fields.number_attendees }}</td>
+              <td class="guest-vegetarian">{{ rsvp.fields.vegetarian }} ({{ rsvp.fields.other_dietary_restrictions }})</td>
+              <td class="guest-hotel">{{ rsvp.fields.need_hotel }}</td>
+              <td class="guest-carpool">{{ rsvp.fields.need_carpool }}</td>
+            {% else %}
+              <td class="guest-plus-one"></td>
+              <td class="guest-attending-date"></td>
+              <td class="guest-attending-number"></td>
+              <td class="guest-vegetarian"></td>
+              <td class="guest-hotel"></td>
+              <td class="guest-carpool"></td>
+            {% endif %}
+            <td class="guest-songs">{{ rsvp.fields.song_requests }}</td>
             <td class="guest-username">{{ rsvp.fields.guest.username }}</td>
             <td class="guest-emails-sent">{{ rsvp.fields.sent_emails }}</td>
           </tr>
           {% endwith %}
       {% endfor %}
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
     </table>
 
     <form action="{% url 'add_guests' %}" method="POST" enctype="multipart/form-data" class="dropzone dz-clickable">
@@ -60,6 +95,8 @@
 {% block code %}
     <script src="{% static 'js/ext/dropzone.min.js'%}"></script>
     <script src="{% static 'js/widgets/checkbox.js'%}"></script>
+    <script src="{% static 'js/ext/datatables/jquery.dataTables.min.js'%}"></script>
+    <script src="{% static 'js/ext/datatables/sum.min.js'%}"></script>
     <script src="{% static 'js/admin/add_guests.js'%}"></script>
     <script type="text/javascript">
       // Set global variables

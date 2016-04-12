@@ -8,7 +8,33 @@ $(function () {
         $actionButtons: $buttons
       });
 
-  $table.append($table.find(".rsvp-maybe"));
+  $table.DataTable( {
+    "paging": false,
+    searching: false,
+    drawCallback: function () {
+      var api = this.api();
+      $( api.table().footer() ).find("td").each(function (i, el) {
+        var contents = "";
+        if ([3, 7].indexOf(i) !== -1) {
+          el.textContent = api.column( i, {page:'current'} ).data().sum();
+        } else if (i === 6) {
+          contents += "Saturday: ";
+          contents += api.column( i, {page:'current'} ).data().filter(function (d, i) {
+            return d.indexOf(1) !== -1;
+          }).count();
+          contents += " / Sunday: ";
+          contents += api.column( i, {page:'current'} ).data().filter(function (d, i) {
+            return d.indexOf(2) !== -1;
+          }).count();
+          el.textContent = contents;
+        } else if ( [8, 9, 10].indexOf(i) !== -1 ) {
+          el.textContent = api.column( i, {page:'current'} ).data().filter(function (d, i) {
+            return d.indexOf("True") !== -1;
+          }).count();
+        }
+      });
+    }
+  });
 
   $emailButton.on("click.sendInvitation", function (e) {
     var url = rsvp.add_guests_url + "/" + e.target.name,
