@@ -1,5 +1,4 @@
 import json, time
-from datetime import datetime
 from django.core import serializers
 from rsvp.models import RSVP
 from django.contrib.auth.models import User
@@ -10,6 +9,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
+
+from rsvp.utils import days_between
 
 # keen
 KEEN_OBJECT = {
@@ -120,8 +121,3 @@ def get_email(request, email_type):
         "homepage": request.build_absolute_uri(reverse('root-url'))
     }
     return render(request, 'email/' + email_type + '.html', pretendCtx)
-
-def days_between(d1, d2):
-    d1 = datetime.strptime(d1, "%c")
-    d2 = datetime.strptime(d2, "%c")
-    return abs((d2 - d1).days)
