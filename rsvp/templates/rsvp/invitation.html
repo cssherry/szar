@@ -174,7 +174,7 @@
             {% for nm in plus_one_name %}
               <div id="plus_one_{{ forloop.counter0 }}_boolean" class="plus-one">
                 <label for="plus_one_{{ forloop.counter0 }}_boolean" class="required">
-                  <span class="english">Are you planning on bringing {{ forloop.counter1 }} guest{{ i|pluralize }}?</span>
+                  <span class="english">Are you planning on bringing {{ forloop.counter }} guest{{ forloop.counter|pluralize }}?</span>
                   <span class="chinese">您是一个人还是两个人？</span>
                 </label>
                 <label class="szar-inline">
