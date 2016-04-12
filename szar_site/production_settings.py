@@ -145,3 +145,7 @@ X_FRAME_OPTIONS = "DENY"
 # https://github.com/pyexcel/django-excel
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
                         "django_excel.TemporaryExcelFileUploadHandler")
+
+# Make reverse use https
+# http://stackoverflow.com/a/19637196/4607533
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
