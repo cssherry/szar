@@ -14,7 +14,8 @@
     - [x] Add quick unsubscribe and quick rsvp no
     - [x] sort away maybes
     - [x] Record emails sent
-    - [ ] Send RSVP confirmation
+    - [x] Send RSVP confirmation
+    - [ ] Validate that plus-one names have space in them
     - [ ] Change add_guest table based on whether someone has rsvp'ed
     - [ ] Allow change of "expected attendees" number
     - [ ] Add keen recording of errors
@@ -100,7 +101,7 @@
     * Text and HTML template support: http://stackoverflow.com/questions/2809547/creating-email-templates-with-django
     * Responsive email template: https://github.com/leemunroe/responsive-html-email-template
     * Needs full urls, to get them, use request.build_absolute_uri(reverse('view_name', args)) as suggested here: https://docs.djangoproject.com/ja/1.9/ref/urlresolvers/
-    * Minify html and make css inline for it to show up properly in email: http://foundation.zurb.com/emails/inliner-v2.html. Afterwards, remember to remove extra "amp;" in body of email wherever an "&" character was used
+    * Minify html and make css inline for it to show up properly in email: http://foundation.zurb.com/emails/inliner-v2.html. Afterwards, remember to remove extra "amp;" in body of email wherever an "&" character was used. Also, add back in the font information (```<style>@import url('https://fonts.googleapis.com/css?family=Italianno');</style><link href='https://fonts.googleapis.com/css?family=Italianno' rel='stylesheet' type='text/css'>```) after the title and before the head ends
 
   * Prevent Heroku spindown
     * Use https://www.statuscake.com (alternative to pingdom) to test homepage and rsvp page every hour

@@ -16,7 +16,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 import keen
-from rsvp.view_helpers import KEEN_OBJECT, rsvps_get_raw, get_full_rsvp
+from rsvp.view_helpers import KEEN_OBJECT, rsvps_get_raw, get_full_rsvp, send_email
 
 def invitation(request, username=""):
     context = {
@@ -124,6 +124,8 @@ def _rsvps_create(request, username):
     except:
         user.rsvp = RSVP(**rsvp_values)
         user.rsvp.save()
+    if user.email != "":
+        send_email(request, "rsvpconfirmation", user.rsvp, "[Sherry&Aneesh] Wedding RSVP Confirmation")
     return HttpResponse("Success", status=200)
 
 def _rsvps_delete(request):
@@ -201,6 +203,7 @@ def no(request, username):
         ctx["status"] = "Thank you for your RSVP!"
         ctx["name"] = rsvp.name()
         ctx["username"] = username
+        send_email(request, "rsvpconfirmation", rsvp, "[Sherry&Aneesh] Wedding RSVP Confirmation")
         return render(request, 'rsvp/no.html', ctx)
     else:
         ctx["status"] = "No user found..."

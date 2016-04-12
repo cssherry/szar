@@ -81,6 +81,7 @@ def send_email(request, email_type, rsvp, subject):
 
     ctx = {
         "name": name,
+        "attending": rsvp.attending,
         "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=(username,))),
         "no_link": request.build_absolute_uri(reverse('quick_actions', args=(username, "no", ))),
         "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(username, "unsubscribe", ))),
@@ -104,6 +105,7 @@ def send_email(request, email_type, rsvp, subject):
 def get_email(request, email_type):
     pretendCtx = {
         "name": "Sherry",
+        "attending": False,
         "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=[1])),
         "no_link": request.build_absolute_uri(reverse('quick_actions', args=(1, "no", ))),
         "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(1, "unsubscribe", ))),

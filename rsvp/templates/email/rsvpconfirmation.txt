@@ -1,0 +1,16 @@
+{{ name }},
+
+{% if attending %}
+We look forward to seeing you at the wedding!
+More information to come about room blocks, transportation, and other logistics closer to the wedding date.
+{% else %}
+Thank you for your RSVP.
+We're sad you can't make it, but you'll be able to follow us through photos and videos on our website during and after the wedding.
+{% endif %}
+
+If your plans change, feel free to update your RSVP ({{ rsvp_link }}) anytime before July 1st, 2016.
+
+Best,
+
+Aneesh & Sherry
+{{ homepage }}
