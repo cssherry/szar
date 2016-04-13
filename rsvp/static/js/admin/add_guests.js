@@ -15,7 +15,7 @@ $(function () {
       var api = this.api();
       $( api.table().footer() ).find("td").each(function (i, el) {
         var contents = "";
-        if ([3, 7].indexOf(i) !== -1) {
+        if ([7].indexOf(i) !== -1) {
           el.textContent = api.column( i, {page:'current'} ).data().sum();
         } else if (i === 6) {
           contents += "Saturday: ";
@@ -31,6 +31,10 @@ $(function () {
           el.textContent = api.column( i, {page:'current'} ).data().filter(function (d, i) {
             return d.indexOf("True") !== -1;
           }).count();
+        } else if ( i === 3 ) {
+          el.textContent = api.column( i, {page:'current'} ).data().map(function (e) {
+            return parseFloat(e.match(/[0-9\.]+/));
+          }).sum();
         }
       });
     }
