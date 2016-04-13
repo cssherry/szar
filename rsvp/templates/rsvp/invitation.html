@@ -293,5 +293,5 @@
   rsvp.save_rsvp_url = "{% url 'save_rsvp' %}";
   rsvp.username = "{{ username }}";
 </script>
-<script src="{% static 'js/rsvp.js'%}"></script>
+<script src="{% static 'js/rsvp.js'%}?v={{static_version}}"></script>
 {% endblock %}

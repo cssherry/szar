@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}?v={{static_version}}">
 {% endblock %}
 
 {% block content %}
@@ -216,5 +216,5 @@
   {% include "ext_wanderable.html" %}
 </script>
 
-<script src="{% static 'js/homepage.js'%}"></script>
+<script src="{% static 'js/homepage.js'%}?v={{static_version}}"></script>
 {% endblock %}
