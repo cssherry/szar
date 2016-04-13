@@ -24,6 +24,7 @@
     - [ ] Analytics graphs
     - [ ] RSVP graphs
     - [x] Admin management of emails
+    - [ ] Low priority, see why xlsx upload doesn't always work
   - [x] Create typical wedding pages:
     - [x] Improve styling
     - [x] Logistics:
@@ -35,6 +36,7 @@
       - [ ] countdown?
     - [X] Honeyfund/donate options
     - [x] Bio/Meeting/Engagement/Pictures
+    - [ ] Other attendees
   - [ ] Photos page:
     - [x] Engagement photos
     - [ ] Facebook

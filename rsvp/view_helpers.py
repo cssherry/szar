@@ -69,6 +69,7 @@ def send_emails(request, email_type, subject):
         if len(rsvp) > 0:
             if rsvp[0].has_valid_email():
                 rsvp = rsvp[0]
+                time.sleep(1)
                 send_email(request, email_type, rsvp, subject)
                 response_message += "Successfully sent for " + rsvp_id + "."
             else:
