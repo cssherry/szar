@@ -124,6 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Cache static resources for a year (https://robinwinslow.uk/2016/02/25/adding-cache-headers-to-django/)
+WHITENOISE_MAX_AGE = 31557600
 
 # FOR HEROKU
 # Parse database configuration from $DATABASE_URL
