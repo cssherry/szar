@@ -186,7 +186,9 @@ $(function () {
           extra: {
             req: req,
             textStatus: textStatus,
-            errorThrown: errorThrown
+            errorThrown: errorThrown,
+            url: url,
+            post_data: post_data
           }
         });
         $(".notification").text("Oops, seems like there's an error. I've been notified and will fix this soon. Please try again later.");
