@@ -1,5 +1,5 @@
 $(function () {
-  var $buttons = $("button"),
+  var $buttons = $("#main > button"),
       $emailButton = $buttons.filter(".email"),
       $deleteGuests = $buttons.filter("#delete-guests-button"),
       $table = $("#guest-list-table"),

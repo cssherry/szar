@@ -57,6 +57,7 @@ var Checkboxes = rsvp.widget.Checkboxes = function ($table, options) {
     } else {
       checkInstance.element = $(_getSelector(checkInstance.element));
     }
+    checkInstance.clear();
     // Define important children elements
     _defineChildrenElements();
     if (checkInstance.options.$actionButtons) {
@@ -83,7 +84,7 @@ var Checkboxes = rsvp.widget.Checkboxes = function ($table, options) {
         e.stopPropagation();
         var selectAllStatus = e.target.checked;
         checkInstance.checkboxes.prop('checked', selectAllStatus);
-        if (checkInstance.options.$actionButtons) {
+        if (checkInstance.options.$actionButtons && checkInstance.checkboxes.length) {
           checkInstance.options.$actionButtons.prop("disabled", !selectAllStatus);
         }
       });
