@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pipeline',
     'raven.contrib.django.raven_compat',
     'rsvp',
 ]
@@ -77,3 +78,6 @@ RAVEN_CONFIG = {
     'release': "1.0",
     # VERY DIFFICULT TO DO IN HEROKU
 }
+
+PIPELINE_UGLIFYJS_BINARY = 'PATH=/app/.heroku/node/bin:$PATH /app/node_modules/.bin/uglifyjs'
+PIPELINE_CSSMIN_BINARY = 'PATH=/app/.heroku/node/bin:$PATH /app/node_modules/.bin/cssmin'

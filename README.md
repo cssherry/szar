@@ -55,6 +55,7 @@
         * django_excel
         * django-toolbelt and dj-database-url for production
         * whitenoise if it's not installed with django-toolbelt along with brotlipy
+        * django-pipeline for minifying
   * Install requirements  ```pip install -r requirements.txt```
   * ```python manage.py migrate --settings=szar_site.settings```
   * Create files in szar_site/__pycache__/ (probably not best place to store this...). If on Heroku, use heroku config:set VARIABLE=VALUE

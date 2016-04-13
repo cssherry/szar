@@ -81,7 +81,49 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'JAVASCRIPT': {
+        'jquery': {
+            'source_filenames': (
+              'js/ext/jquery-1.11.3/jquery-1.11.3.min.js',
+              'js/ext/jquery.mobile.custom-1.4.5/jquery.mobile.custom.min.js',
+            ),
+            'output_filename': 'js/ext/jquery.min.js',
+        },
+        'base': {
+            'source_filenames': (
+              'js/base.js',
+            ),
+            'output_filename': 'js/base.min.js',
+        }
+    },
+    'STYLESHEETS': {
+        'base': {
+            'source_filenames': (
+              'css/fonts.css',
+              'css/base.css',
+            ),
+            'output_filename': 'css/base.min.css',
+        },
+        'bootstrap': {
+            'source_filenames': (
+              'css/ext/bootstrap/css/bootstrap.min.css',
+              'css/ext/bootstrap/css/bootstrap-theme.min.css',
+              'css/bootstrap-customization.css',
+            ),
+            'output_filename': 'css/ext/bootstrap.min.css',
+        },
+    },
+}
 
 # https://github.com/pyexcel/django-excel
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",

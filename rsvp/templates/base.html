@@ -1,20 +1,18 @@
 {% load static %}
 {% load raven %}
+{% load pipeline %}
 <!DOCTYPE html>
 <html class="support-no-js">
   <head>
     <meta charset="utf-8">
     <title>{% block title %}Sherry & Aneesh{% endblock %}</title>
     <meta name="description" content="{% block description %}The wedding webpage for Sherry and Aneesh with photos, wedding registry, and general information about the wedding.{% endblock %}">
-    <link href='{% static "css/ext/fonts.css" %}' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% stylesheet 'base' %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{% static 'images/favicon.png'%}?v=10">
     {% block bootstrap-css %}
       <meta name="viewport" content="width=device-width">
-      <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap.min.css' %}">
-      <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap-theme.min.css' %}">
-      <link rel="stylesheet" href="{% static 'css/bootstrap-customization.css' %}">
+      {% stylesheet 'bootstrap' %}
     {% endblock %}
     {% block style %}
     {% endblock %}
@@ -28,8 +26,7 @@
       {% endblock %}
     </div>
     <script src="{% static 'js/ext/modernizr/modernizr-custom.js'%}"></script>
-    <script src="{% static 'js/ext/jquery-1.11.3/jquery-1.11.3.min.js'%}"></script>
-    <script src="{% static 'js/ext/jquery.mobile.custom-1.4.5/jquery.mobile.custom.min.js'%}"></script>
+    <script src="{% static 'js/ext/jquery.min.js'%}"></script>
     <script src="{% static 'js/ext/imagesloaded.pkgd.min.js'%}"></script>
     {% block bootstrap-js %}
       <script src="{% static 'css/ext/bootstrap/js/bootstrap.min.js'%}"></script>
@@ -38,7 +35,7 @@
     <script>
        Raven.config('{% sentry_public_dsn "https"%}').install();
    </script>
-    <script src="{% static 'js/base.js'%}"></script>
+    {% javascript 'base' %}
     {% block code %}
     {% endblock %}
     <noscript>
