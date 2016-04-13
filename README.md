@@ -1,7 +1,7 @@
 # To do
   - [x] Implement https://modernizr.com/ (IE/mobile dreariness)
     - [ ] mobile site
-    - [ ] Low priority: Swip action
+    - [x] Low priority: Swip action (a bit slow, but working)
   - [x] Debug stupid font (damn you Italianno, stop being comic sans!)
   - [x] Enable excel/csv file upload of wedding guests
     - [x] Ideally, allow drag/drop, but low priority
@@ -18,7 +18,7 @@
     - [x] Validate that plus-one names have space in them
     - [x] Change add_guest table based on whether someone has rsvp'ed
     - [x] Use sentry to catch errors
-    - [ ] Figure out how to minify js and css files with Django, was automatic in Rails :/
+    - [ ] Figure out how to minify js and css files with Django, was automatic in Rails :/ (SO HARD! Tried with django-compress and django pipeline)
     - [ ] Allow change of "expected attendees" number
     - [ ] Add more keen events
     - [ ] Analytics graphs
