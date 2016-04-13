@@ -74,5 +74,6 @@ RAVEN_CONFIG = {
     'dsn': DNS_KEY,
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': raven.fetch_git_sha(BASE_DIR),
+    'release': "1.0",
+    # VERY DIFFICULT TO DO IN HEROKU
 }
