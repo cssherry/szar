@@ -3,7 +3,7 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/ext/dropzone.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/admin.css' %}?v={{static_version}}">
 {% endblock %}
 
 {% block content %}
@@ -108,10 +108,10 @@
 
 {% block code %}
     <script src="{% static 'js/ext/dropzone.min.js'%}"></script>
-    <script src="{% static 'js/widgets/checkbox.js'%}?v={{static_version}}"></script>
+    <script src="{% static 'js/widgets/checkbox.js'%}?v={{static_version}}.1"></script>
     <script src="{% static 'js/ext/datatables/jquery.dataTables.min.js'%}"></script>
     <script src="{% static 'js/ext/datatables/sum.min.js'%}"></script>
-    <script src="{% static 'js/admin/add_guests.js'%}?v={{static_version}}"></script>
+    <script src="{% static 'js/admin/add_guests.js'%}?v={{static_version}}.1"></script>
     <script type="text/javascript">
       // Set global variables
       var rsvp = rsvp || {};
