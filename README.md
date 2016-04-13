@@ -16,9 +16,11 @@
     - [x] Record emails sent
     - [x] Send RSVP confirmation
     - [x] Validate that plus-one names have space in them
-    - [ ] Change add_guest table based on whether someone has rsvp'ed
+    - [x] Change add_guest table based on whether someone has rsvp'ed
+    - [x] Use sentry to catch errors
+    - [ ] Figure out how to minify js and css files with Django, was automatic in Rails :/
     - [ ] Allow change of "expected attendees" number
-    - [ ] Add keen recording of errors
+    - [ ] Add more keen events
     - [ ] Analytics graphs
     - [ ] RSVP graphs
     - [x] Admin management of emails
@@ -46,20 +48,24 @@
       * pip install:
         * django
         * keen
+        * raven
         * pyexcel
         * pyexcel-xls
         * pyexcel-xlsx
         * django_excel
         * django-toolbelt and dj-database-url for production
-        * whitenoise if it's not installed with django-toolbelt
+        * whitenoise if it's not installed with django-toolbelt along with brotlipy
   * Install requirements  ```pip install -r requirements.txt```
   * ```python manage.py migrate --settings=szar_site.settings```
-  * Create files in szar_site/__pycache__/ (probably not best place to store this...)
+  * Create files in szar_site/__pycache__/ (probably not best place to store this...). If on Heroku, use heroku config:set VARIABLE=VALUE
     * gmail.txt (gmail configs for sending emails, one item per line)
-      * password
-      * email
-      * smtp server
-      * port
+      * password (EMAIL_HOST_PASSWORD)
+      * email (EMAIL_HOST_USER)
+      * smtp server (EMAIL_HOST)
+      * port (EMAIL_PORT)
+    * sentry.txt (DNS configs for sentry/raven to work)
+      * password (DNS_KEY)
+      * email (DNS_KEY_PUBLIC)
     * keen_project.txt (KEEN_PROJECT_ID)
     * keen_read.txt (KEEN_READ_KEY)
     * keen_url.txt (KEEN_API_URL)
@@ -132,6 +138,19 @@
     * Alternative was to use iframe, but ugly scrollbar placements, page padding, redirects (redirect can be prevented using ```<iframe class="hidden" src="URL" sandbox="allow-forms allow-scripts"></iframe>```)
     * Have to change links by prepending Wanderable url
     * Use localStorage to cache old version of Wanderable, otherwise, too many requests (and too slow) to anyorigin. Alternative is cookie, but that stores less data and is not fit for this use-case (Possibly better method is to make a copy of the page and store on my server, updating every day): http://stackoverflow.com/questions/14266730/js-how-to-cache-a-variable
+
+  * Error catching (Can't rely on users to report)
+    * Sentry (https://docs.getsentry.com/hosted/clients/python/integrations/django/ and https://docs.getsentry.com/hosted/clients/javascript/)
+
+  * Compress and Minify
+    * Compress with Whitenoise (Was it already doing this? How do I know it's working?): http://whitenoise.evans.io/en/stable/django.html
+    * Minify with Pipeline (https://django-pipeline.readthedocs.org/en/latest/installation.html) following instructions here (https://arnaud.limbourg.com/django-libsass-python-heroku/ and http://chase-seibert.github.io/blog/2012/04/27/deploying-django-staticfiles-to-heroku-via-hudsonjenkins.html)
+
+  * cache
+    * Static file cache (https://robinwinslow.uk/2016/02/25/adding-cache-headers-to-django/)
+      * Using Whitenoise, set WHITENOISE_MAX_AGE = 31557600
+    * Cache views (https://docs.djangoproject.com/en/dev/topics/cache/#the-per-view-cache)
+      * Use ```from django.views.decorators.cache import cache_page``` and ```@cache_page(seconds)```
 
   * Improvements for next time
     * Use forms.py http://www.djangobook.com/en/2.0/chapter07.html or some other form template that I've forgotten the name of
