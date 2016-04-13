@@ -108,11 +108,10 @@ def send_email(request, email_type, rsvp, subject):
     my_email = 'Sherry Zhou <xiao.qiao.zhou+wedding@gmail.com>'
     msg = EmailMultiAlternatives(subject, text_content, my_email, ['{0} <{1}>'.format(full_name, rsvp_email)])
     msg.attach_alternative(html_content, "text/html")
-    msg.send();
-
     rsvp.edit({
-      "sent_emails": json.dumps(previous_emails)
+    "sent_emails": json.dumps(previous_emails)
     })
+    msg.send();
 
 def get_email(request, email_type):
     pretendCtx = {
