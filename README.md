@@ -19,7 +19,7 @@
     - [x] Change add_guest table based on whether someone has rsvp'ed
     - [x] Use sentry to catch errors
     - [ ] Figure out how to minify js and css files with Django, was automatic in Rails :/ (SO HARD! Tried with django-compress and django pipeline)
-    - [ ] Allow change of "expected attendees" number
+    - [x] Allow change of "expected attendees" number
     - [ ] Add more keen events
     - [ ] Analytics graphs
     - [ ] RSVP graphs

@@ -105,3 +105,22 @@ def add_guests(request):
     else:
         keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can see rsvps", status=500)
+
+@login_required
+# Need to set cookie for IE people or they won't be able to submit forms
+@ensure_csrf_cookie
+def change_number(request, username="", new_number=""):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            user = User.objects.filter(username=username)
+            if user.exists():
+                user[0].rsvp.edit({
+                  "expected_attendees": float(new_number),
+                })
+                return HttpResponse("Success", status=200)
+            else:
+                return HttpResponse("No such user found", status=500)
+
+    else:
+        keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
+        return HttpResponse("Only admin can change attendees", status=500)

@@ -36,6 +36,51 @@ $(function () {
     }
   });
 
+  $table.on("click.changeNumber", ".input-group-btn > button", function (e) {
+    var $el = $(e.target),
+        $number = $($el).closest(".input-group").find(".number"),
+        oldNumber = parseFloat($number.text()), newNumber;
+    if ($el.hasClass("btn-minus")) {
+      newNumber = oldNumber - 0.5;
+    } else {
+      newNumber = oldNumber + 0.5;
+    }
+    if (newNumber < 0 || newNumber > 4) {
+      return;
+    }
+    var $tr = $($el).closest("tr"),
+        username = $tr.find(".guest-username").text(),
+        post_data = {
+          "csrfmiddlewaretoken": rsvp.csrf_token,
+        },
+        url = rsvp.change_number_url + "/" + username + "/" + newNumber;
+    $.ajax({
+      url: url,
+      data: post_data,
+      type: 'POST',
+    })
+    .success(function (req) {
+      console.log("User changed: ", req);
+      $number.text(newNumber);
+      if (newNumber > 0 && $tr.hasClass("rsvp-maybe")) {
+        $tr.toggleClass("rsvp-maybe rsvp-" + $tr.find(".guest-status").text());
+      } else if (newNumber === 0 && !$tr.hasClass("rsvp-maybe")) {
+        $tr.addClass("rsvp-maybe");
+        $tr.removeClass("rsvp-None rsvp-False, rsvp-True");
+      }
+    })
+    .fail(function(req, textStatus, errorThrown) {
+      console.log("Email failed: ", req);
+      Raven.captureException(new Error('Changing Attendees failed'),{
+        extra: {
+          req: req,
+          textStatus: textStatus,
+          errorThrown: errorThrown
+        }
+      });
+    });
+  });
+
   $emailButton.on("click.sendInvitation", function (e) {
     var url = rsvp.add_guests_url + "/" + e.target.name,
         post_data = {

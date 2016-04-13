@@ -25,3 +25,13 @@ table {
 .rsvp-maybe {
   background-color: lightgray;
 }
+
+.input-group-btn {
+  padding: 0 5px;
+}
+
+.guest-number span.number {
+  width: 30px;
+  text-align: center;
+  display: block;
+}
