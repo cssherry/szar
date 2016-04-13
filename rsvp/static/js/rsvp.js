@@ -180,9 +180,16 @@ $(function () {
         console.log("Form submission worked!", data);
         $(".notification").append("<p>Visit our main page at <a href='https://szar.us' target='_blank'>szar.us<a></p>");
       })
-      .fail(function(req) {
+      .fail(function(req, textStatus, errorThrown) {
         console.log("Form submission failed: ", req);
-        $(".notification").text("Oops, seems like there's an error. Please try again later.");
+        Raven.captureException(new Error('RSVP Fail'),{
+          extra: {
+            req: req,
+            textStatus: textStatus,
+            errorThrown: errorThrown
+          }
+        });
+        $(".notification").text("Oops, seems like there's an error. I've been notified and will fix this soon. Please try again later.");
       });
 
       $envelope.removeClass('open');

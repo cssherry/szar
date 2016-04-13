@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
+from szar_site.base_settings import *
+import os, dj_database_url, raven
 
-import os
 SECRET_KEY = os.environ['SECRET_KEY']
 KEEN_API_URL = os.environ['KEEN_API_URL']
 KEEN_PROJECT_ID = os.environ['KEEN_PROJECT_ID']
@@ -20,10 +21,7 @@ EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_PORT = os.environ['EMAIL_PORT']
-EMAIL_USE_TLS = True
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+DNS_KEY = os.environ['DNS_KEY']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -32,7 +30,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # DEBUG = True
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,96 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rsvp'
+    'raven.contrib.django.raven_compat',
+    'rsvp',
 ]
 
-MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ROOT_URLCONF = 'szar_site.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-WSGI_APPLICATION = 'szar_site.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'US/Pacific'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Cache static resources for a year (https://robinwinslow.uk/2016/02/25/adding-cache-headers-to-django/)
 WHITENOISE_MAX_AGE = 31557600
 
 # FOR HEROKU
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
@@ -147,18 +63,16 @@ CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = "DENY"
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True #http://stackoverflow.com/questions/8015685/how-to-enable-https-in-django-auth-generated-pages
 
-# https://github.com/pyexcel/django-excel
-FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
-                        "django_excel.TemporaryExcelFileUploadHandler")
-
 # Make reverse use https
 # http://stackoverflow.com/a/19637196/4607533
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 os.environ['HTTPS'] = "on"
-
 SSL_DOMAIN = 'https://www.szar.us'
 
-SSL_SECTIONS = (
-    '/',
-    '/rsvp',
-)
+# Sentry/Raven configs
+RAVEN_CONFIG = {
+    'dsn': DNS_KEY,
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(BASE_DIR),
+}

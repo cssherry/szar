@@ -1,4 +1,5 @@
 {% load static %}
+{% load raven %}
 <!DOCTYPE html>
 <html class="support-no-js">
   <head>
@@ -32,6 +33,10 @@
     {% block bootstrap-js %}
       <script src="{% static 'css/ext/bootstrap/js/bootstrap.min.js'%}"></script>
     {% endblock %}
+    <script src="https://cdn.ravenjs.com/2.3.0/raven.min.js"></script>
+    <script>
+       Raven.config('{% sentry_public_dsn "https"%}').install();
+   </script>
     <script src="{% static 'js/base.js'%}"></script>
     {% block code %}
     {% endblock %}

@@ -52,8 +52,15 @@ $(function () {
       checkboxes.clear();
       console.log("Email sent: ", req);
     })
-    .fail(function(req) {
+    .fail(function(req, textStatus, errorThrown) {
       console.log("Email failed: ", req);
+      Raven.captureException(new Error('Email Failed'),{
+        extra: {
+          req: req,
+          textStatus: textStatus,
+          errorThrown: errorThrown
+        }
+      });
     });
   });
 
@@ -84,8 +91,15 @@ $(function () {
       console.log("Users Deleted: ", req);
       checkboxes.reset();
     })
-    .fail(function(req) {
+    .fail(function(req, textStatus, errorThrown) {
       console.log("Failed To Delete Users: ", req);
+      Raven.captureException(new Error('User Deletion Failed'),{
+        extra: {
+          req: req,
+          textStatus: textStatus,
+          errorThrown: errorThrown
+        }
+      });
     });
   });
 });
