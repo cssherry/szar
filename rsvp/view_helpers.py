@@ -67,7 +67,7 @@ def send_emails(request, email_type, subject):
     for rsvp_id in rsvp_ids:
         rsvp = RSVP.objects.filter(id=rsvp_id)
         if len(rsvp) > 0:
-            if rsvp[0].guest and rsvp[0].guest.email.find("@") != -1:
+            if rsvp[0].has_valid_email():
                 rsvp = rsvp[0]
                 send_email(request, email_type, rsvp, subject)
                 response_message += "Successfully sent for " + rsvp_id + "."
@@ -79,6 +79,8 @@ def send_emails(request, email_type, subject):
     return HttpResponse(response_message, status=200)
 
 def send_email(request, email_type, rsvp, subject):
+    if not rsvp.has_valid_email():
+        return
     previous_emails = json.loads(rsvp.sent_emails)
     current_date = time.strftime("%c")
     try:

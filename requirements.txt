@@ -1,12 +1,12 @@
-dj-database-url==0.3.0
+dj-database-url==0.4.1
 dj-static==0.0.6
-Django==1.9
+Django==1.9.5
 django-excel==0.0.4
 django-toolbelt==0.0.1
 future==0.15.2
-gunicorn==19.4.1
+gunicorn==19.4.5
 jdcal==1.2
-keen==0.3.20
+keen==0.3.21
 openpyxl==2.2.2
 Padding==0.4
 psycopg2==2.6.1
@@ -19,6 +19,6 @@ pyexcel-xlsx==0.1.0
 requests==2.9.1
 static3==0.6.1
 texttable==0.8.4
-whitenoise==2.0.6
+whitenoise==3.0
 xlrd==0.9.4
 xlwt-future==0.8.0

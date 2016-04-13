@@ -40,15 +40,36 @@
     - [ ] text
     - [ ] Twitter
 
-# First time
-  * Create virtual environment
-  * Activate virtual environment with ```. ENV_NAME/bin/activate```
+# First time Running Locally
+  * Activate virtual environment with ```. szar_env/bin/activate```
+    * Create from python 3.5.1 (I did through pycharm, can also do using pyenv or python venv, but python venv creates errors when using in Pycharm as interpreter)
+      * pip install:
+        * django
+        * keen
+        * pyexcel
+        * pyexcel-xls
+        * pyexcel-xlsx
+        * django_excel
+        * django-toolbelt and dj-database-url for production
+        * whitenoise if it's not installed with django-toolbelt
   * Install requirements  ```pip install -r requirements.txt```
   * ```python manage.py migrate --settings=szar_site.settings```
+  * Create files in szar_site/__pycache__/ (probably not best place to store this...)
+    * gmail.txt (gmail configs for sending emails, one item per line)
+      * password
+      * email
+      * smtp server
+      * port
+    * keen_project.txt (KEEN_PROJECT_ID)
+    * keen_read.txt (KEEN_READ_KEY)
+    * keen_url.txt (KEEN_API_URL)
+    * keen_write.txt (KEEN_WRITE_KEY)
+    * secret_key.txt (Generate through http://www.miniwebtool.com/django-secret-key-generator/)
 
 # To run
   * Activate virtual environment with ```. ENV_NAME/bin/activate```
   * ``python manage.py runserver --settings=szar_site.settings```
+  * To deactivate virtual environment: ```pyenv deactivate```
 
 # Technologies
   * Visuals:

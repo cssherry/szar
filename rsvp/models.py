@@ -48,6 +48,9 @@ class RSVP(models.Model):
     def full_name(self):
         return self.guest.first_name + " " + self.guest.last_name
 
+    def has_valid_email(self):
+        return self.guest and self.guest.email.find("@") != -1
+
     def delete(self):
         user = User.objects.filter(id=self.guest_id)
         if len(user) > 0:
