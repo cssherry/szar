@@ -64,7 +64,7 @@ $(function () {
       type: 'POST',
     })
     .success(function (req) {
-      console.log("User changed: ", req);
+      alertUser("User changed: " + req, "success");
       $number.text(newNumber);
       if (newNumber > 0 && $tr.hasClass("rsvp-maybe")) {
         $tr.toggleClass("rsvp-maybe rsvp-" + $tr.find(".guest-status").text());
@@ -74,7 +74,7 @@ $(function () {
       }
     })
     .fail(function(req, textStatus, errorThrown) {
-      console.log("Email failed: ", req);
+      alertUser("User not changed: " + req, "fail");
       Raven.captureException(new Error('Changing Attendees failed'),{
         extra: {
           req: req,
@@ -91,7 +91,7 @@ $(function () {
           "csrfmiddlewaretoken": rsvp.csrf_token,
           selection: JSON.stringify(checkboxes.selected()),
         };
-
+    e.target.disabled = true;
     $.ajax({
       url: url,
       data: post_data,
@@ -99,10 +99,11 @@ $(function () {
     })
     .success(function (req) {
       checkboxes.clear();
-      console.log("Email sent: ", req);
+      alertUser("Email sent: " + req, "success");
     })
     .fail(function(req, textStatus, errorThrown) {
-      console.log("Email failed: ", req);
+      alertUser("Email failed: " + req, "fail");
+      $();
       Raven.captureException(new Error('Email Failed'),{
         extra: {
           req: req,
@@ -110,6 +111,9 @@ $(function () {
           errorThrown: errorThrown
         }
       });
+    })
+    .done(function (req, textStatus, errorThrown) {
+      e.target.disabled = false;
     });
   });
 
@@ -123,6 +127,7 @@ $(function () {
         // these HTTP methods do not require CSRF protection
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
+    e.target.disabled = true;
     $.ajax({
       url: url,
       data: post_data,
@@ -137,11 +142,11 @@ $(function () {
       checkboxes.selected().forEach(function (sel) {
         $table.find("#rsvp-id-" + sel).remove();
       });
-      console.log("Users Deleted: ", req);
+      alertUser("Users Deleted: " + req, "success");
       checkboxes.reset();
     })
     .fail(function(req, textStatus, errorThrown) {
-      console.log("Failed To Delete Users: ", req);
+      alertUser("Failed To Delete Users: " + req, "fail");
       Raven.captureException(new Error('User Deletion Failed'),{
         extra: {
           req: req,
@@ -149,6 +154,26 @@ $(function () {
           errorThrown: errorThrown
         }
       });
+    })
+    .done(function (req, textStatus, errorThrown) {
+      e.target.disabled = false;
     });
+  });
+
+  var $alert = $(".alert");
+  function alertUser (text, status) {
+    $alert.removeClass("hidden alert-success alert-info alert-warning alert-danger");
+    if (status === "success") {
+      $alert.addClass("alert-success");
+    } else if (status === "fail") {
+      $alert.addClass("alert-danger");
+    } else {
+      $alert.addClass("alert-warning");
+    }
+    $alert.find(".message").text(text);
+  }
+
+  $alert.find("a.close").on("click.close", function (e) {
+    $alert.addClass("hidden");
   });
 });

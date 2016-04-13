@@ -8,6 +8,10 @@
 
 {% block content %}
 <h1>Guest Information</h1>
+<div class="alert hidden">
+  <a class="close" aria-label="close">&times;</a>
+  <p class="message"></p>
+</div>
 <button type="button" name="invitation" class="email btn btn-primary" id="send-invitation-button" disabled>Send Invitations</button>
 <button type="button" name="Delete" id="delete-guests-button" class="btn btn-danger pull-right" disabled>Delete</button>
     <table id="guest-list-table">
