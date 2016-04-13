@@ -8,8 +8,8 @@
 
 {% block content %}
 <h1>Guest Information</h1>
-<button type="button" name="Delete" id="delete-guests-button" disabled>Delete</button>
-<button type="button" name="invitation" class="email" id="send-invitation-button" disabled>Send Invitations</button>
+<button type="button" name="invitation" class="email btn btn-primary" id="send-invitation-button" disabled>Send Invitations</button>
+<button type="button" name="Delete" id="delete-guests-button" class="btn btn-danger pull-right" disabled>Delete</button>
     <table id="guest-list-table">
       <thead>
         <th><input type="checkbox" id="all-guests-checkbox"></th>
@@ -44,11 +44,11 @@
             <td class="guest-number">
               <div class="input-group">
 	               	<span class="input-group-btn">
-	                  	<button class="btn btn-minus" type="button">-</button>
+	                  	<button class="btn btn-minus btn-default" type="button">-</button>
 	               	</span>
 	               	<span class="number">{{ expected_attendees }}</span>
 	               	<span class="input-group-btn">
-	                  	<button class="btn btn-plus" type="button">+</button>
+	                  	<button class="btn btn-plus btn-default" type="button">+</button>
 	               	</span>
 	            </div><!-- /input-group -->
             </td>
