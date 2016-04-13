@@ -37,6 +37,11 @@ class RSVP(models.Model):
         self.edited_date = timezone.now()
         for attr, value in new_values.items():
             setattr(self, attr, value)
+            if attr == "expected_attendees" and not hasattr(new_values, "plus_one"):
+                if value <= 1:
+                    setattr(self, "plus_one", False)
+                else:
+                    setattr(self, "plus_one", True)
         self.save()
 
     def name(self):

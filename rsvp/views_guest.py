@@ -115,7 +115,7 @@ def change_number(request, username="", new_number=""):
             user = User.objects.filter(username=username)
             if user.exists():
                 user[0].rsvp.edit({
-                  "expected_attendees": float(new_number),
+                    "expected_attendees": float(new_number),
                 })
                 return HttpResponse("Success", status=200)
             else:
