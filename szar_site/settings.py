@@ -49,7 +49,6 @@ with open('szar_site/__pycache__/keen_write.txt') as j:
 DEBUG = True
 ALLOWED_HOSTS = []
 
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -59,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    "compressor",
     'raven.contrib.django.raven_compat',
     'rsvp'
 ]

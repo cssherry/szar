@@ -1,20 +1,26 @@
 {% load static %}
 {% load raven %}
+{% load compress %}
+
 <!DOCTYPE html>
 <html class="support-no-js">
   <head>
     <meta charset="utf-8">
     <title>{% block title %}Sherry & Aneesh{% endblock %}</title>
     <meta name="description" content="{% block description %}The wedding webpage for Sherry and Aneesh with photos, wedding registry, and general information about the wedding.{% endblock %}">
-    <link href='{% static "css/ext/fonts.css" %}' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% compress css %}
+      <link href='{% static "css/ext/fonts.css" %}' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endcompress %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{% static 'images/favicon.png'%}?v=10">
     {% block bootstrap-css %}
       <meta name="viewport" content="width=device-width">
-      <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap.min.css' %}">
-      <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap-theme.min.css' %}">
-      <link rel="stylesheet" href="{% static 'css/bootstrap-customization.css' %}">
+      {% compress css %}
+        <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/ext/bootstrap/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-customization.css' %}">
+      {% endcompress %}
     {% endblock %}
     {% block style %}
     {% endblock %}
