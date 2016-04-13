@@ -1,3 +1,5 @@
+brotlipy==0.2.0
+cffi==1.5.2
 dj-database-url==0.4.1
 dj-static==0.0.6
 Django==1.9.5
@@ -10,6 +12,7 @@ keen==0.3.21
 openpyxl==2.2.2
 Padding==0.4
 psycopg2==2.6.1
+pycparser==2.14
 pycrypto==2.6.1
 pyexcel==0.2.0
 pyexcel-io==0.1.0
