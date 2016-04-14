@@ -58,15 +58,14 @@
 	            </div><!-- /input-group -->
             </td>
             <td class="guest-status">{{ status }}</td>
-            {% if status %}
-              <td class="guest-plus-one">{{ rsvp.fields.plus_one_name }} ({{ rsvp.fields.plus_one }})</td>
+            <td class="guest-plus-one">{{ rsvp.fields.plus_one_name }} ({{ rsvp.fields.plus_one }})</td>
+          {% if status %}
               <td class="guest-attending-date">{{ rsvp.fields.attending_dates }}</td>
               <td class="guest-attending-number">{{ rsvp.fields.number_attendees }}</td>
               <td class="guest-vegetarian">{{ rsvp.fields.vegetarian }} ({{ rsvp.fields.other_dietary_restrictions }})</td>
               <td class="guest-hotel">{{ rsvp.fields.need_hotel }}</td>
               <td class="guest-carpool">{{ rsvp.fields.need_carpool }}</td>
             {% else %}
-              <td class="guest-plus-one"></td>
               <td class="guest-attending-date"></td>
               <td class="guest-attending-number"></td>
               <td class="guest-vegetarian"></td>
