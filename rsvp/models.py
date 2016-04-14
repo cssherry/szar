@@ -31,6 +31,7 @@ class RSVP(models.Model):
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     edited_date = models.DateTimeField(default=timezone.now, blank=True)
     sent_emails = models.TextField(default="{}", blank=True)
+    comments = models.TextField(default="", blank=True)
 
     def edit(self, new_values):
         """Publishes RSVP"""

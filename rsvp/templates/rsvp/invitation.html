@@ -204,6 +204,13 @@
             <input type="text" name="song_requests" value="{{ song_requests }}" size="40">
           </div>
         </div><!-- szar-attending-questions -->
+
+        <label for="comments">
+          <span class="english">Additional comments? <small>(Checked regularly)</small></span>
+          <span class="chinese">还有别的事情要告诉我们？</span>
+        </label>
+        <textarea name="comments"cols="40" rows="3">{{ comments }}</textarea>
+
         <div>
           <button type="submit" class="nice-button">
             <span class="english">Send</span>

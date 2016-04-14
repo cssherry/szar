@@ -27,6 +27,7 @@
         <th>Vegetarian/Other Allergies</th>
         <th>Hotel</th>
         <th>Carpool</th>
+        <th>Comments</th>
         <th>Song Requests</th>
         <th>Username</th>
         <th>Sent Emails</th>
@@ -72,6 +73,7 @@
               <td class="guest-hotel"></td>
               <td class="guest-carpool"></td>
             {% endif %}
+            <td class="guest-comments">{{ rsvp.fields.comments }}</td>
             <td class="guest-songs">{{ rsvp.fields.song_requests }}</td>
             <td class="guest-username">{{ rsvp.fields.guest.username }}</td>
             <td class="guest-emails-sent">{{ rsvp.fields.sent_emails }}</td>
