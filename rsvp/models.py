@@ -22,7 +22,7 @@ class RSVP(models.Model):
     need_hotel = models.NullBooleanField()
     plus_one = models.BooleanField(default=False)
     plus_one_name = models.CharField(max_length=200, null=True, unique=True, default=None)
-    song_requests = models.CharField(max_length=200, blank=True)
+    song_requests = models.TextField(default="", blank=True)
     gift = models.CharField(max_length=200, blank=True)
     formal_prefix = models.CharField(max_length=200, blank=True)
     affiliation = models.CharField(default="", max_length=200)
