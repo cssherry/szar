@@ -7,6 +7,8 @@
 <link rel="prerender" href="{% url 'root-url' %}" />
 {% endblock %}
 
+{% block description %}{{ name|default_if_none:"Template" }}'s unsubscribe page{% endblock %}
+
 {% block content %}
 <h1>{{ name|default_if_none:"" }}</h1>
 <div class="jumbotron">
