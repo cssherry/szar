@@ -49,7 +49,7 @@ $(function () {
     } else {
       newNumber = oldNumber + 0.5;
     }
-    if (newNumber < 0 || newNumber > 4) {
+    if (newNumber < 0) {
       return;
     }
     var $tr = $($el).closest("tr"),
