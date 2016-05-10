@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}?v={{static_version}}">
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}?v={{static_version}}.1">
 {% endblock %}
 
 {% block content %}
@@ -229,6 +229,15 @@
 <script id="wanderable-text" type="rsvp-template">
   {% include "ext_wanderable.html" %}
 </script>
+<script id="szar-progress-bar" type="rsvp-template">
+  <div class="progress">
+  </div>
+</script>
+<script id="szar-progress-bar-segment" type="rsvp-template">
+  <div class="progress-bar" role="progressbar"
+  aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip">
+  </div>
+</script>
 
-<script src="{% static 'js/homepage.js'%}?v={{static_version}}.2"></script>
+<script src="{% static 'js/homepage.js'%}?v={{static_version}}.3"></script>
 {% endblock %}
