@@ -134,6 +134,7 @@ $(function (argument) {
           giftItems[person][day] += value;
         } else {
           giftItems[person][day] = 0;
+          $el.find(".il-checkout-btn-wrapper button").prop("disabled", true);
         }
       });
 
