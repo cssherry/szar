@@ -60,7 +60,8 @@ def invitation(request, username=""):
                 context["vegetarian"] = rsvp.vegetarian if rsvp.vegetarian != None else False
                 context["other_dietary_restrictions"] = rsvp.other_dietary_restrictions
                 context["need_hotel"] = rsvp.need_hotel if rsvp.need_hotel != None else True
-                context["need_carpool"] = rsvp.need_hotel if rsvp.need_hotel != None else True
+                context["need_carpool"] = rsvp.need_carpool if rsvp.need_carpool != None else True
+                context["wine_tasting"] = rsvp.wine_tasting
                 context["plus_one"] = rsvp.plus_one
                 context["plus_one_name"] = []
                 context["song_requests"] = rsvp.song_requests

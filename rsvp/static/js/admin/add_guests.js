@@ -27,7 +27,7 @@ $(function () {
             return d.indexOf(2) !== -1;
           }).count();
           el.textContent = contents;
-        } else if ( [8, 9, 10].indexOf(i) !== -1 ) {
+        } else if ( [8, 9, 10, 11].indexOf(i) !== -1 ) {
           el.textContent = api.column( i, {page:'current'} ).data().filter(function (d, i) {
             return d.indexOf("True") !== -1;
           }).count();

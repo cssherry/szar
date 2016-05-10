@@ -29,6 +29,7 @@
         <th>Vegetarian/Other Allergies</th>
         <th>Hotel</th>
         <th>Carpool</th>
+        <th>Winery</th>
         <th>Comments</th>
         <th>Song Requests</th>
         <th>Username</th>
@@ -67,12 +68,14 @@
               <td class="guest-vegetarian">{{ rsvp.fields.vegetarian }} ({{ rsvp.fields.other_dietary_restrictions }})</td>
               <td class="guest-hotel">{{ rsvp.fields.need_hotel }}</td>
               <td class="guest-carpool">{{ rsvp.fields.need_carpool }}</td>
+              <td class="guest-winery">{{ rsvp.fields.wine_tasting }}</td>
             {% else %}
               <td class="guest-attending-date"></td>
               <td class="guest-attending-number"></td>
               <td class="guest-vegetarian"></td>
               <td class="guest-hotel"></td>
               <td class="guest-carpool"></td>
+              <td class="guest-winery"></td>
             {% endif %}
             <td class="guest-comments">{{ rsvp.fields.comments }}</td>
             <td class="guest-songs">{{ rsvp.fields.song_requests }}</td>
@@ -83,6 +86,7 @@
       {% endfor %}
       <tfoot>
         <tr>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>

@@ -170,6 +170,20 @@
               <span class="english">No</span><span class="chinese">不要</span>
             </label>
           </div>
+          <div>
+            <label for="wine_tasting">
+              <span class="english">Are you interested in wine tour of local Gilroy wineries on Saturday?</span>
+              <span class="chinese">您在葡萄酒之旅上周六感兴趣吗？</span>
+            </label>
+            <label class="szar-inline">
+              <input type="radio" name="wine_tasting" value="True" {{ wine_tasting_true }}>
+              <span class="english">Yes</span><span class="chinese">要</span>
+            </label>
+            <label class="szar-inline">
+              <input type="radio" name="wine_tasting" value="False" {{ wine_tasting_false }}>
+              <span class="english">No</span><span class="chinese">不要</span>
+            </label>
+          </div>
           <!-- Optional div for people with plus 1 -->
           {% if plus_one %}
             {% for nm in plus_one_name %}
