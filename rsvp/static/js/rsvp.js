@@ -207,7 +207,7 @@ $(function () {
   });
 
   function addMargin () {
-    container[0].style["padding-top"] = 750 - height + "px";
+    container[0].style["padding-top"] = 850 - height + "px";
   }
 
   function hasAnimationSupport(featuresToTest) {

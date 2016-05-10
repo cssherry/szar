@@ -33,7 +33,7 @@ body.envelope-supported {
   background: -moz-radial-gradient(circle, #ffffff, #e6e6e6); /* Firefox 3.6+ */
   background: -ms-radial-gradient(circle, #ffffff, #e6e6e6); /* IE 10 */
   width: 670px;
-  height: 885px;
+  height: 950px;
   display: block;
   margin: auto;
   border: 5px groove lightgray;
@@ -50,7 +50,7 @@ body.envelope-supported {
 }
 
 .invitation-text {
-  padding-top: 135px;
+  padding-top: 160px;
 }
 
 .large {
@@ -128,7 +128,7 @@ html {
 }
 .envelope.open .card {
   width: 670px !important;
-  height: 885px !important;
+  height: 950px !important;
   z-index: 5000 !important;
 }
 .envelope-supported .envelope.open .card {
