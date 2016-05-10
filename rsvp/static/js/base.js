@@ -13,7 +13,7 @@ $(function () {
     $letters.removeClass("hidden");
   });
   $navbar = $('.navbar-collapse');
-  $navbar.on('click.collapseNavbar', 'li', function(e) {
+  $navbar.on('click.collapseNavbar', 'li:not(.dropdown)', function(e) {
     $navbar.collapse('hide');
   });
   // Upgrade images, from http://stackoverflow.com/a/31370466/4607533
