@@ -125,7 +125,6 @@ $(function (argument) {
         }
 
         if (value) {
-          console.log(value);
           if (value[1] && value[2]) {
             value = parseInt(value[2]) * parseInt(value[3]);
           } else {
