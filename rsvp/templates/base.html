@@ -38,7 +38,7 @@
     <script>
        Raven.config('{% sentry_public_dsn "https"%}').install();
    </script>
-    <script src="{% static 'js/base.js'%}?v={{static_version}}"></script>
+    <script src="{% static 'js/base.js'%}?v={{static_version}}.1"></script>
     {% block code %}
     {% endblock %}
     <noscript>
