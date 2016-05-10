@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load admin_urls %}
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/ext/dropzone.min.css' %}">
@@ -47,7 +48,7 @@
             <td>
             </td>
           {% endif %}
-            <td class="guest-name">{{ rsvp.fields.formal_prefix|default:"" }} {{ rsvp.fields.guest.name }}</td>
+            <td class="guest-name"><a href="{% url 'admin:auth_user_change' rsvp.fields.guest.id %}">{{ rsvp.fields.formal_prefix|default:"" }} {{ rsvp.fields.guest.name }}</a></td>
             <td class="guest-email">{{ rsvp.fields.guest.email }}</td>
             <td class="guest-number">
               <div class="input-group">
@@ -60,7 +61,7 @@
 	               	</span>
 	            </div><!-- /input-group -->
             </td>
-            <td class="guest-status">{{ status }}</td>
+            <td class="guest-status"><a href="{% url 'admin:rsvp_rsvp_change' rsvp.pk %}">{{ status }}</a></td>
             <td class="guest-plus-one">{{ rsvp.fields.plus_one_name }} ({{ rsvp.fields.plus_one }})</td>
           {% if status %}
               <td class="guest-attending-date">{{ rsvp.fields.attending_dates }}</td>
