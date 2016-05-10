@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     url(r'^google7a6f5afec5a29ae0.html$', TemplateView.as_view(template_name='ext_google7a6f5afec5a29ae0.html')),
     url(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'images/favicon.ico')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^szaradmin/', include(admin.site.urls)),
     url(r'^$', views.home, name='root-url'),
     url(r'^rsvp/', include('rsvp.urls')),
 ]
