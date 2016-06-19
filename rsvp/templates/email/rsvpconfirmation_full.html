@@ -194,7 +194,10 @@ ol li {
             <p>Thank you for your RSVP.</p>
             {% if attending %}
             <p>We look forward to seeing you at the wedding!</p>
-            <p>More information to come about room blocks, transportation, and other logistics closer to the wedding date.</p>
+            {% if need_hotel %}
+            <p>We have room blocks at two hotels, the Best Western Forest Park Inn Gilroy ($139.99 a night) and the Hilton Garden Inn Gilroy ($189.99 a night). Please contact Aneesh (aneesh.r@gmail.com) for further details about this.</p>
+            {% endif %}
+            <p>More information about transportation and other logistics can be found on our wedding website.</p>
             {% else %}
             <p>We're sad you can't make it, but you'll be able to follow us through photos and videos on our website during and after the wedding.</p>
             {% endif %}
