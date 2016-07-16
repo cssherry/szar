@@ -2,6 +2,7 @@ $(function (argument) {
 
   fillOutHoneyFund();
   setCarousel();
+  fillAttendees();
 
   function fillOutHoneyFund () {
     var $result = $($("#wanderable-text").html()),
@@ -161,6 +162,45 @@ $(function (argument) {
         $rightArrow.trigger("click");
         $rightArrow.trigger("click");
       });
+    }
+  }
+
+  function fillAttendees () {
+    var allAttendees = [], $attendeesDiv, maxInDiv, numberInDiv;
+    if (szar.attendees) {
+      $attendeesDiv = $("#attendees ul");
+      szar.attendees.forEach(function (attendee) {
+        var prefix = "",
+            guest = attendee.fields.guest,
+            formalPrefix = attendee.fields.formal_prefix ?
+                           attendee.fields.formal_prefix  + " " : "",
+            plusOnes = attendee.fields.plus_one && attendee.fields.plus_one_name;
+        addAttendee(formalPrefix + guest.name);
+        if (plusOnes) {
+          plusOnes = plusOnes.split(",");
+          plusOnes.forEach(addAttendee);
+        }
+      });
+
+      allAttendees.sort(function (a, b) {
+        splitA = a.split(". ");
+        splitB = b.split(". ");
+        if (splitB[splitB.length - 1] > splitA[splitA.length - 1]) {
+          return -1;
+        }
+        return 1;
+      });
+      maxInDiv = Math.ceil(allAttendees.length / 3);
+      allAttendees.forEach(addNameToDiv);
+    }
+
+    function addAttendee (name) {
+      allAttendees.push(name);
+    }
+
+    function addNameToDiv (name, idx) {
+      var $div = $attendeesDiv.eq(Math.floor(idx / maxInDiv));
+      $div.append("<li>" + name);
     }
   }
 });

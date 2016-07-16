@@ -36,3 +36,7 @@ div.progress {
 .word-wrap {
   word-wrap: break-word;
 }
+
+.no-bullets {
+  list-style-type:none;
+}

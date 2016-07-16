@@ -157,6 +157,26 @@
   </div>
 </div>
 
+{% if attendees %}
+<div id="attendees" class="wedding-section">
+  <div class="one-vh">
+    <h2>Attendees</h2>
+
+    <div class="attendees row">
+      <div class="panel panel-default text-center col-sm-12 col-md-4">
+        <ul class="no-bullets"></ul>
+      </div>
+      <div class="panel panel-default text-center col-sm-12 col-md-4">
+        <ul class="no-bullets"></ul>
+      </div>
+      <div class="panel panel-default text-center col-sm-12 col-md-4">
+        <ul class="no-bullets"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <div id="hotels" class="wedding-section">
   <div class="one-vh">
     <h2>Hotels</h2>
@@ -265,6 +285,12 @@
   <div class="progress-bar" role="progressbar"
   aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip">
   </div>
+</script>
+<script type="text/javascript">
+  var szar = szar || {}
+  {% if attendees %}
+    szar.attendees = {{ attendees | safe }}
+  {% endif %}
 </script>
 
 <script src="{% static 'js/homepage.js'%}?v={{static_version}}.4"></script>

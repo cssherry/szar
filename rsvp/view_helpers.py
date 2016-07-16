@@ -37,11 +37,16 @@ KEEN_OBJECT = {
 }
 
 # Getting hash of rsvp(s)
-def rsvps_get_raw(rsvp_id):
+def rsvps_get_raw(rsvp_id=None):
     rsvps_array = RSVP.objects.all()
     if rsvp_id:
         rsvps_array = RSVP.objects.filter(id=rsvp_id)
 
+    return get_full_rsvp(rsvps_array)
+
+# Getting hash of rsvp(s)
+def rsvps_get_attending_raw():
+    rsvps_array = RSVP.objects.filter(attending=True)
     return get_full_rsvp(rsvps_array)
 
 def get_full_rsvp(rsvps_objects):
