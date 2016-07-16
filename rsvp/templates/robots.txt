@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /rsvp/
-Disallow: /szaradmin/
-Disallow: /google7a6f5afec5a29ae0.html
+Allow: /$
+Disallow: /
 Host: szar.us
