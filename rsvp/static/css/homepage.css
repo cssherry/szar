@@ -32,3 +32,7 @@ div.progress {
   padding-right: 0px !important;
   padding-left: 0px !important;
 }
+
+.word-wrap {
+  word-wrap: break-word;
+}
