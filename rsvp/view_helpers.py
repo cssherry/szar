@@ -98,16 +98,22 @@ def send_email(request, email_type, rsvp, subject):
       previous_emails[email_type] = [(time.strftime("%c"))]
 
 
-    name, username, rsvp_email, full_name = rsvp.name(), rsvp.guest.username, rsvp.guest.email, rsvp.full_name()
+    name, username, rsvp_email, full_name, plus_one = rsvp.name(), rsvp.guest.username, rsvp.guest.email, rsvp.full_name(), rsvp.plus_one_name
+
+    if plus_one:
+      plus_one = "," + plus_one
+    else:
+      plus_one = ""
 
     ctx = {
         "name": name,
+        "full_name": full_name + plus_one,
         "attending": rsvp.attending,
         "need_hotel": rsvp.need_hotel,
         "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=(username,))),
         "no_link": request.build_absolute_uri(reverse('quick_actions', args=(username, "no", ))),
         "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(username, "unsubscribe", ))),
-        "homepage": request.build_absolute_uri(reverse('root-url'))
+        "homepage": request.build_absolute_uri(reverse('custom-root-url', args=(username,)))
     }
     html_content = loader.get_template("email/" + email_type + ".html").render(ctx)
     text_content = loader.render_to_string('email/' + email_type + '.txt', ctx)
@@ -115,7 +121,7 @@ def send_email(request, email_type, rsvp, subject):
     msg = EmailMultiAlternatives(subject, text_content, my_email, ['{0} <{1}>'.format(full_name, rsvp_email)])
     msg.attach_alternative(html_content, "text/html")
     rsvp.edit({
-    "sent_emails": json.dumps(previous_emails)
+      "sent_emails": json.dumps(previous_emails)
     })
     msg.send();
 

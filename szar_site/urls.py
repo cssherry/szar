@@ -30,5 +30,5 @@ urlpatterns = [
     url(r'^szaradmin/', include(admin.site.urls)),
     url(r'^$', views.home, name='root-url'),
     url(r'^rsvp/', include('rsvp.urls')),
-    url(r'^(?P<username>[a-zA-Z0-9]+)$', views.home),
+    url(r'^(?P<username>[a-zA-Z0-9]+)$', views.home, name='custom-root-url'),
 ]

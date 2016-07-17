@@ -1,0 +1,32 @@
+{{ name }},
+
+Thank you so much for RSVPing to our wedding; we're very excited to have you there! Below are a few wedding-related logistics.
+
+TLDR:
+1) Fill out our logistics form at goo.gl/UgGT7L (by August 1st)
+2) If you would like to carpool with someone, either as a driver or rider, fill out our carpool sheet: https://docs.google.com/spreadsheets/d/1VwsAZSsKD6cqM0pSzXNwiD_NCAPYSn309INxbOJDj04/edit?usp=sharing
+
+Hotels:
+If you haven't done so yet, we suggest that you reserve a room at either the Best Western Forest Park Inn Gilroy ($139/night) or Hilton Garden Inn Gilroy ($189/night). Our room block rate expires July 27. For the Best Western, you need to call the hotel and ask for the "Zhou/Raghunandan wedding" rate. For the Hilton, you can book via hilton.com; just enter the group rate code ZRW in the appropriate box. More information on the hotels is available on our wedding website; let Aneesh know if you have questions.
+
+Wine tour:
+There are far more wineries in the Gilroy area than people realize! To share some of these hidden gems, we've organized a wine tour with tastings at three local wineries (Solis, Satori, Sunlit Oaks). Since this event obviously involves alcohol, we've also organized a bus. The bus will leave the Best Western at 11:00 AM and return to the Best Western by 3:30 PM. We ask for a $10 deposit as a commitment mechanism. Venmo or PayPal works best. This covers everything (bus, tasting fees, etc). Sign ups are through our logistics form.
+
+Henna:
+Right after the wine tour returns to the Best Western, we will have a henna artist available at the Best Western for anyone who's interested. We have limited capacity, so please reserve a spot through our logistics form.
+
+Carpools:
+Public transit to Gilroy is virtually nonexistent and Uber and Lyft aren't reliable down there. Driving is basically the only way to get to Gilroy, and so we thought it would be useful to organize carpools for people. We need your help: please add your information to the Google doc below if you either need a ride or can drive people. Once you find matches, please fill in names on the "Carpools" tab so we know who still needs a ride. If you do not add your name to the spreadsheet, we will assume that you know how you're getting to the venue.
+
+https://docs.google.com/spreadsheets/d/1VwsAZSsKD6cqM0pSzXNwiD_NCAPYSn309INxbOJDj04/edit?usp=sharing
+
+Shuttles:
+We will have shuttles from both hotels to and from the venue on Saturday (but not Sunday). Please let us know below if you plan to use the shuttle through our logistics form.
+
+Attendee List:
+Interested to know who else is coming? Take a look at our attendees list: {{ homepage }}#attendees.
+
+Thanks for making it all the way down to this part of the email. We're excited to see you in August!
+
+Aneesh & Sherry
+{{ homepage }}
