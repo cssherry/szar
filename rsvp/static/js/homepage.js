@@ -173,9 +173,9 @@ $(function (argument) {
         var prefix = "",
             guest = attendee.fields.guest,
             formalPrefix = attendee.fields.formal_prefix ?
-                           attendee.fields.formal_prefix  + " " : "",
+                           attendee.fields.formal_prefix.trim()  + " " : "",
             plusOnes = attendee.fields.plus_one && attendee.fields.plus_one_name;
-        addAttendee(formalPrefix + guest.name);
+        addAttendee(formalPrefix + guest.name.trim());
         if (plusOnes) {
           plusOnes = plusOnes.split(",");
           plusOnes.forEach(addAttendee);
@@ -185,7 +185,7 @@ $(function (argument) {
       allAttendees.sort(function (a, b) {
         splitA = a.split(". ");
         splitB = b.split(". ");
-        if (splitB[splitB.length - 1] > splitA[splitA.length - 1]) {
+        if (splitB[splitB.length - 1].toUpperCase() > splitA[splitA.length - 1].toUpperCase()) {
           return -1;
         }
         return 1;
@@ -195,7 +195,7 @@ $(function (argument) {
     }
 
     function addAttendee (name) {
-      allAttendees.push(name);
+      allAttendees.push(name.trim());
     }
 
     function addNameToDiv (name, idx) {
