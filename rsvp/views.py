@@ -95,7 +95,7 @@ def invitation(request, username=""):
             update_ctx[not_val_string] = ""
     context.update(update_ctx)
     keen.add_event("visit_rsvp_page", KEEN_OBJECT)
-    return render(request, 'rsvp/invitation.html', context)
+    return render(request, 'rsvp/invitation_closed.html', context)
 
 def _rsvps_create(request, username):
     form_entries = json.loads(request.POST.get("formEntries"))

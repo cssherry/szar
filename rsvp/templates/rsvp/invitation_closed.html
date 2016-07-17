@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<link rel="prerender" href="{% url 'root-url' %}" />
+{% endblock %}
+
+{% block title %}Sherry & Aneesh Wedding Invitation{% endblock %}
+{% block description %}Invitation and RSVP for the wedding between Aneesh Raghunandan and Sherry Zhou is closed{% endblock %}
+
+{% block content %}
+<h1>{{ name|default_if_none:"" }}</h1>
+<div class="jumbotron">
+  <p>
+    The RSVP period is closed. Please email Sherry or Aneesh if your plans have changed.
+  </p>
+</div>
+{% endblock %}
