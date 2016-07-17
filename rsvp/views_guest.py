@@ -26,7 +26,11 @@ import pyexcel.ext.xlsx
 # Need to set cookie for IE people or they won't be able to submit forms
 @ensure_csrf_cookie
 def email(request, email_type=""):
-    subject = 'Wedding Invitation August 27-28 (RSVP by July 1st)'
+    subjects = {
+        'invitation': 'Wedding Invitation August 27-28 (Response Requested)',
+        'logistics': 'Sherry and Aneesh Wedding Logistics (Respond by August 1st)'
+    }
+    subject = subjects.get(email_type, "Sherry and Aneesh Wedding Information")
     if request.user.is_superuser:
         if request.method == 'GET':
             return get_email(request, email_type)
