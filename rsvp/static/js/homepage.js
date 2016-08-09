@@ -41,7 +41,9 @@ $(function (argument) {
         warning += currentItem;
         total += originalItem;
         percentage = Math.floor(currentItem/originalItem * 100) + "%";
-        warningMessage.push( item.split("_").join(" ") + ": " + percentage);
+        if (percentage !== "0%") {
+          warningMessage.push( item.split("_").join(" ") + ": " + percentage);
+        }
       }
 
       warning = Math.floor(warning/total * 100);
@@ -83,12 +85,14 @@ $(function (argument) {
               day_1: dayValue,
               day_2: dayValue,
               day_3: dayValue,
+              day_4: dayValue,
               airfare: airfareValue,
             },
             sherry: {
               day_1: dayValue,
               day_2: dayValue,
               day_3: dayValue,
+              day_4: dayValue,
               airfare: airfareValue,
             }
           },
@@ -97,12 +101,14 @@ $(function (argument) {
               day_1: 0,
               day_2: 0,
               day_3: 0,
+              day_4: 0,
               airfare: 0,
             },
             sherry: {
               day_1: 0,
               day_2: 0,
               day_3: 0,
+              day_4: 0,
               airfare: 0,
             }
           };
