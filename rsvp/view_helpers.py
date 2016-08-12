@@ -12,30 +12,6 @@ from django.shortcuts import render
 
 from rsvp.utils import days_between
 
-# keen
-KEEN_OBJECT = {
-    "ip_address" : "${keen.ip}",
-    "user_agent" : "${keen.user_agent}",
-    "keen" : {
-    "addons" : [
-      {
-        "name" : "keen:ip_to_geo",
-        "input" : {
-          "ip" : "ip_address"
-        },
-        "output" : "ip_geo_info"
-      },
-      {
-        "name" : "keen:ua_parser",
-        "input" : {
-          "ua_string" : "user_agent"
-        },
-        "output" : "parsed_user_agent"
-      }
-    ]
-  }
-}
-
 # Getting hash of rsvp(s)
 def rsvps_get_raw(rsvp_id=None):
     rsvps_array = RSVP.objects.all()

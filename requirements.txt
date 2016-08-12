@@ -19,7 +19,6 @@ future==0.15.2
 gunicorn==19.4.5
 jdcal==1.2
 jmespath==0.9.0
-keen==0.3.21
 openpyxl==2.2.2
 Padding==0.4
 pathspec==0.3.4

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 from szar_site.base_settings import *
-import keen, raven
+import raven
 
 # Set settings for email, all within the gmail.txt
 email = open('szar_site/__pycache__/gmail.txt')
@@ -30,17 +30,8 @@ email.close()
 with open('szar_site/__pycache__/sentry.txt') as f:
     DNS_KEY = f.read().strip()
 
-# Set settings for keen, all within individual files
 with open('szar_site/__pycache__/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
-with open('szar_site/__pycache__/keen_project.txt') as g:
-    keen.project_id = g.read().strip()
-with open('szar_site/__pycache__/keen_read.txt') as h:
-    KEEN_READ_KEY = h.read().strip()
-with open('szar_site/__pycache__/keen_url.txt') as i:
-    KEEN_API_URL = i.read().strip()
-with open('szar_site/__pycache__/keen_write.txt') as j:
-    keen.write_key = j.read().strip()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/

@@ -12,9 +12,7 @@ from rsvp.utils import create_random_string
 
 from django.shortcuts import render
 
-import keen
-
-from rsvp.view_helpers import send_emails, get_email, KEEN_OBJECT, rsvps_get_raw
+from rsvp.view_helpers import send_emails, get_email, rsvps_get_raw
 
 from rsvp.models import RSVP
 
@@ -37,7 +35,6 @@ def email(request, email_type=""):
         elif request.method == 'POST':
             return send_emails(request, email_type, subject)
     else:
-        keen.add_event("admin_send_email_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can view or send emails", status=500)
 
 def get_rsvps(request):
@@ -107,7 +104,6 @@ def add_guests(request):
         elif request.method == 'POST':
             return add_rsvps(request)
     else:
-        keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can see rsvps", status=500)
 
 @login_required
@@ -126,5 +122,4 @@ def change_number(request, username="", new_number=""):
                 return HttpResponse("No such user found", status=500)
 
     else:
-        keen.add_event("admin_check_rsvps_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can change attendees", status=500)

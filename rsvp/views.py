@@ -13,8 +13,7 @@ from django.shortcuts import render
 
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-import keen
-from rsvp.view_helpers import KEEN_OBJECT, send_email
+from rsvp.view_helpers import send_email
 
 @ensure_csrf_cookie
 def invitation(request, username=""):
@@ -94,7 +93,6 @@ def invitation(request, username=""):
             update_ctx[val_string] = ""
             update_ctx[not_val_string] = ""
     context.update(update_ctx)
-    keen.add_event("visit_rsvp_page", KEEN_OBJECT)
     return render(request, 'rsvp/invitation_closed.html', context)
 
 def _rsvps_create(request, username):
@@ -157,18 +155,15 @@ def _rsvps_delete(request):
 
         return HttpResponse(response_message, status=200)
     else:
-        keen.add_event("admin_delete_rsvps_illegal", KEEN_OBJECT)
         return HttpResponse("Only admin can delete rsvps", status=500)
 
 # Need to set cookie for IE people or they won't be able to submit forms
 @ensure_csrf_cookie
 def rsvps(request, rsvp_id=''):
     if request.method == 'POST':
-        keen.add_event("submit_rsvp", KEEN_OBJECT)
         return _rsvps_create(request, username=rsvp_id)
 
     if request.method == 'DELETE':
-        keen.add_event("delete_rsvps", KEEN_OBJECT)
         return _rsvps_delete(request)
 
 @ensure_csrf_cookie

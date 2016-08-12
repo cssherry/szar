@@ -13,10 +13,6 @@ from szar_site.base_settings import *
 import os, dj_database_url, raven
 
 SECRET_KEY = os.environ['SECRET_KEY']
-KEEN_API_URL = os.environ['KEEN_API_URL']
-KEEN_PROJECT_ID = os.environ['KEEN_PROJECT_ID']
-KEEN_READ_KEY = os.environ['KEEN_READ_KEY']
-KEEN_WRITE_KEY = os.environ['KEEN_WRITE_KEY']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST = os.environ['EMAIL_HOST']
