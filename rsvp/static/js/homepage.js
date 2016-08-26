@@ -78,46 +78,36 @@ $(function (argument) {
 
     function parseGifts () {
       var dayValue = 280,
-          airfareValue = 325 + 325,
+          airfareValue = 325 * 2 + 135 * 2,
+          originalBase = {
+            day_1: dayValue,
+            day_2: dayValue,
+            day_3: dayValue,
+            day_4: dayValue,
+            day_5: dayValue,
+            day_6: dayValue,
+            day_7: 150,
+            day_8: 100,
+            airfare: airfareValue,
+          },
+          giftedBase = {
+            day_1: 0,
+            day_2: 0,
+            day_3: 0,
+            day_4: 0,
+            day_5: 0,
+            day_6: 0,
+            day_7: 0,
+            day_8: 0,
+            airfare: 0,
+          },
           giftItemsOriginal = {
-            aneesh: {
-              day_1: dayValue,
-              day_2: dayValue,
-              day_3: dayValue,
-              day_4: dayValue,
-              day_5: dayValue,
-              day_6: dayValue,
-              airfare: airfareValue,
-            },
-            sherry: {
-              day_1: dayValue,
-              day_2: dayValue,
-              day_3: dayValue,
-              day_4: dayValue,
-              day_5: dayValue,
-              day_6: dayValue,
-              airfare: airfareValue,
-            }
+            aneesh: $.extend({}, originalBase),
+            sherry: $.extend({}, originalBase)
           },
           giftItems = {
-            aneesh: {
-              day_1: 0,
-              day_2: 0,
-              day_3: 0,
-              day_4: 0,
-              day_5: 0,
-              day_6: 0,
-              airfare: 0,
-            },
-            sherry: {
-              day_1: 0,
-              day_2: 0,
-              day_3: 0,
-              day_4: 0,
-              day_5: 0,
-              day_6: 0,
-              airfare: 0,
-            }
+            aneesh: $.extend({}, giftedBase),
+            sherry: $.extend({}, giftedBase)
           };
 
       $giftItems.find(".row.il-item-row").each(function (i, el) {
