@@ -87,6 +87,7 @@ $(function (argument) {
               day_3: dayValue,
               day_4: dayValue,
               day_5: dayValue,
+              day_6: dayValue,
               airfare: airfareValue,
             },
             sherry: {
@@ -95,6 +96,7 @@ $(function (argument) {
               day_3: dayValue,
               day_4: dayValue,
               day_5: dayValue,
+              day_6: dayValue,
               airfare: airfareValue,
             }
           },
@@ -105,6 +107,7 @@ $(function (argument) {
               day_3: 0,
               day_4: 0,
               day_5: 0,
+              day_6: 0,
               airfare: 0,
             },
             sherry: {
@@ -113,6 +116,7 @@ $(function (argument) {
               day_3: 0,
               day_4: 0,
               day_5: 0,
+              day_6: 0,
               airfare: 0,
             }
           };
