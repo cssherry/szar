@@ -79,7 +79,6 @@ $(function (argument) {
     function parseGifts () {
       var dayValue = 280,
           airfareValue = 325 + 325,
-          totalValue = dayValue * 3 + airfareValue,
           giftItemsOriginal = {
             aneesh: {
               day_1: dayValue,

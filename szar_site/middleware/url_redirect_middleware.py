@@ -1,8 +1,6 @@
 import re
 
 from django.http import HttpResponsePermanentRedirect
-from django.conf import settings
-
 
 class UrlRedirectMiddleware:
     """
