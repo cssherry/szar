@@ -154,6 +154,11 @@
     * Cache views (https://docs.djangoproject.com/en/dev/topics/cache/#the-per-view-cache)
       * Use ```from django.views.decorators.cache import cache_page``` and ```@cache_page(seconds)```
 
+  * Email forwarding for pictures
+    * There's complexity due to Cloudflare's nameservers being used in Namecheap. Otherwise, could just follow [Namecheap's built in email forwarding](https://www.namecheap.com/support/knowledgebase/article.aspx/308/76/how-can-i-set-up-free-email-forwarding-for-my-domain).
+    * Need to create [mailgun.com](https://mailgun.com) account
+    * Create domain (whatever after you name in name@domain.suffix) and then in Cloudflare fill in 2 TXT records (with hostname as domain.suffix, TXT content as value), 1 cname with email.domain.suffix as hostname and mailgun.org as alias, and 2 MX records with domain.suffix as hostnames and mxa.mailgun.org and mxb.mailgun.org as values.
+    * Create route in MailGun for the desired expression type (match recipient), and action (forwarding email address)
   * Improvements for next time
     * Use forms.py http://www.djangobook.com/en/2.0/chapter07.html or some other form template that I've forgotten the name of
     * Write tests for views and models
