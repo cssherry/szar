@@ -11,7 +11,10 @@ $(function (argument) {
 
         gifts = parseGifts();
 
-    $container.append($result.find("#hm-adonia .rl-location"));
+    var intro = $result.find("#hm-adonia .rl-location"),
+        title = intro.find("h3");
+    title.replaceWith("<h5>" + title[0].innerHTML + "</h5>");
+    $container.append(intro);
     $container.append("<h5>Sherry</h5>");
     $container.append(getProgressBar("sherry"));
     $container.append("<h5>Aneesh</h5>");
