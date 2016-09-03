@@ -1,0 +1,19 @@
+{{ name }},
+
+{% if attending %}
+  Thank you for coming to our wedding this past weekend! We really appreciated you helping us celebrate our marriage and making it such a special weekend for us.
+{% endif %}
+{% if gift %}
+  Since we used an electronic invitation, we don't have your mailing address and we need it for a super secret surprise. Please send us your mailing address by responding to this email or going to {{ address_link }}.
+{% endif %}
+  Let's keep in touch -- in Menlo Park, through the phone/email/chat, or on a trip!
+
+Best,
+
+Aneesh & Sherry
+
+{% if attending %}
+PS: Don't forget to share photos! We'd love to post them on the wedding website, just <strong>upload them to Dropbox</strong> (<a href="{{ dropbox_link }}">szar.us/dropbox</a>), <strong>share them on Facebook</strong> (tagging either Aneesh or Sherry and including the word 'wedding', 'shereesh2016', or 'szar2016' in the caption), or <strong>email individually or zipped</strong> to <a href="mailto:pictures@szar.us">pictures@szar.us</a>
+{% else %}
+Webpage: {{ homepage }}
+{% endif %}

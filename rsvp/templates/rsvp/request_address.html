@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<link rel="prerender" href="{% url 'root-url' %}" />
+{% endblock %}
+
+{% block description %}{{ name|default_if_none:"Template" }}'s address submission page{% endblock %}
+
+{% block content %}
+<h1>{{ name|default_if_none:"" }}</h1>
+<div class="jumbotron">
+  <form class="address-form" action="">
+    <div class="form-group">
+      <label>Address</label>
+      <textarea  class="form-control" id="address" name="address" rows="8" required  aria-describedby="addressResultBLock">{{ address }}</textarea>
+      <div class="control-label"  for="address"></div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
+
+{% block code %}
+<script src="{% static 'js/ext/jquery.validate.min.js'%}"></script>
+<script type="text/javascript">
+  // Set global variables
+  var rsvp = rsvp || {};
+  address.csrfToken = "{{ csrf_token }}";
+  address.updateLink = "{% url 'update_rsvp_api' username=username %}";
+  address.username = "{{ username }}";
+</script>
+<script src="{% static 'js/request_address.js'%}?v={{static_version}}"></script>
+{% endblock %}

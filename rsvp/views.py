@@ -95,7 +95,32 @@ def invitation(request, username=""):
     context.update(update_ctx)
     return render(request, 'rsvp/invitation_closed.html', context)
 
-def _rsvps_create(request, username):
+def update_values(request, username=''):
+    form_entries = json.loads(request.POST.get("formEntries"))
+    user = User.objects.filter(username=username)
+    if len(user) != 0:
+        user = user[0]
+        rsvp = user.rsvp
+
+        for k, v in form_entries.items():
+            if v == "False":
+                v = False
+            elif v == "None":
+                v = None
+
+            if hasattr(user, k):
+                setattr(user, k, v)
+            else:
+                setattr(rsvp, k, v)
+
+        rsvp.save()
+        user.save()
+        return HttpResponse("Successfully updated " + json.dumps(form_entries), status=200)
+    else:
+        return HttpResponse("No user found", status=400)
+
+
+def update_or_create_rsvp(request, username=''):
     form_entries = json.loads(request.POST.get("formEntries"))
     rsvp_values = {}
     user_values = {"first_name": True, "last_name": True, "email": "", "password": "szar"}
@@ -161,10 +186,24 @@ def _rsvps_delete(request):
 @ensure_csrf_cookie
 def rsvps(request, rsvp_id=''):
     if request.method == 'POST':
-        return _rsvps_create(request, username=rsvp_id)
+        return update_or_create_rsvp(request, username=rsvp_id)
 
     if request.method == 'DELETE':
         return _rsvps_delete(request)
+# Need to set cookie for IE people or they won't be able to submit forms
+@ensure_csrf_cookie
+def address(request, username=''):
+    user = User.objects.filter(username=username)
+    if len(user):
+        user = user[0]
+        ctx = {
+            'username': user.username,
+            'name': user.rsvp.name(),
+            'address': user.rsvp.address,
+        }
+        return render(request, 'rsvp/request_address.html', ctx)
+    else:
+        return HttpResponse("Username doesn't exist", status=400)
 
 @ensure_csrf_cookie
 def quick_actions(request, username, action=""):

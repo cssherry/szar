@@ -5,6 +5,8 @@ urlpatterns = [
     url(r'^$', views.invitation, name='invitation'),
     url(r'^rsvps$', views.rsvps, name='save_rsvp'),
     url(r'^rsvps/(?P<rsvp_id>[a-zA-Z0-9]+)$', views.rsvps),
+    url(r'^address/(?P<username>[a-zA-Z0-9]+)$', views.address, name='update_address'),
+    url(r'^update/(?P<username>[a-zA-Z0-9]+)$', views.update_values, name='update_rsvp_api'),
     url(r'^guests$', views_guest.add_guests, name='add_guests'),
     url(r'^guests/(?P<email_type>[a-zA-Z]+)$', views_guest.email),
     url(r'^change_number$', views_guest.change_number, name='change_number'),

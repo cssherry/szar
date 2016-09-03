@@ -12,6 +12,7 @@ from django.shortcuts import render
 
 from rsvp.utils import days_between
 
+
 # Getting hash of rsvp(s)
 def rsvps_get_raw(rsvp_id=None):
     rsvps_array = RSVP.objects.all()
@@ -47,6 +48,12 @@ def send_emails(request, email_type, subject):
     response_message = ""
     for rsvp_id in rsvp_ids:
         rsvp = RSVP.objects.filter(id=rsvp_id)
+        if email_type == 'requestaddress':
+            if rsvp.gift:
+                subject = "Sherry and Aneesh Address Request (Respond by Sept 10)"
+            else:
+                subject = "Thank you from Sherry and Aneesh!"
+
         if len(rsvp) > 0:
             if rsvp[0].has_valid_email():
                 rsvp = rsvp[0]
@@ -85,9 +92,12 @@ def send_email(request, email_type, rsvp, subject):
         "name": name,
         "full_name": full_name + plus_one,
         "attending": rsvp.attending,
+        "gift": rsvp.gift,
         "need_hotel": rsvp.need_hotel,
+        "dropbox_link": request.build_absolute_uri(reverse('dropbox', )),
         "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=(username,))),
         "no_link": request.build_absolute_uri(reverse('quick_actions', args=(username, "no", ))),
+        "address_link": request.build_absolute_uri(reverse('update_address', args=(username, ))),
         "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(username, "unsubscribe", ))),
         "homepage": request.build_absolute_uri(reverse('custom-root-url', args=(username,)))
     }
@@ -104,10 +114,15 @@ def send_email(request, email_type, rsvp, subject):
 def get_email(request, email_type):
     pretendCtx = {
         "name": "Sherry",
-        "attending": False,
+        "full_name": "Sherry Zhou,Aneesh Raghunandan",
+        "attending": True,
+        "gift": True,
+        "need_hotel": True,
+        "dropbox_link": request.build_absolute_uri(reverse('dropbox', )),
         "rsvp_link": request.build_absolute_uri(reverse('make_rsvp', args=[1])),
         "no_link": request.build_absolute_uri(reverse('quick_actions', args=(1, "no", ))),
+        "address_link": request.build_absolute_uri(reverse('update_address', args=('sherry', ))),
         "unsubscribe": request.build_absolute_uri(reverse('quick_actions', args=(1, "unsubscribe", ))),
-        "homepage": request.build_absolute_uri(reverse('root-url'))
+        "homepage": request.build_absolute_uri(reverse('custom-root-url', args=("sherry",)))
     }
     return render(request, 'email/' + email_type + '.html', pretendCtx)

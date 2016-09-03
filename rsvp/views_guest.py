@@ -26,9 +26,11 @@ import pyexcel.ext.xlsx
 def email(request, email_type=""):
     subjects = {
         'invitation': 'Wedding Invitation August 27-28 (Response Requested)',
-        'logistics': 'Sherry and Aneesh Wedding Logistics (Respond by August 1st)'
+        'logistics': 'Sherry and Aneesh Wedding Logistics (Respond by August 1st)',
+        'requestaddress': ''
     }
     subject = subjects.get(email_type, "Sherry and Aneesh Wedding Information")
+
     if request.user.is_superuser:
         if request.method == 'GET':
             return get_email(request, email_type)
