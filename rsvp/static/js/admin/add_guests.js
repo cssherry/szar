@@ -103,7 +103,6 @@ $(function () {
     })
     .fail(function(req, textStatus, errorThrown) {
       alertUser("Email failed: " + req, "fail");
-      $();
       Raven.captureException(new Error('Email Failed'),{
         extra: {
           req: req,

@@ -48,15 +48,17 @@ def send_emails(request, email_type, subject):
     response_message = ""
     for rsvp_id in rsvp_ids:
         rsvp = RSVP.objects.filter(id=rsvp_id)
-        if email_type == 'requestaddress':
-            if rsvp.gift:
-                subject = "Sherry and Aneesh Address Request (Respond by Sept 10)"
-            else:
-                subject = "Thank you from Sherry and Aneesh!"
 
         if len(rsvp) > 0:
             if rsvp[0].has_valid_email():
                 rsvp = rsvp[0]
+
+                if email_type == 'requestaddress':
+                    if rsvp.gift:
+                        subject = "Sherry and Aneesh Address Request (Respond by Sept 10)"
+                    else:
+                        subject = "Thank you from Sherry and Aneesh!"
+
                 time.sleep(1)
                 send_email(request, email_type, rsvp, subject)
                 response_message += "Successfully sent for " + rsvp_id + "."
