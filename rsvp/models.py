@@ -59,9 +59,8 @@ class RSVP(models.Model):
                                                   choices=GIFT_TYPE,
                                                   null=True,
                                                   blank=True)
-    gift_amount = models.DecimalField(default=0, max_digits=4, decimal_places=2)
+    gift_amount = models.DecimalField(default=0, max_digits=8, decimal_places=2)
     gift_message = models.TextField(default="", blank=True)
-    thank_you_message = models.TextField(default="", blank=True)
     address = models.TextField(default="", blank=True)
 
     def edit(self, new_values):

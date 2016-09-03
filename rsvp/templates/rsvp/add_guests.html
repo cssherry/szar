@@ -5,6 +5,7 @@
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/ext/dropzone.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/admin.css' %}?v={{static_version}}">
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block description %}RSVP management for SZAR wedding site{% endblock %}
@@ -36,6 +37,10 @@
         <th>Comments</th>
         <th>Song Requests</th>
         <th>Username</th>
+        <th>Gift</th>
+        <th>Gift Amount</th>
+        <th>Gift Message</th>
+        <th>Address</th>
         <th>Sent Emails</th>
       </thead>
       {% for rsvp in current_guests %}
@@ -51,7 +56,7 @@
             </td>
           {% endif %}
             <td class="guest-name"><a href="{% url 'admin:auth_user_change' rsvp.fields.guest.id %}">{{ rsvp.fields.formal_prefix|default:"" }} {{ rsvp.fields.guest.name }}</a></td>
-            <td class="guest-email">{{ rsvp.fields.guest.email }}</td>
+            <td class="guest-email"><a href="#" class="editable" data-type="text" data-name="email" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.guest.email }}</a></td>
             <td class="guest-number">
               <div class="input-group">
 	               	<span class="input-group-btn">
@@ -63,11 +68,11 @@
 	               	</span>
 	            </div><!-- /input-group -->
             </td>
-            <td class="guest-status"><a href="{% url 'admin:rsvp_rsvp_change' rsvp.pk %}">{{ status }}</a></td>
-            <td class="guest-plus-one">{{ rsvp.fields.plus_one_name }} ({{ rsvp.fields.plus_one }})</td>
+            <td class="guest-status"><a class="editable" data-type="text" data-name="attending" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ status }}</a> <a href="{% url 'admin:rsvp_rsvp_change' rsvp.pk %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <td class="guest-plus-one"><a class="editable" data-type="text" data-name="plus_one_name" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.plus_one_name }}</a> (<a class="editable" data-type="text" data-name="plus_one" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.plus_one }}</a>)</td>
           {% if status %}
-              <td class="guest-attending-date">{{ rsvp.fields.attending_dates }}</td>
-              <td class="guest-attending-number">{{ rsvp.fields.number_attendees }}</td>
+              <td class="guest-attending-date"><a class="editable" data-type="text" data-name="attending_dates" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.attending_dates }}</a></td>
+              <td class="guest-attending-number"><a class="editable" data-type="text" data-name="number_attendees" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.number_attendees }}</a></td>
               <td class="guest-vegetarian">{{ rsvp.fields.vegetarian }} ({{ rsvp.fields.other_dietary_restrictions }})</td>
               <td class="guest-hotel">{{ rsvp.fields.need_hotel }}</td>
               <td class="guest-carpool">{{ rsvp.fields.need_carpool }}</td>
@@ -83,6 +88,10 @@
             <td class="guest-comments">{{ rsvp.fields.comments }}</td>
             <td class="guest-songs">{{ rsvp.fields.song_requests }}</td>
             <td class="guest-username">{{ rsvp.fields.guest.username }}</td>
+            <td class="guest-gift"><a class="editable" data-type="text" data-name="gift" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.gift }}</a></td>
+            <td class="guest-gift-amount"><a class="editable" data-type="text" data-name="gift_amount" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.gift_amount }}</a></td>
+            <td class="guest-gift-message"><a class="editable" data-type="textarea" data-name="gift_message" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.gift_message }}</a></td>
+            <td class="guest-address"><a class="editable" data-type="textarea" data-name="address" data-url="{% url 'update_rsvp_api' username=rsvp.fields.guest.username %}" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ rsvp.fields.address }}</a></td>
             <td class="guest-emails-sent">{{ rsvp.fields.sent_emails }}</td>
           </tr>
           {% endwith %}
@@ -121,13 +130,18 @@
     <script src="{% static 'js/widgets/checkbox.js'%}?v={{static_version}}.1"></script>
     <script src="{% static 'js/ext/datatables/jquery.dataTables.min.js'%}"></script>
     <script src="{% static 'js/ext/datatables/sum.min.js'%}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     <script src="{% static 'js/admin/add_guests.js'%}?v={{static_version}}.2"></script>
     <script type="text/javascript">
       // Set global variables
       var rsvp = rsvp || {};
+      var None = "";
+      var False = false;
+      var True = true;
       rsvp.csrf_token = "{{ csrf_token }}";
       rsvp.add_guests_url = "{% url 'add_guests' %}";
       rsvp.delete_rsvp_url = "{% url 'save_rsvp' %}";
       rsvp.change_number_url = "{% url 'change_number' %}";
+      rsvp.current_guests = {{ current_guests|safe }};
     </script>
 {% endblock %}

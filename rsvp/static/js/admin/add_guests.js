@@ -40,6 +40,11 @@ $(function () {
     }
   });
 
+  //turn to inline mode
+  $.fn.editable.defaults.mode = 'inline';
+  $.fn.editable.defaults.send = "always";
+  $table.find("a.editable").editable();
+
   $table.on("click.changeNumber", ".input-group-btn > button", function (e) {
     var $el = $(e.target),
         $number = $($el).closest(".input-group").find(".number"),

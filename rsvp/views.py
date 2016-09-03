@@ -96,7 +96,13 @@ def invitation(request, username=""):
     return render(request, 'rsvp/invitation_closed.html', context)
 
 def update_values(request, username=''):
-    form_entries = json.loads(request.POST.get("formEntries"))
+    try:
+        form_entries = json.loads(request.POST.get("formEntries"))
+    except:
+    #     Inline editing selection
+        form_entries = {
+            request.POST.get("name"): request.POST.get("value")
+        }
     user = User.objects.filter(username=username)
     if len(user) != 0:
         user = user[0]
